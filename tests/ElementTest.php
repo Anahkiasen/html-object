@@ -93,6 +93,14 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
   }
 
+  public function testCanNestStrings()
+  {
+    $object = Element::strong('foo');
+    $this->object->nest('<strong>foo</strong>');
+
+    $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
+  }
+
   public function testCanNestObjects()
   {
     $object = Element::strong('foo');
@@ -116,5 +124,14 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->object->nestChildren(array($strong, $em));
 
     $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
+  }
+
+  public function testSimilarClassesStillGetAdded()
+  {
+    $alert = Element::p();
+    $alert->addClass('alert-success');
+    $alert->addClass('alert');
+
+    $this->assertEquals('<p class="alert-success alert"></p>', $alert->render());
   }
 }

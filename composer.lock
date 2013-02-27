@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Anahkiasen/underscore-php.git",
-                "reference": "08fd557fc01e57b1ef67e039b7f8060887c40186"
+                "reference": "e106a0df389d8f321496f94d2f38eff0556120c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Anahkiasen/underscore-php/zipball/08fd557fc01e57b1ef67e039b7f8060887c40186",
-                "reference": "08fd557fc01e57b1ef67e039b7f8060887c40186",
+                "url": "https://api.github.com/repos/Anahkiasen/underscore-php/zipball/e106a0df389d8f321496f94d2f38eff0556120c9",
+                "reference": "e106a0df389d8f321496f94d2f38eff0556120c9",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                     "Underscore": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -36,7 +36,7 @@
                 }
             ],
             "description": "A redacted port of Underscore.js for PHP",
-            "time": "2013-02-14 23:26:58"
+            "time": "2013-02-27 14:01:46"
         },
         {
             "name": "illuminate/support",
@@ -74,7 +74,7 @@
                     "Illuminate/Support/helpers.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Taylor Otwell",

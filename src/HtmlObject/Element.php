@@ -93,15 +93,11 @@ class Element
    */
   public function render()
   {
-    // Create children
-    $content = $this->value;
-    if ($this->children) {
-      foreach ($this->children as $child) {
-        $content .= $child->render();
-      }
-    }
-
-    return '<'.$this->element.$this->parseAttributes($this->attributes).'>'.$content.'</'.$this->element.'>';
+    return
+    '<'.$this->element.$this->parseAttributes($this->attributes).'>'
+      .$this->value
+      .$this->getChildren()
+    .'</'.$this->element.'>';
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -201,7 +197,7 @@ class Element
    */
   public function nest($element, $value = null, $attributes = array())
   {
-    if (!($element instanceof Element)) {
+    if (!($element instanceof Element) and !String::find($element, '<')) {
       $element = new Element($element, $value, $attributes);
     }
     $this->children[] = $element;
@@ -227,6 +223,21 @@ class Element
     }
 
     return $this;
+  }
+
+  /**
+   * Get all children rendered
+   *
+   * @return string
+   */
+  protected function getChildren()
+  {
+    $children = $this->children;
+    return Arrays::from($children)->each(function($child) {
+      if ($child instanceof Element) return $child->render();
+
+      return $child;
+    })->implode();
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -299,7 +310,8 @@ class Element
     }
 
     // Prevent adding a class twice
-    if (!String::contains($this->attributes['class'], $class)) {
+    $classes = explode(' ', $this->attributes['class']);
+    if (!in_array($class, $classes)) {
       $this->attributes['class'] = trim($this->attributes['class']. ' ' .$class);
     }
 
