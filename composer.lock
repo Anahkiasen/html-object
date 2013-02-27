@@ -1,5 +1,5 @@
 {
-    "hash": "e42c9a170c38e1a3816e153fe78579b7",
+    "hash": "b961a85bb8e9649ed4a5325bc289b4dd",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -89,7 +89,7 @@
     "aliases": [
 
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
         "anahkiasen/underscore-php": 20
     }

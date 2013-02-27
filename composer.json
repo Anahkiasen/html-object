@@ -12,7 +12,6 @@
       "HtmlObject": "src/"
     }
   },
-  "minimum-stability": "dev",
   "require": {
     "anahkiasen/underscore-php": "dev-master"
   }

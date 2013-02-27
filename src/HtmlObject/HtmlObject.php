@@ -7,7 +7,6 @@
 namespace HtmlObject;
 
 use Underscore\Types\Arrays;
-use Underscore\Types\String;
 
 class HtmlObject
 {
