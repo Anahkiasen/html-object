@@ -7,6 +7,7 @@
 namespace HtmlObject;
 
 use Underscore\Types\Arrays;
+use Underscore\Types\String;
 
 class HtmlObject
 {
@@ -44,6 +45,14 @@ class HtmlObject
   }
 
   /**
+   * Static alias for constructor
+   */
+  public static function create($name, $value = null, $attributes = array())
+  {
+    return new static($name, $value, $attributes);
+  }
+
+  /**
    * Render on string type
    *
    * @return string
@@ -66,6 +75,22 @@ class HtmlObject
   ////////////////////////////////////////////////////////////////////
   /////////////////////////// CORE METHODS ///////////////////////////
   ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Dynamically create a tag
+   *
+   * @param string $method     The tag
+   * @param array  $parameters Value and attributes
+   *
+   * @return HtmlObject
+   */
+  public static function __callStatic($method, $parameters)
+  {
+    $value      = Arrays::get($parameters, 0);
+    $attributes = Arrays::get($parameters, 1);
+
+    return new static($method, $value, $attributes);
+  }
 
   /**
    * Dynamically set attributes

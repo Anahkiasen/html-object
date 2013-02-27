@@ -13,6 +13,13 @@ class HtmlObjectTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('<p>foo</p>', $this->object->render());
   }
 
+  public function testCanDynamicallyCreateObjects()
+  {
+    $object = HtmlObject::p('foo')->class('bar');
+
+    $this->assertEquals('<p class="bar">foo</p>', $object->render());
+  }
+
   public function testCanSetAnAttribute()
   {
     $this->object->setAttribute('data-foo', 'bar');
