@@ -1,11 +1,11 @@
 <?php
-use HtmlObject\HtmlObject;
+use HtmlObject\Element;
 
-class HtmlObjectTest extends PHPUnit_Framework_TestCase
+class ElementTest extends PHPUnit_Framework_TestCase
 {
   public function setUp()
   {
-    $this->object = new HtmlObject('p', 'foo');
+    $this->object = new Element('p', 'foo');
   }
 
   public function testCanCreateHtmlObject()
@@ -15,7 +15,7 @@ class HtmlObjectTest extends PHPUnit_Framework_TestCase
 
   public function testCanDynamicallyCreateObjects()
   {
-    $object = HtmlObject::p('foo')->class('bar');
+    $object = Element::p('foo')->class('bar');
 
     $this->assertEquals('<p class="bar">foo</p>', $object->render());
   }
@@ -82,7 +82,7 @@ class HtmlObjectTest extends PHPUnit_Framework_TestCase
 
   public function testCanNest()
   {
-    $object = HtmlObject::strong('foo');
+    $object = Element::strong('foo');
     $this->object->nest('strong', 'foo');
 
     $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
@@ -90,9 +90,26 @@ class HtmlObjectTest extends PHPUnit_Framework_TestCase
 
   public function testCanNestObjects()
   {
-    $object = HtmlObject::strong('foo');
+    $object = Element::strong('foo');
     $this->object->nest($object);
 
     $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
+  }
+
+  public function testCanNestMultipleValues()
+  {
+    $object = Element::strong('foo');
+    $this->object->nestChildren(array('strong' => 'foo', 'em' => 'bar'));
+
+    $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
+  }
+
+  public function testCanNestMultipleObjects()
+  {
+    $strong = Element::strong('foo');
+    $em = Element::em('bar');
+    $this->object->nestChildren(array($strong, $em));
+
+    $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
   }
 }

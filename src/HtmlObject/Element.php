@@ -1,6 +1,6 @@
 <?php
 /**
- * HtmlObject
+ * Element
  *
  * An abstraction of an HTML element
  */
@@ -9,7 +9,7 @@ namespace HtmlObject;
 use Underscore\Types\Arrays;
 use Underscore\Types\String;
 
-class HtmlObject
+class Element
 {
 
   /**
@@ -37,7 +37,7 @@ class HtmlObject
   protected $children = array();
 
   /**
-   * Creates a basic HtmlObject
+   * Creates a basic Element
    *
    * @param string $element
    * @param string $value
@@ -96,7 +96,7 @@ class HtmlObject
    * @param string $method     The element
    * @param array  $parameters Value and attributes
    *
-   * @return HtmlObject
+   * @return Element
    */
   public static function __callStatic($method, $parameters)
   {
@@ -173,12 +173,25 @@ class HtmlObject
    */
   public function nest($element, $value = null, $attributes = array())
   {
-    if (!($element instanceof HtmlObject)) {
-      $element = new HtmlObject($element, $value, $attributes);
+    if (!($element instanceof Element)) {
+      $element = new Element($element, $value, $attributes);
     }
     $this->children[] = $element;
 
     return $this;
+  }
+
+  /**
+   * Nest an array of objects/values
+   *
+   * @param array $children
+   */
+  public function nestChildren($children)
+  {
+    foreach ($children as $element => $value) {
+      if (is_numeric($element)) $element = $value;
+      $this->nest($element, $value);
+    }
   }
 
   ////////////////////////////////////////////////////////////////////

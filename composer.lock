@@ -1,5 +1,5 @@
 {
-    "hash": "b961a85bb8e9649ed4a5325bc289b4dd",
+    "hash": "fd9dbbe363b27d01bc9fcf8e512a1c78",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -19,7 +19,6 @@
                 "illuminate/support": "4.0.*@dev",
                 "php": ">=5.3.0"
             },
-            "time": "2013-02-14 23:26:58",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -36,7 +35,8 @@
                     "email": "ehtnam6@gmail.com"
                 }
             ],
-            "description": "A redacted port of Underscore.js for PHP"
+            "description": "A redacted port of Underscore.js for PHP",
+            "time": "2013-02-14 23:26:58"
         },
         {
             "name": "illuminate/support",
@@ -60,7 +60,6 @@
                 "mockery/mockery": "0.7.2",
                 "patchwork/utf8": "1.0.*"
             },
-            "time": "2013-02-27 21:35:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -82,14 +81,15 @@
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "description": "Various utilities and support functions."
+            "description": "Various utilities and support functions.",
+            "time": "2013-02-27 21:35:00"
         }
     ],
     "packages-dev": null,
     "aliases": [
 
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "anahkiasen/underscore-php": 20
     }
