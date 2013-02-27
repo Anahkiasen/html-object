@@ -104,9 +104,17 @@ class ElementTest extends PHPUnit_Framework_TestCase
   public function testCanNestObjects()
   {
     $object = Element::strong('foo');
-    $this->object->nest($object);
+    $this->object->nestElement($object);
 
     $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
+  }
+
+  public function testCanGetNestedElements()
+  {
+    $object = Element::strong('foo');
+    $this->object->nestElement($object, 'foo');
+
+    $this->assertEquals($object, $this->object->getChild('foo'));
   }
 
   public function testCanNestMultipleValues()
@@ -115,6 +123,19 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->object->nestChildren(array('strong' => 'foo', 'em' => 'bar'));
 
     $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
+  }
+
+  public function testCanNestMultipleElements()
+  {
+    $foo = Element::strong('foo');
+    $bar = Element::p('bar');
+    $this->object->nestChildren(array(
+      'foo' => $foo,
+      'bar' => $bar,
+    ));
+
+    $this->assertEquals($foo, $this->object->getChild('foo'));
+    $this->assertEquals($bar, $this->object->getChild('bar'));
   }
 
   public function testCanNestMultipleObjects()

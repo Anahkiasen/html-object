@@ -231,11 +231,34 @@ class Element
   ////////////////////////////////////////////////////////////////////
 
   /**
+   * Get a specific child of the element
+   *
+   * @param string $name The Element's name
+   *
+   * @return Element
+   */
+  public function getChild($name)
+  {
+    return Arrays::get($this->children, $name);
+  }
+
+  /**
+   * Nests an object withing the current object
+   */
+  public function nestElement($element, $name = null)
+  {
+    if ($name) $this->children[$name] = $element;
+    else $this->children[] = $element;
+
+    return $this;
+  }
+
+  /**
    * Nests an object withing the current object
    */
   public function nest($element, $value = null, $attributes = array())
   {
-    if (!($element instanceof Element) and !String::find($element, '<')) {
+    if (!String::find($element, '<')) {
       $element = new Element($element, $value, $attributes);
     }
     $this->children[] = $element;
@@ -254,10 +277,12 @@ class Element
 
     foreach ($children as $element => $value) {
       if (is_numeric($element)) {
-        if(is_object($value)) $element = $value;
-        elseif($this->defaultChild) $element = $this->defaultChild;
+        if(is_object($value)) $this->nestElement($value);
+        elseif($this->defaultChild) $this->nest($this->defaultChild, $value);
+      } else {
+        if(is_object($value)) $this->nestElement($value, $element);
+        else $this->nest($element, $value);
       }
-      $this->nest($element, $value);
     }
 
     return $this;

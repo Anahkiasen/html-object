@@ -1,5 +1,5 @@
 {
-    "hash": "fd9dbbe363b27d01bc9fcf8e512a1c78",
+    "hash": "a9c7f7336d9165236601e52af57e8cc0",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -16,16 +16,17 @@
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "4.0.*@dev",
-                "php": ">=5.3.0"
+                "php": ">=5.3.0",
+                "illuminate/support": "4.0.*@dev"
             },
+            "time": "2013-02-27 14:01:46",
             "type": "library",
             "autoload": {
                 "psr-0": {
                     "Underscore": "src/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -35,8 +36,7 @@
                     "email": "ehtnam6@gmail.com"
                 }
             ],
-            "description": "A redacted port of Underscore.js for PHP",
-            "time": "2013-02-27 14:01:46"
+            "description": "A redacted port of Underscore.js for PHP"
         },
         {
             "name": "illuminate/support",
@@ -57,9 +57,10 @@
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "mockery/mockery": "0.7.2",
-                "patchwork/utf8": "1.0.*"
+                "patchwork/utf8": "1.0.*",
+                "mockery/mockery": "0.7.2"
             },
+            "time": "2013-02-27 21:35:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -74,18 +75,19 @@
                     "Illuminate/Support/helpers.php"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "Taylor Otwell",
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "description": "Various utilities and support functions.",
-            "time": "2013-02-27 21:35:00"
+            "description": "Various utilities and support functions."
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
