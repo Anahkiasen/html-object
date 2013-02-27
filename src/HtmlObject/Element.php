@@ -36,6 +36,20 @@ class Element
    */
   protected $children = array();
 
+  // Defaults ------------------------------------------------------ /
+
+  /**
+   * Default element
+   * @var string
+   */
+  protected $defaultElement = 'p';
+
+  /**
+   * Default element for nested children
+   * @var string
+   */
+  protected $defaultChild;
+
   /**
    * Creates a basic Element
    *
@@ -43,17 +57,17 @@ class Element
    * @param string $value
    * @param array  $attributes
    */
-  public function __construct($element, $value = null, $attributes = array())
+  public function __construct($element = null, $value = null, $attributes = array())
   {
-    $this->element    = $element;
-    $this->value      = $value;
-    $this->attributes = $attributes;
+    $this->setElement($element);
+    $this->setValue($value);
+    $this->replaceAttributes($attributes);
   }
 
   /**
    * Static alias for constructor
    */
-  public static function create($element, $value = null, $attributes = array())
+  public static function create($element = null, $value = null, $attributes = array())
   {
     return new static($element, $value, $attributes);
   }
@@ -147,7 +161,7 @@ class Element
    */
   public function setElement($element)
   {
-    $this->element = $element;
+    $this->element = $element ?: $this->defaultElement;
 
     return $this;
   }
@@ -188,10 +202,17 @@ class Element
    */
   public function nestChildren($children)
   {
+    if (!is_array($children)) return $this;
+
     foreach ($children as $element => $value) {
-      if (is_numeric($element)) $element = $value;
+      if (is_numeric($element)) {
+        if(is_object($value)) $element = $value;
+        elseif($this->defaultChild) $element = $this->defaultChild;
+      }
       $this->nest($element, $value);
     }
+
+    return $this;
   }
 
   ////////////////////////////////////////////////////////////////////
