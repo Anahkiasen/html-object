@@ -133,6 +133,8 @@ class Element
    */
   public function render()
   {
+    if ($this->selfClosing) return $this->open();
+
     return $this->open().$this->getContent().$this->close();
   }
 
