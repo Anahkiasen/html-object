@@ -9,6 +9,12 @@ namespace HtmlObject;
 class Lists extends Element
 {
   /**
+   * Default element
+   * @var string
+   */
+  protected $defaultElement = 'ul';
+
+  /**
    * Default element for nested children
    * @var string
    */

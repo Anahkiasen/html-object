@@ -13,6 +13,11 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('<p>foo</p>', $this->object->render());
   }
 
+  public function testCanCreateDefaultElement()
+  {
+    $this->assertEquals('<p>foo</p>', Element::create()->setValue('foo'));
+  }
+
   public function testCanDynamicallyCreateObjects()
   {
     $object = Element::p('foo')->class('bar');
