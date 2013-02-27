@@ -198,10 +198,23 @@ class HtmlObject
     foreach ((array) $attributes as $key => $value) {
       if (is_numeric($key)) $key = $value;
       if (!is_null($value)) {
-        $html[] = $key. '=" '.$this->entities($value).'"';
+        $html[] = $key. '="' .$this->entities($value). '"';
       }
     }
 
     return (count($html) > 0) ? ' '.implode(' ', $html) : '';
+  }
+
+  /**
+   * Convert HTML characters to HTML entities
+   *
+   * The encoding in $encoding will be used
+   *
+   * @param  string $value
+   * @return string
+   */
+  protected function entities($value)
+  {
+    return htmlentities($value, ENT_QUOTES, 'UTF-8', false);
   }
 }
