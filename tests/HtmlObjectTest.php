@@ -65,4 +65,11 @@ class HtmlObjectTest extends PHPUnit_Framework_TestCase
 
     $this->assertEquals('bar', $this->object->foo);
   }
+
+  public function testCanChangeElement()
+  {
+    $this->object->setElement('strong');
+
+    $this->assertEquals('<strong>foo</strong>', $this->object->render());
+  }
 }
