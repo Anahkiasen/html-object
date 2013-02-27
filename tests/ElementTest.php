@@ -134,4 +134,11 @@ class ElementTest extends PHPUnit_Framework_TestCase
 
     $this->assertEquals('<p class="alert-success alert"></p>', $alert->render());
   }
+
+  public function testCanManuallyOpenElement()
+  {
+    $element = $this->object->open().'foobar'.$this->object->close();
+
+    $this->assertEquals('<p>foobar</p>', $element);
+  }
 }

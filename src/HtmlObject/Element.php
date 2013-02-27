@@ -86,6 +86,40 @@ class Element
     return $this->render();
   }
 
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////// ELEMENT RENDERING ////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Opens the Element
+   *
+   * @return string
+   */
+  public function open()
+  {
+    return '<'.$this->element.$this->parseAttributes($this->attributes).'>';
+  }
+
+  /**
+   * Returns the Element's content
+   *
+   * @return string
+   */
+  public function getContent()
+  {
+    return $this->value.$this->getChildren();
+  }
+
+  /**
+   * Close the Element
+   *
+   * @return string
+   */
+  public function close()
+  {
+    return '</'.$this->element.'>';
+  }
+
   /**
    * Default rendering method
    *
@@ -93,11 +127,7 @@ class Element
    */
   public function render()
   {
-    return
-    '<'.$this->element.$this->parseAttributes($this->attributes).'>'
-      .$this->value
-      .$this->getChildren()
-    .'</'.$this->element.'>';
+    return $this->open().$this->getContent().$this->close();
   }
 
   ////////////////////////////////////////////////////////////////////
