@@ -31,6 +31,12 @@ class HtmlObject
   protected $attributes = array();
 
   /**
+   * Potential children of the element
+   * @var array
+   */
+  protected $children = array();
+
+  /**
    * Creates a basic HtmlObject
    *
    * @param string $element
@@ -69,11 +75,19 @@ class HtmlObject
    */
   public function render()
   {
-    return '<'.$this->element.$this->parseAttributes($this->attributes).'>'.$this->value.'</'.$this->element.'>';
+    // Create children
+    $content = $this->value;
+    if ($this->children) {
+      foreach ($this->children as $child) {
+        $content .= $child->render();
+      }
+    }
+
+    return '<'.$this->element.$this->parseAttributes($this->attributes).'>'.$content.'</'.$this->element.'>';
   }
 
   ////////////////////////////////////////////////////////////////////
-  /////////////////////////// CORE METHODS ///////////////////////////
+  /////////////////////////// MAGIC METHODS //////////////////////////
   ////////////////////////////////////////////////////////////////////
 
   /**
@@ -151,6 +165,23 @@ class HtmlObject
   }
 
   ////////////////////////////////////////////////////////////////////
+  ////////////////////////////// CHILDREN ////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Nests an object withing the current object
+   */
+  public function nest($element, $value = null, $attributes = array())
+  {
+    if (!($element instanceof HtmlObject)) {
+      $element = new HtmlObject($element, $value, $attributes);
+    }
+    $this->children[] = $element;
+
+    return $this;
+  }
+
+  ////////////////////////////////////////////////////////////////////
   //////////////////////////// ATTRIBUTES ////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
@@ -194,10 +225,6 @@ class HtmlObject
 
     return $this;
   }
-
-  ////////////////////////////////////////////////////////////////////
-  ////////////////////////////// CLASSES /////////////////////////////
-  ////////////////////////////////////////////////////////////////////
 
   /**
    * Add one or more classes to the current field

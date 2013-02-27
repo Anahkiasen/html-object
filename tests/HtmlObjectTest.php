@@ -79,4 +79,20 @@ class HtmlObjectTest extends PHPUnit_Framework_TestCase
 
     $this->assertEquals('<p>bar</p>', $this->object->render());
   }
+
+  public function testCanNest()
+  {
+    $object = HtmlObject::strong('foo');
+    $this->object->nest('strong', 'foo');
+
+    $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
+  }
+
+  public function testCanNestObjects()
+  {
+    $object = HtmlObject::strong('foo');
+    $this->object->nest($object);
+
+    $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
+  }
 }
