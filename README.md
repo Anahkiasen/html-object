@@ -4,9 +4,14 @@ HTMLObject
 A set of classes to create and manipulate HTML objects abstractions.
 
 ```php
-Element::p('text')->class('foobar') // <p class="foobar">text</p>
+// <p class="foobar">text</p>
+echo Element::p('text')->class('foobar');
 
-List::ul(array(
+// <ul><li>foo</li><li>bar</li></ul>
+echo List::ul(array(
   'foo', 'bar',
-)) // <ul><li>foo</li><li>bar</li></ul>
+));
+
+// <a href="#foo" target="_blank">link</a>
+echo Link::create('#foo', 'link')->blank();
 ```
