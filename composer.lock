@@ -1,0 +1,96 @@
+{
+    "hash": "b6817617b5ea4300dc51317261c2c1ec",
+    "packages": [
+        {
+            "name": "anahkiasen/underscore-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Anahkiasen/underscore-php.git",
+                "reference": "08fd557fc01e57b1ef67e039b7f8060887c40186"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Anahkiasen/underscore-php/zipball/08fd557fc01e57b1ef67e039b7f8060887c40186",
+                "reference": "08fd557fc01e57b1ef67e039b7f8060887c40186",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.0.*@dev",
+                "php": ">=5.3.0"
+            },
+            "time": "2013-02-14 23:26:58",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Underscore": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Fabre",
+                    "email": "ehtnam6@gmail.com"
+                }
+            ],
+            "description": "A redacted port of Underscore.js for PHP"
+        },
+        {
+            "name": "illuminate/support",
+            "version": "dev-master",
+            "target-dir": "Illuminate/Support",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/support.git",
+                "reference": "4a83c61f0556e72d5f98e00c90fe8a5af027e285"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/4a83c61f0556e72d5f98e00c90fe8a5af027e285",
+                "reference": "4a83c61f0556e72d5f98e00c90fe8a5af027e285",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.7.2",
+                "patchwork/utf8": "1.0.*"
+            },
+            "time": "2013-02-27 21:35:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Illuminate\\Support": ""
+                },
+                "files": [
+                    "Illuminate/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "Various utilities and support functions."
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "anahkiasen/underscore-php": 20
+    }
+}

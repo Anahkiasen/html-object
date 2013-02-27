@@ -1,0 +1,14 @@
+{
+  "name": "anahkiasen/html-object",
+  "description": "A set of classes to create and manipulate HTML objects abstractions",
+  "authors": [
+    {
+      "name": "Anahkiasen",
+      "email": "ehtnam6@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "anahkiasen/underscore-php": "dev-master"
+  }
+}
