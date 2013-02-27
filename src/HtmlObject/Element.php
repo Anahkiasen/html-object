@@ -178,6 +178,16 @@ class Element
     return $this;
   }
 
+  /**
+   * Get the value
+   *
+   * @return string
+   */
+  public function getValue()
+  {
+    return $this->value;
+  }
+
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// CHILDREN ////////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -244,6 +254,16 @@ class Element
     $this->attributes = array_merge($this->attributes, (array) $attributes);
 
     return $this;
+  }
+
+  /**
+   * Get all attributes
+   *
+   * @return array
+   */
+  public function getAttributes()
+  {
+    return $this->attributes;
   }
 
   /**
