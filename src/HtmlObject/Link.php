@@ -1,4 +1,9 @@
 <?php
+/**
+ * Link
+ *
+ * A link
+ */
 namespace HtmlObject;
 
 class Link extends Element
@@ -7,7 +12,6 @@ class Link extends Element
    * Default element
    * @var string
    */
-
   protected $defaultElement = 'a';
 
   /**
