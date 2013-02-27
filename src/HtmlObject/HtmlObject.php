@@ -2,7 +2,7 @@
 /**
  * HtmlObject
  *
- * An abstraction of an HTML tag
+ * An abstraction of an HTML element
  */
 namespace HtmlObject;
 
@@ -13,10 +13,10 @@ class HtmlObject
 {
 
   /**
-   * The tag name
+   * The element name
    * @var string
    */
-  protected $name;
+  protected $element;
 
   /**
    * The object's value
@@ -33,13 +33,13 @@ class HtmlObject
   /**
    * Creates a basic HtmlObject
    *
-   * @param string $name       Tag name
-   * @param string $value      Value
-   * @param array  $attributes Attributes
+   * @param string $element
+   * @param string $value
+   * @param array  $attributes
    */
-  public function __construct($name, $value = null, $attributes = array())
+  public function __construct($element, $value = null, $attributes = array())
   {
-    $this->name       = $name;
+    $this->element    = $element;
     $this->value      = $value;
     $this->attributes = $attributes;
   }
@@ -47,9 +47,9 @@ class HtmlObject
   /**
    * Static alias for constructor
    */
-  public static function create($name, $value = null, $attributes = array())
+  public static function create($element, $value = null, $attributes = array())
   {
-    return new static($name, $value, $attributes);
+    return new static($element, $value, $attributes);
   }
 
   /**
@@ -69,7 +69,7 @@ class HtmlObject
    */
   public function render()
   {
-    return '<'.$this->name.$this->parseAttributes($this->attributes).'>'.$this->value.'</'.$this->name.'>';
+    return '<'.$this->element.$this->parseAttributes($this->attributes).'>'.$this->value.'</'.$this->element.'>';
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -77,9 +77,9 @@ class HtmlObject
   ////////////////////////////////////////////////////////////////////
 
   /**
-   * Dynamically create a tag
+   * Dynamically create an element
    *
-   * @param string $method     The tag
+   * @param string $method     The element
    * @param array  $parameters Value and attributes
    *
    * @return HtmlObject
@@ -120,6 +120,22 @@ class HtmlObject
   public function __get($attribute)
   {
     return Arrays::get($this->attributes, $attribute);
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////////// ELEMENT /////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Change the object's element
+   *
+   * @param string $element
+   */
+  public function setElement($element)
+  {
+    $this->element = $element;
+
+    return $this;
   }
 
   ////////////////////////////////////////////////////////////////////
