@@ -36,6 +36,12 @@ class Element
    */
   protected $children = array();
 
+  /**
+   * Whether the element is self closing
+   * @var boolean
+   */
+  protected $selfClosing = false;
+
   // Defaults ------------------------------------------------------ /
 
   /**

@@ -2,7 +2,7 @@
 /**
  * Link
  *
- * A link
+ * An <a>
  */
 namespace HtmlObject;
 
