@@ -1,6 +1,7 @@
 {
   "name": "anahkiasen/html-object",
   "description": "A set of classes to create and manipulate HTML objects abstractions",
+  "license": "MIT",
   "authors": [
     {
       "name": "Anahkiasen",
