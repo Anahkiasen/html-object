@@ -149,8 +149,8 @@ class Element
    */
   public static function __callStatic($method, $parameters)
   {
-    $value      = isset($parameters[0]) ? $parameters[0] : null;
-    $attributes = isset($parameters[1]) ? $parameters[1] : null;
+    $value      = static::arrayGet($parameters, 0);
+    $attributes = static::arrayGet($parameters, 1);
 
     return new static($method, $value, $attributes);
   }
@@ -167,7 +167,7 @@ class Element
     $method = str_replace('_', '-', $method);
 
     // Get value and set it
-    $value = isset($parameters[0]) ? $parameters[0] : true;
+    $value = static::arrayGet($parameters, 0, true);
     $this->setAttribute($method, $value);
 
     return $this;
@@ -182,7 +182,7 @@ class Element
    */
   public function __get($attribute)
   {
-    return isset($this->attributes[$attribute]) ? $this->attributes[$attribute] : null;;
+    return static::arrayGet($this->attributes, $attribute);
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -236,7 +236,7 @@ class Element
    */
   public function getChild($name)
   {
-    return isset($this->children[$name]) ? $this->children[$name] : null;;
+    return static::arrayGet($this->children, $name);
   }
 
   /**
@@ -383,6 +383,20 @@ class Element
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// HELPERS /////////////////////////////
   ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Get a value from an array
+   *
+   * @param array  $array
+   * @param string $key
+   * @param string $fallback
+   *
+   * @return mixed
+   */
+  protected static function arrayGet($array, $key, $fallback = null)
+  {
+    return isset($array[$key]) ? $array[$key] : $fallback;
+  }
 
   /**
    * Build a list of HTML attributes from an array
