@@ -22,11 +22,20 @@ abstract class TreeObject
   /**
    * Get the Element's parent
    *
+   * @param integer $levels The number of levels to go back up
+   *
    * @return Element
    */
-  public function getParent()
+  public function getParent($levels = null)
   {
-    return $this->parent;
+    if (!$levels) return $this->parent;
+
+    $subject = $this;
+    for ($i = 0; $i <= $levels; $i++) {
+      $subject = $subject->getParent();
+    }
+
+    return $subject;
   }
 
   /**
