@@ -51,8 +51,11 @@ $avatar->addClass('span4');
 $avatar->getChildren('image')->alt($user->name);
 
 echo $avatar;
-?>
+```
 
+This will output the following :
+
+```html
 <figure class="span4">
   <h2>John Doe</h2>
   <img src="users/john-doe.jpg" alt="John Doe">
