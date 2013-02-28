@@ -90,8 +90,25 @@ abstract class TreeObject
       $child->setParent($this);
     }
 
+    // Add object to children
     if ($name) $this->children[$name] = $child;
     else $this->children[] = $child;
+
+    return $this;
+  }
+
+  /**
+   * Set an array of children
+   *
+   * @param array $children
+   */
+  public function setChildren($children)
+  {
+    foreach ($children as $name => $child) {
+      if (is_numeric($name)) $name = null;
+      $this->setChild($child, $name);
+    }
+
     return $this;
   }
 }
