@@ -1,14 +1,12 @@
 <?php
-/**
- * Element
- *
- * An abstraction of an HTML element
- */
 namespace HtmlObject;
 
 use HtmlObject\Traits\TreeObject;
 use HtmlObject\Traits\Helpers;
 
+/**
+ * An abstraction of an HTML element
+ */
 class Element extends TreeObject
 {
   /**
@@ -59,6 +57,8 @@ class Element extends TreeObject
    * @param string $element
    * @param string $value
    * @param array  $attributes
+   *
+   * @return Element
    */
   public function __construct($element = null, $value = null, $attributes = array())
   {
@@ -69,6 +69,11 @@ class Element extends TreeObject
 
   /**
    * Static alias for constructor
+   *
+   * @param string $element
+   * @param string $value
+   * @param array  $attributes
+   * @return Element
    */
   public static function create($element = null, $value = null, $attributes = array())
   {
@@ -254,6 +259,12 @@ class Element extends TreeObject
 
   /**
    * Nests an object withing the current object
+   *
+   * @param Element|string $element    An element name or an Element
+   * @param string         $value      The Element's alias or the element's content
+   * @param array          $attributes
+   *
+   * @return Element
    */
   public function nest($element, $value = null, $attributes = array())
   {

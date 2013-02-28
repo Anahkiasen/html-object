@@ -1,11 +1,9 @@
 <?php
-/**
- * List
- *
- * A list element (ul, ol, etc.)
- */
 namespace HtmlObject;
 
+/**
+ * A list element (ul, ol, etc.)
+ */
 class Lists extends Element
 {
   /**

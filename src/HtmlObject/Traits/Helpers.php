@@ -1,6 +1,9 @@
 <?php
 namespace HtmlObject\Traits;
 
+/**
+ * Static helpers used troughout the classes
+ */
 class Helpers
 {
   /**

@@ -1,16 +1,21 @@
 <?php
 namespace HtmlObject\Traits;
 
+/**
+ * An abstract class to create and manage trees of objects
+ */
 abstract class TreeObject
 {
   /**
    * Parent of the object
+   *
    * @var TreeObject
    */
   protected $parent;
 
   /**
    * Children of the object
+   *
    * @var array
    */
   protected $children = array();
@@ -41,7 +46,9 @@ abstract class TreeObject
   /**
    * Set the parent of the element
    *
-   * @param Element $parent
+   * @param TreeObject $parent
+   *
+   * @return TreeObject
    */
   public function setParent(TreeObject $parent)
   {
@@ -115,8 +122,10 @@ abstract class TreeObject
   /**
    * Add an object to the current object
    *
-   * @param mixed $child The child
-   * @param strin $name  Its name
+   * @param string|TreeObject  $child The child
+   * @param string             $name  Its name
+   *
+   * @return TreeObject
    */
   public function setChild($child, $name = null)
   {
@@ -136,6 +145,8 @@ abstract class TreeObject
    * Set an array of children
    *
    * @param array $children
+   *
+   * @return TreeObject
    */
   public function setChildren($children)
   {

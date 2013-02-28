@@ -1,11 +1,9 @@
 <?php
-/**
- * Text
- *
- * A TextNode
- */
 namespace HtmlObject;
 
+/**
+ * A TextNode
+ */
 class Text extends Element
 {
   /**
@@ -20,6 +18,12 @@ class Text extends Element
 
   /**
    * Static alias for constructor
+   *
+   * @param string $element    An element name
+   * @param string $value      The tag value
+   * @param array  $attributes
+   *
+   * @return Text
    */
   public static function create($element = null, $value = null, $attributes = array())
   {
