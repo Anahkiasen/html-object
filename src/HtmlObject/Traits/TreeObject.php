@@ -41,9 +41,21 @@ abstract class TreeObject
     return $this;
   }
 
+  /**
+   * Check if an object has a parent
+   *
+   * @return boolean
+   */
+  public function hasParent()
+  {
+    return $this->parent;
+  }
+
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// CHILDREN ////////////////////////////
   ////////////////////////////////////////////////////////////////////
+
+  // Get ----------------------------------------------------------- /
 
   /**
    * Get a specific child of the element
@@ -78,6 +90,18 @@ abstract class TreeObject
   {
     return $this->children;
   }
+
+  /**
+   * Check if the object has children
+   *
+   * @return boolean
+   */
+  public function hasChildren()
+  {
+    return !is_null($this->children) and !empty($this->children);
+  }
+
+  // Set ----------------------------------------------------------- /
 
   /**
    * Add an object to the current object
