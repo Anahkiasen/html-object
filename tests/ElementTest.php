@@ -32,6 +32,13 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('<p data-foo="bar">foo</p>', $this->object->render());
   }
 
+  public function testCanGetAttributes()
+  {
+    $this->object->setAttribute('data-foo', 'bar');
+
+    $this->assertEquals(array('data-foo' => 'bar'), $this->object->getAttributes());
+  }
+
   public function testCanDynamicallySetAttributes()
   {
     $this->object->data_foo('bar');
@@ -85,75 +92,17 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->assertEquals('<p>bar</p>', $this->object->render());
   }
 
-  public function testCanNest()
+  public function testCanGetValue()
   {
-    $object = Element::strong('foo');
-    $this->object->nest('strong', 'foo');
-
-    $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
-  }
-
-  public function testCanNestStrings()
-  {
-    $object = Element::strong('foo');
-    $this->object->nest('<strong>foo</strong>');
-
-    $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
-  }
-
-  public function testCanNestObjects()
-  {
-    $object = Element::strong('foo');
-    $this->object->nestElement($object);
-
-    $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
-  }
-
-  public function testCanGetNestedElements()
-  {
-    $object = Element::strong('foo');
-    $this->object->nestElement($object, 'foo');
-
-    $this->assertEquals($object, $this->object->getChild('foo'));
-  }
-
-  public function testCanNestMultipleValues()
-  {
-    $object = Element::strong('foo');
-    $this->object->nestChildren(array('strong' => 'foo', 'em' => 'bar'));
-
-    $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
-  }
-
-  public function testCanNestMultipleElements()
-  {
-    $foo = Element::strong('foo');
-    $bar = Element::p('bar');
-    $this->object->nestChildren(array(
-      'foo' => $foo,
-      'bar' => $bar,
-    ));
-
-    $this->assertEquals($foo, $this->object->getChild('foo'));
-    $this->assertEquals($bar, $this->object->getChild('bar'));
-  }
-
-  public function testCanNestMultipleObjects()
-  {
-    $strong = Element::strong('foo');
-    $em = Element::em('bar');
-    $this->object->nestChildren(array($strong, $em));
-
-    $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
+    $this->assertEquals('foo', $this->object->getValue());
   }
 
   public function testSimilarClassesStillGetAdded()
   {
-    $alert = Element::p();
-    $alert->addClass('alert-success');
-    $alert->addClass('alert');
+    $this->object->addClass('alert-success');
+    $this->object->addClass('alert');
 
-    $this->assertEquals('<p class="alert-success alert"></p>', $alert->render());
+    $this->assertEquals('<p class="alert-success alert">foo</p>', $this->object->render());
   }
 
   public function testCanManuallyOpenElement()

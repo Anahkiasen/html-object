@@ -6,9 +6,11 @@
  */
 namespace HtmlObject;
 
-class Element
-{
+use HtmlObject\Traits\TreeObject;
+use HtmlObject\Traits\Helpers;
 
+class Element extends TreeObject
+{
   /**
    * The element name
    * @var string
@@ -26,12 +28,6 @@ class Element
    * @var array
    */
   protected $attributes = array();
-
-  /**
-   * Potential children of the element
-   * @var array
-   */
-  protected $children = array();
 
   /**
    * Whether the element is self closing
@@ -68,7 +64,7 @@ class Element
   {
     $this->setElement($element);
     $this->setValue($value);
-    $this->replaceAttributes($attributes);
+    $this->attributes = $attributes;
   }
 
   /**
@@ -100,7 +96,7 @@ class Element
    */
   public function open()
   {
-    return '<'.$this->element.$this->parseAttributes($this->attributes).'>';
+    return '<'.$this->element.Helpers::parseAttributes($this->attributes).'>';
   }
 
   /**
@@ -110,7 +106,7 @@ class Element
    */
   public function getContent()
   {
-    return $this->value.$this->getChildren();
+    return $this->value.$this->renderChildren();
   }
 
   /**
@@ -149,8 +145,8 @@ class Element
    */
   public static function __callStatic($method, $parameters)
   {
-    $value      = static::arrayGet($parameters, 0);
-    $attributes = static::arrayGet($parameters, 1);
+    $value      = Helpers::arrayGet($parameters, 0);
+    $attributes = Helpers::arrayGet($parameters, 1);
 
     return new static($method, $value, $attributes);
   }
@@ -167,7 +163,7 @@ class Element
     $method = str_replace('_', '-', $method);
 
     // Get value and set it
-    $value = static::arrayGet($parameters, 0, true);
+    $value = Helpers::arrayGet($parameters, 0, true);
     $this->setAttribute($method, $value);
 
     return $this;
@@ -182,7 +178,7 @@ class Element
    */
   public function __get($attribute)
   {
-    return static::arrayGet($this->attributes, $attribute);
+    return Helpers::arrayGet($this->attributes, $attribute);
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -228,26 +224,20 @@ class Element
   ////////////////////////////////////////////////////////////////////
 
   /**
-   * Get a specific child of the element
+   * Get all the children as a string
    *
-   * @param string $name The Element's name
-   *
-   * @return Element
+   * @return string
    */
-  public function getChild($name)
+  public function renderChildren()
   {
-    return static::arrayGet($this->children, $name);
-  }
+    $children = $this->children;
+    foreach ($children as $key => $child) {
+      if ($child instanceof Element) {
+        $children[$key] = $child->render();
+      }
+    }
 
-  /**
-   * Nests an object withing the current object
-   */
-  public function nestElement($element, $name = null)
-  {
-    if ($name) $this->children[$name] = $element;
-    else $this->children[] = $element;
-
-    return $this;
+    return implode($children);
   }
 
   /**
@@ -255,10 +245,19 @@ class Element
    */
   public function nest($element, $value = null, $attributes = array())
   {
+    // Element nesting
+    if ($element instanceof Element) {
+      return $this->setChild($element, $value);
+    }
+
+    // Shortcuts and strings
     if (strpos($element, '<') === false) {
       $element = new Element($element, $value, $attributes);
+    } else {
+      $element = new Text($element);
     }
-    $this->children[] = $element;
+
+    $this->setChild($element);
 
     return $this;
   }
@@ -274,32 +273,15 @@ class Element
 
     foreach ($children as $element => $value) {
       if (is_numeric($element)) {
-        if(is_object($value)) $this->nestElement($value);
+        if(is_object($value)) $this->setChild($value);
         elseif($this->defaultChild) $this->nest($this->defaultChild, $value);
       } else {
-        if(is_object($value)) $this->nestElement($value, $element);
+        if(is_object($value)) $this->setChild($value, $element);
         else $this->nest($element, $value);
       }
     }
 
     return $this;
-  }
-
-  /**
-   * Get all children rendered
-   *
-   * @return string
-   */
-  protected function getChildren()
-  {
-    $children = $this->children;
-    foreach ($children as $key => $child) {
-      if ($child instanceof Element) {
-        $children[$key] = $child->render();
-      }
-    }
-
-    return implode($children);
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -378,56 +360,5 @@ class Element
     }
 
     return $this;
-  }
-
-  ////////////////////////////////////////////////////////////////////
-  ////////////////////////////// HELPERS /////////////////////////////
-  ////////////////////////////////////////////////////////////////////
-
-  /**
-   * Get a value from an array
-   *
-   * @param array  $array
-   * @param string $key
-   * @param string $fallback
-   *
-   * @return mixed
-   */
-  protected static function arrayGet($array, $key, $fallback = null)
-  {
-    return isset($array[$key]) ? $array[$key] : $fallback;
-  }
-
-  /**
-   * Build a list of HTML attributes from an array
-   *
-   * @param  array  $attributes
-   * @return string
-   */
-  protected function parseAttributes($attributes)
-  {
-    $html = array();
-
-    foreach ((array) $attributes as $key => $value) {
-      if (is_numeric($key)) $key = $value;
-      if (!is_null($value)) {
-        $html[] = $key. '="' .$this->entities($value). '"';
-      }
-    }
-
-    return (count($html) > 0) ? ' '.implode(' ', $html) : '';
-  }
-
-  /**
-   * Convert HTML characters to HTML entities
-   *
-   * The encoding in $encoding will be used
-   *
-   * @param  string $value
-   * @return string
-   */
-  protected function entities($value)
-  {
-    return htmlentities($value, ENT_QUOTES, 'UTF-8', false);
   }
 }
