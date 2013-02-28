@@ -111,4 +111,11 @@ class ElementTest extends PHPUnit_Framework_TestCase
 
     $this->assertEquals('<p>foobar</p>', $element);
   }
+
+  public function testCanWrapValue()
+  {
+    $this->object->wrapValue('strong');
+
+    $this->assertEquals('<p><strong>foo</strong></p>', $this->object->render());
+  }
 }

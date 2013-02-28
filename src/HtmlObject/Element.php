@@ -210,6 +210,18 @@ class Element extends TreeObject
   }
 
   /**
+   * Wrap the value in a tag
+   *
+   * @param string $tag The tag
+   */
+  public function wrapValue($tag)
+  {
+    $this->value = Element::create($tag, $this->value);
+
+    return $this;
+  }
+
+  /**
    * Get the value
    *
    * @return string

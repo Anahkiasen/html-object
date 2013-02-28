@@ -94,4 +94,14 @@ class TreeObjectTest extends PHPUnit_Framework_TestCase
 
     $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
   }
+
+  public function testCanCrawlSeveralLayersDeep()
+  {
+    $strong = Element::strong('foo');
+    $em     = Element::em('bar');
+    $this->object->nest($strong, 'strong')->getChild('strong')->nest($em, 'em');
+
+    $this->assertEquals('<p>foo<strong>foo<em>bar</em></strong></p>', $this->object->render());
+    $this->assertEquals($em, $this->object->getChild('strong.em'));
+  }
 }

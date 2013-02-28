@@ -52,7 +52,29 @@ abstract class TreeObject
    */
   public function getChild($name)
   {
-    return Helpers::arrayGet($this->children, $name);
+    // Direct fetching
+    $name = explode('.', $name);
+    if (sizeof($name) == 1) {
+      return Helpers::arrayGet($this->getChildren(), $name[0]);
+    }
+
+    // Recursive fetching
+    $subject = $this;
+    foreach ($name as $child) {
+      $subject = $subject->getChild($child);
+    }
+
+    return $subject;
+  }
+
+  /**
+   * Get all children
+   *
+   * @return array
+   */
+  public function getChildren()
+  {
+    return $this->children;
   }
 
   /**

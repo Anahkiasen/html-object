@@ -36,11 +36,11 @@ class UserAvatar extends Element
 {
   public static function make(User $user)
   {
-    $name   = Element::h2($user->name);
     $avatar = Image::create($user->image);
+    $title  = Element::h2($user->name);
 
     return Element::figure()->nestChildren([
-      'title' => $name,
+      'title' => $title,
       'image' => $avatar
     ]);
   }
@@ -48,7 +48,8 @@ class UserAvatar extends Element
 
 $avatar = UserAvatar::make($user)
 $avatar->addClass('span4');
-$avatar->getChildren('image')->alt($user->name);
+$avatar->getChild('image')->alt($user->name);
+$avatar->getChild('title')->wrapValue('strong');
 
 echo $avatar;
 ```
@@ -57,7 +58,7 @@ This will output the following :
 
 ```html
 <figure class="span4">
-  <h2>John Doe</h2>
+  <h2><strong>John Doe</strong></h2>
   <img src="users/john-doe.jpg" alt="John Doe">
 </figure>
 ```
