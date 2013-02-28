@@ -37,6 +37,8 @@ abstract class TreeObject
   public function setParent(TreeObject $parent)
   {
     $this->parent = $parent;
+
+    return $this;
   }
 
   ////////////////////////////////////////////////////////////////////
