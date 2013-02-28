@@ -6,9 +6,6 @@
  */
 namespace HtmlObject;
 
-use Underscore\Types\Arrays;
-use Underscore\Types\String;
-
 class Element
 {
 
@@ -152,8 +149,8 @@ class Element
    */
   public static function __callStatic($method, $parameters)
   {
-    $value      = Arrays::get($parameters, 0);
-    $attributes = Arrays::get($parameters, 1);
+    $value      = isset($parameters[0]) ? $parameters[0] : null;
+    $attributes = isset($parameters[1]) ? $parameters[1] : null;
 
     return new static($method, $value, $attributes);
   }
@@ -170,7 +167,7 @@ class Element
     $method = str_replace('_', '-', $method);
 
     // Get value and set it
-    $value = Arrays::get($parameters, 0, 'true');
+    $value = isset($parameters[0]) ? $parameters[0] : true;
     $this->setAttribute($method, $value);
 
     return $this;
@@ -185,7 +182,7 @@ class Element
    */
   public function __get($attribute)
   {
-    return Arrays::get($this->attributes, $attribute);
+    return isset($this->attributes[$attribute]) ? $this->attributes[$attribute] : null;;
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -239,7 +236,7 @@ class Element
    */
   public function getChild($name)
   {
-    return Arrays::get($this->children, $name);
+    return isset($this->children[$name]) ? $this->children[$name] : null;;
   }
 
   /**
@@ -258,7 +255,7 @@ class Element
    */
   public function nest($element, $value = null, $attributes = array())
   {
-    if (!String::find($element, '<')) {
+    if (strpos($element, '<') === false) {
       $element = new Element($element, $value, $attributes);
     }
     $this->children[] = $element;
@@ -296,11 +293,13 @@ class Element
   protected function getChildren()
   {
     $children = $this->children;
-    return Arrays::from($children)->each(function($child) {
-      if ($child instanceof Element) return $child->render();
+    foreach ($children as $key => $child) {
+      if ($child instanceof Element) {
+        $children[$key] = $child->render();
+      }
+    }
 
-      return $child;
-    })->implode();
+    return implode($children);
   }
 
   ////////////////////////////////////////////////////////////////////
