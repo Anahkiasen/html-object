@@ -175,6 +175,19 @@ class Element extends TreeObject
   }
 
   /**
+   * Dynamically set an attribute
+   *
+   * @param string $attribute The attribute
+   * @param string $value     Its value
+   */
+  public function __set($attribute, $value)
+  {
+    $this->attributes[$attribute] = $value;
+
+    return $this;
+  }
+
+  /**
    * Get an attribute
    *
    * @param  string $attribute The desired attribute
