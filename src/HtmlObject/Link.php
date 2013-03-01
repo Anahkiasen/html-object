@@ -14,6 +14,25 @@ class Link extends Element
   protected $defaultElement = 'a';
 
   /**
+   * Create a new Link
+   *
+   * @param string $link       The link href
+   * @param string $value      The link's text
+   * @param array  $attributes
+   *
+   * @return Link
+   */
+  public function __construct($link = '#', $value = null, $attributes = array())
+  {
+    if (!$value) $value = $link;
+    $attributes['href'] = $link;
+
+    $this->value = $value;
+    $this->setElement(null);
+    $this->replaceAttributes($attributes);
+  }
+
+  /**
    * Static alias for constructor
    *
    * @param string $link       The link href
@@ -24,10 +43,7 @@ class Link extends Element
    */
   public static function create($link = '#', $value = null, $attributes = array())
   {
-    if (!$value) $value = $link;
-    $attributes['href'] = $link;
-
-    return new static(null, $value, $attributes);
+    return new static($link, $value, $attributes);
   }
 
   /**
