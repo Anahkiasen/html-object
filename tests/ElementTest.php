@@ -42,8 +42,9 @@ class ElementTest extends PHPUnit_Framework_TestCase
   public function testCanDynamicallySetAttributes()
   {
     $this->object->data_foo('bar');
+    $this->object->foo = 'bar';
 
-    $this->assertEquals('<p data-foo="bar">foo</p>', $this->object->render());
+    $this->assertEquals('<p data-foo="bar" foo="bar">foo</p>', $this->object->render());
   }
 
   public function testCanReplaceAttributes()
