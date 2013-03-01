@@ -105,6 +105,16 @@ class TreeObjectTest extends PHPUnit_Framework_TestCase
     $this->assertEquals($em, $this->object->getChild('strong.em'));
   }
 
+  public function testCanCrawlAnonymousLayers()
+  {
+    $strong = Element::strong('foo');
+    $em     = Element::em('bar');
+    $this->object->nest($strong)->getChild(0)->nest($em);
+
+    $this->assertEquals('<p>foo<strong>foo<em>bar</em></strong></p>', $this->object->render());
+    $this->assertEquals($em, $this->object->getChild('0.0'));
+  }
+
   public function testCanGoBackUpSeveralLevels()
   {
     $strong = Element::strong('foo');
