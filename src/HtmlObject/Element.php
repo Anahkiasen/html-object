@@ -168,8 +168,8 @@ class Element extends TreeObject
     $method = str_replace('_', '-', $method);
 
     // Get value and set it
-    $value = Helpers::arrayGet($parameters, 0, true);
-    $this->setAttribute($method, $value);
+    $value = Helpers::arrayGet($parameters, 0, 'true');
+    $this->$method = $value;
 
     return $this;
   }
