@@ -1,13 +1,13 @@
 <?php
 use HtmlObject\Lists;
 
-class ListsTest extends PHPUnit_Framework_TestCase
+class ListsTest extends HtmlObjectTests
 {
   public function testCanCreateList()
   {
     $list = new Lists('ul');
 
-    $this->assertEquals('<ul></ul>', $list->render());
+    $this->assertHTML($this->getMatcher('ul', null), $list);
   }
 
   public function testCanCreateListWithChildren()

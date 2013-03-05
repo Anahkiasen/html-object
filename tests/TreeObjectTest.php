@@ -1,7 +1,7 @@
 <?php
 use HtmlObject\Element;
 
-class TreeObjectTest extends PHPUnit_Framework_TestCase
+class TreeObjectTest extends HtmlObjectTests
 {
   public function setUp()
   {

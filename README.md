@@ -14,7 +14,7 @@ echo Element::p('text')->class('foobar');
 $list = List::ul(array('foo', 'bar'));
 
 $link = Link::create('#', 'Someone');
-$list->getChild(0)->addClass('active')->setValue('by ')->nest($link);
+$list->getChild(0)->addClass('active')->setValue('by '.$link);
 // <ul>
 //   <li class="active">foo</li>
 //   <li>by <a href="#">Someone</a></li>

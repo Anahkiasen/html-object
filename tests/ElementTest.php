@@ -1,7 +1,9 @@
 <?php
+include '_start.php';
+
 use HtmlObject\Element;
 
-class ElementTest extends PHPUnit_Framework_TestCase
+class ElementTest extends HtmlObjectTests
 {
   public function setUp()
   {
@@ -10,26 +12,30 @@ class ElementTest extends PHPUnit_Framework_TestCase
 
   public function testCanCreateHtmlObject()
   {
-    $this->assertEquals('<p>foo</p>', $this->object->render());
+    $this->assertHTML($this->getMatcher(), $this->object);
   }
 
   public function testCanCreateDefaultElement()
   {
-    $this->assertEquals('<p>foo</p>', Element::create()->setValue('foo'));
+    $this->assertHTML($this->getMatcher(), Element::create()->setValue('foo'));
   }
 
   public function testCanDynamicallyCreateObjects()
   {
     $object = Element::p('foo')->class('bar');
+    $matcher = $this->getMatcher();
+    $matcher['attributes']['class'] = 'bar';
 
-    $this->assertEquals('<p class="bar">foo</p>', $object->render());
+    $this->assertHTML($matcher, $object);
   }
 
   public function testCanSetAnAttribute()
   {
     $this->object->setAttribute('data-foo', 'bar');
+    $matcher = $this->getMatcher();
+    $matcher['attributes']['data-foo'] = 'bar';
 
-    $this->assertEquals('<p data-foo="bar">foo</p>', $this->object->render());
+    $this->assertHTML($matcher, $this->object);
   }
 
   public function testCanGetAttributes()
@@ -44,7 +50,11 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->object->data_foo('bar');
     $this->object->foo = 'bar';
 
-    $this->assertEquals('<p data-foo="bar" foo="bar">foo</p>', $this->object->render());
+    $matcher = $this->getMatcher();
+    $matcher['attributes']['data-foo'] = 'bar';
+    $matcher['attributes']['foo'] = 'bar';
+
+    $this->assertHTML($matcher, $this->object);
   }
 
   public function testCanReplaceAttributes()
@@ -52,7 +62,11 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->object->setAttribute('data-foo', 'bar');
     $this->object->replaceAttributes(array('foo' => 'bar'));
 
-    $this->assertEquals('<p foo="bar">foo</p>', $this->object->render());
+    $matcher = $this->getMatcher();
+    $matcher['attributes']['foo'] = 'bar';
+
+
+    $this->assertHTML($matcher, $this->object);
   }
 
   public function testCanMergeAttributes()
@@ -60,7 +74,11 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->object->setAttribute('data-foo', 'bar');
     $this->object->setAttributes(array('foo' => 'bar'));
 
-    $this->assertEquals('<p data-foo="bar" foo="bar">foo</p>', $this->object->render());
+    $matcher = $this->getMatcher();
+    $matcher['attributes']['data-foo'] = 'bar';
+    $matcher['attributes']['foo'] = 'bar';
+
+    $this->assertHTML($matcher, $this->object);
   }
 
   public function testCanAppendClass()
@@ -69,7 +87,10 @@ class ElementTest extends PHPUnit_Framework_TestCase
     $this->object->addClass('foo');
     $this->object->addClass('bar');
 
-    $this->assertEquals('<p class="foo bar">foo</p>', $this->object->render());
+    $matcher = $this->getMatcher();
+    $matcher['attributes']['class'] = 'foo bar';
+
+    $this->assertHTML($matcher, $this->object);
   }
 
   public function testCanFetchAttributes()
@@ -83,14 +104,14 @@ class ElementTest extends PHPUnit_Framework_TestCase
   {
     $this->object->setElement('strong');
 
-    $this->assertEquals('<strong>foo</strong>', $this->object->render());
+    $this->assertHTML($this->getMatcher('strong', 'foo'), $this->object);
   }
 
   public function testCanChangeValue()
   {
     $this->object->setValue('bar');
 
-    $this->assertEquals('<p>bar</p>', $this->object->render());
+    $this->assertHTML($this->getMatcher('p', 'bar'), $this->object);
   }
 
   public function testCanGetValue()

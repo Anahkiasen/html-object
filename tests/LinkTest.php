@@ -1,19 +1,21 @@
 <?php
 use HtmlObject\Link;
 
-class LinkTest extends PHPUnit_Framework_TestCase
+class LinkTest extends HtmlObjectTests
 {
   public function testCanCreateList()
   {
     $link = Link::create('#foo', 'bar');
+    $matcher = $this->getMatcher('a', 'bar', array('href' => '#foo'));
 
-    $this->assertEquals('<a href="#foo">bar</a>', $link->render());
+    $this->assertHTML($matcher, $link);
   }
 
   public function testCanMakeLinkBlank()
   {
     $link = Link::create('#foo', 'bar')->blank();
+    $matcher = $this->getMatcher('a', 'bar', array('target' => '_blank', 'href' => '#foo'));
 
-    $this->assertEquals('<a href="#foo" target="_blank">bar</a>', $link->render());
+    $this->assertHTML($matcher, $link);
   }
 }

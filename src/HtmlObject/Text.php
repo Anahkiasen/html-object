@@ -1,10 +1,12 @@
 <?php
 namespace HtmlObject;
 
+use HtmlObject\Traits\Tag;
+
 /**
  * A TextNode
  */
-class Text extends Element
+class Text extends Tag
 {
   /**
    * Create a TextNode
@@ -19,15 +21,13 @@ class Text extends Element
   /**
    * Static alias for constructor
    *
-   * @param string $element    An element name
-   * @param string $value      The tag value
-   * @param array  $attributes
+   * @param string $value The text value
    *
    * @return Text
    */
-  public static function create($element = null, $value = null, $attributes = array())
+  public static function create($value = null)
   {
-    return new static($element);
+    return new static($value);
   }
 
   /**

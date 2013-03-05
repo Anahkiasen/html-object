@@ -1,10 +1,12 @@
 <?php
 namespace HtmlObject;
 
+use HtmlObject\Traits\Tag;
+
 /**
  * An image
  */
-class Image extends Element
+class Image extends Tag
 {
   /**
    * Default element
@@ -18,7 +20,28 @@ class Image extends Element
    *
    * @var boolean
    */
-  protected $selfClosing = true;
+  protected $isSelfClosing = true;
+
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////////// CORE METHODS //////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Create a new image tag
+   *
+   * @param string $src        Image source
+   * @param string $alt        Image alt text
+   * @param array  $attributes
+   *
+   * @return Image
+   */
+  public function __construct($src = '#', $alt = null, $attributes = array())
+  {
+    $attributes['src'] = $src;
+    $attributes['alt'] = $alt;
+
+    $this->setTag(null, null, $attributes);
+  }
 
   /**
    * Static alias for constructor
@@ -31,9 +54,6 @@ class Image extends Element
    */
   public static function create($src = '#', $alt = null, $attributes = array())
   {
-    $attributes['src'] = $src;
-    $attributes['alt'] = $alt;
-
-    return new static(null, null, $attributes);
+    return new static($src, $alt, $attributes);
   }
 }

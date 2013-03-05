@@ -1,10 +1,12 @@
 <?php
 namespace HtmlObject;
 
+use HtmlObject\Traits\Tag;
+
 /**
  * A basic link
  */
-class Link extends Element
+class Link extends Tag
 {
   /**
    * Default element
@@ -12,6 +14,10 @@ class Link extends Element
    * @var string
    */
   protected $defaultElement = 'a';
+
+  ////////////////////////////////////////////////////////////////////
+  /////////////////////////// CORE METHODS ///////////////////////////
+  ////////////////////////////////////////////////////////////////////
 
   /**
    * Create a new Link
@@ -27,9 +33,7 @@ class Link extends Element
     if (!$value) $value = $link;
     $attributes['href'] = $link;
 
-    $this->value = $value;
-    $this->setElement(null);
-    $this->replaceAttributes($attributes);
+    $this->setTag(null, $value, $attributes);
   }
 
   /**
@@ -45,6 +49,10 @@ class Link extends Element
   {
     return new static($link, $value, $attributes);
   }
+
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////// PUBLIC METHODS //////////////////////////
+  ////////////////////////////////////////////////////////////////////
 
   /**
    * Make the link blank
