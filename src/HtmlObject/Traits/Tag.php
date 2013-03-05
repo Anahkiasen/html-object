@@ -322,7 +322,7 @@ class Tag extends TreeObject
    *
    * @param array $attributes The attributes to add to the existing ones
    *
-   * @return FormerObject
+   * @return Tag
    */
   public function setAttributes($attributes)
   {
@@ -346,7 +346,7 @@ class Tag extends TreeObject
    *
    * @param array $attributes The attributes to replace with
    *
-   * @return FormerObject
+   * @return Tag
    */
   public function replaceAttributes($attributes)
   {
