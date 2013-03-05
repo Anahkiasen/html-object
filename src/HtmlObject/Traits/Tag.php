@@ -7,7 +7,7 @@ use HtmlObject\Text;
 /**
  * An abstraction of an HTML element
  */
-class Tag extends TreeObject
+abstract class Tag extends TreeObject
 {
   /**
    * The element name
