@@ -4,6 +4,9 @@ namespace HtmlObject\Traits;
 use HtmlObject\Element;
 use HtmlObject\Text;
 
+/**
+ * An abstraction of an HTML element
+ */
 class Tag extends TreeObject
 {
   /**
@@ -83,12 +86,13 @@ class Tag extends TreeObject
   ////////////////////////////////////////////////////////////////////
 
   /**
-   * Opens the Element
+   * Opens the Tag
    *
    * @return string
    */
   public function open()
   {
+    // If self closing, put value as attribute
     if ($this->isSelfClosing and $this->value) {
       $this->attributes['value'] = $this->value;
     }
@@ -97,7 +101,7 @@ class Tag extends TreeObject
   }
 
   /**
-   * Returns the Element's content
+   * Returns the Tag's content
    *
    * @return string
    */
@@ -107,7 +111,7 @@ class Tag extends TreeObject
   }
 
   /**
-   * Close the Element
+   * Close the Tag
    *
    * @return string
    */
@@ -238,7 +242,7 @@ class Tag extends TreeObject
   {
     $children = $this->children;
     foreach ($children as $key => $child) {
-      if ($child instanceof Element) {
+      if ($child instanceof Tag) {
         $children[$key] = $child->render();
       }
     }
@@ -249,16 +253,16 @@ class Tag extends TreeObject
   /**
    * Nests an object withing the current object
    *
-   * @param Element|string $element    An element name or an Element
-   * @param string         $value      The Element's alias or the element's content
+   * @param Tag|string $element    An element name or an Tag
+   * @param string         $value      The Tag's alias or the element's content
    * @param array          $attributes
    *
-   * @return Element
+   * @return Tag
    */
   public function nest($element, $value = null, $attributes = array())
   {
-    // Element nesting
-    if ($element instanceof Element) {
+    // Tag nesting
+    if ($element instanceof Tag) {
       return $this->setChild($element, $value);
     }
 

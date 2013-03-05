@@ -5,7 +5,7 @@ use HtmlObject\Traits\Tag;
 use HtmlObject\Traits\Helpers;
 
 /**
- * An abstraction of an HTML element
+ * A classic HTML element
  */
 class Element extends Tag
 {
