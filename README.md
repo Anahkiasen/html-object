@@ -3,7 +3,7 @@ HTMLObject
 
 HTMLObject is a set of classes to create and manipulate HTML objects abstractions. HTMLObject can be used both way :
 
-### Static calls to the classes
+## Static calls to the classes
 
 ```php
 echo Element::p('text')->class('foobar');
@@ -26,7 +26,7 @@ $list->getChild(0)->addClass('active')->setValue('by '.$link);
 echo Link::create('#foo', 'link')->class('btn btn-success')->blank();
 ```
 
-### Adding custom types
+## Adding custom types
 
 It's fairly easy to implement new types in HtmlObject, just extend the core `Tag` class. Here's an exemple for the common icon pattern tag (`<i class="icon-myicon"></i>) :
 
@@ -63,7 +63,20 @@ class Icon extends Tag
 echo Icon::bookmark(); // Same output as above
 ```
 
-### Extending the classes
+### Properties injection
+
+If your class use properties that are at meant to be added to the final array of attributes, you can inject them using the `injectProperties` method. Say you have a `Link` class that has an `url` property, you can overwrite the method like this, and the `$this->url` will get added in the `href` attribute :
+
+```php
+protected function injectProperties()
+{
+  return array(
+    'href' => $this->url,
+  );
+}
+```
+
+## Extending the classes
 
 If one of your classes use specific markup or is an abstraction of a piece of HTML, you can extend the core classes to make it easier to interact with the HTML.
 
@@ -100,15 +113,4 @@ This will output the following :
   <h2><strong>John Doe</strong></h2>
   <img src="users/john-doe.jpg" alt="John Doe">
 </figure>
-```
-
-If your class use properties that are at meant to be added to the final array of attributes, you can inject them using the `injectProperties` method. Say you have a `Link` class that has an `url` property, you can overwrite the method like this, and the `$this->url` will get added in the `href` attribute :
-
-```php
-protected function injectProperties()
-{
-  return array(
-    'href' => $this->url,
-  );
-}
 ```
