@@ -34,14 +34,11 @@ It's fairly easy to implement new types in HtmlObject, just extend the core `Tag
 <?php
 class Icon extends HtmlObject\Traits\Tag
 {
+  protected $element = 'i';
+
   public function __constructor($icon)
   {
-    // Arguments are $element, $value, $attributes
-    $this->setTag('i', null, array('class' => 'icon-'.$icon));
-
-    // Or simply
-    $this->element = 'i';
-    $this->attributes = array('class' => 'icon-'.$icon);
+    $this->class('icon-'.$icon);
   }
 }
 
