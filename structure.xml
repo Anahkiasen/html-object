@@ -1,0 +1,1282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="">
+  <file path="Element.php" hash="fa61d32d73aec4346f23ca0d580679e3" package="Default">
+    <class final="false" abstract="false" namespace="HtmlObject" line="10" package="Default">
+      <extends>\HtmlObject\Traits\Tag</extends>
+      <name>Element</name>
+      <full_name>\HtmlObject\Element</full_name>
+      <docblock line="7">
+        <description>A classic HTML element</description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject" line="26" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="17">
+          <description>Creates a basic Element</description>
+          <long-description></long-description>
+          <tag line="17" name="param" description="" type="string" variable="$element">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="17" name="param" description="" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="17" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="17" name="return" description="" type="\HtmlObject\Element">
+            <type by_reference="false">\HtmlObject\Element</type>
+          </tag>
+        </docblock>
+        <argument line="26">
+          <name>$element</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="26">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="26">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="HtmlObject" line="39" package="Default">
+        <name>create</name>
+        <full_name>create</full_name>
+        <docblock line="31">
+          <description>Static alias for constructor</description>
+          <long-description></long-description>
+          <tag line="31" name="param" description="" type="string" variable="$element">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="param" description="" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="31" name="return" description="" type="\HtmlObject\Element">
+            <type by_reference="false">\HtmlObject\Element</type>
+          </tag>
+        </docblock>
+        <argument line="39">
+          <name>$element</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="HtmlObject" line="52" package="Default">
+        <name>__callStatic</name>
+        <full_name>__callStatic</full_name>
+        <docblock line="44">
+          <description>Dynamically create an element</description>
+          <long-description></long-description>
+          <tag line="44" name="param" description="The element" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="44" name="param" description="Value and attributes" type="array" variable="$parameters">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="44" name="return" description="" type="\HtmlObject\Element">
+            <type by_reference="false">\HtmlObject\Element</type>
+          </tag>
+        </docblock>
+        <argument line="52">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="52">
+          <name>$parameters</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Element.php</error>
+    </parse_markers>
+  </file>
+  <file path="Image.php" hash="da913a7081975bf41cd000ff4ba7d47c" package="Default">
+    <class final="false" abstract="false" namespace="HtmlObject" line="9" package="Default">
+      <extends>\HtmlObject\Traits\Tag</extends>
+      <name>Image</name>
+      <full_name>\HtmlObject\Image</full_name>
+      <docblock line="6">
+        <description>An image</description>
+        <long-description></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="16" namespace="HtmlObject" package="Default">
+        <name>$isSelfClosing</name>
+        <default>true</default>
+        <docblock line="11">
+          <description>Whether the element is self closing</description>
+          <long-description></long-description>
+          <tag line="11" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject" line="31" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="22">
+          <description>Create a new image tag</description>
+          <long-description></long-description>
+          <tag line="22" name="param" description="Image source" type="string" variable="$src">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="Image alt text" type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="22" name="return" description="" type="\HtmlObject\Image">
+            <type by_reference="false">\HtmlObject\Image</type>
+          </tag>
+        </docblock>
+        <argument line="31">
+          <name>$src</name>
+          <default>'#'</default>
+          <type/>
+        </argument>
+        <argument line="31">
+          <name>$alt</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="31">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="HtmlObject" line="48" package="Default">
+        <name>create</name>
+        <full_name>create</full_name>
+        <docblock line="39">
+          <description>Static alias for constructor</description>
+          <long-description></long-description>
+          <tag line="39" name="param" description="Image source" type="string" variable="$src">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="39" name="param" description="Image alt text" type="string" variable="$alt">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="39" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="39" name="return" description="" type="\HtmlObject\Image">
+            <type by_reference="false">\HtmlObject\Image</type>
+          </tag>
+        </docblock>
+        <argument line="48">
+          <name>$src</name>
+          <default>'#'</default>
+          <type/>
+        </argument>
+        <argument line="48">
+          <name>$alt</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="48">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Image.php</error>
+    </parse_markers>
+  </file>
+  <file path="Input.php" hash="cdf3ad90336f037889d3bfefb3f0dec5" package="Default">
+    <class final="false" abstract="false" namespace="HtmlObject" line="10" package="Default">
+      <extends>\HtmlObject\Traits\Tag</extends>
+      <name>Input</name>
+      <full_name>\HtmlObject\Input</full_name>
+      <docblock line="7">
+        <description>An input</description>
+        <long-description></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="17" namespace="HtmlObject" package="Default">
+        <name>$isSelfClosing</name>
+        <default>true</default>
+        <docblock line="12">
+          <description>Whether the element is self closing</description>
+          <long-description></long-description>
+          <tag line="12" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject" line="33" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="23">
+          <description>Create a new Input</description>
+          <long-description></long-description>
+          <tag line="23" name="param" description="Its type" type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="23" name="param" description="Its name" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="23" name="param" description="Its value" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="23" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="23" name="return" description="" type="\HtmlObject\Input">
+            <type by_reference="false">\HtmlObject\Input</type>
+          </tag>
+        </docblock>
+        <argument line="33">
+          <name>$type</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="33">
+          <name>$name</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="33">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="33">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="HtmlObject" line="51" package="Default">
+        <name>create</name>
+        <full_name>create</full_name>
+        <docblock line="41">
+          <description>Create a new Input</description>
+          <long-description></long-description>
+          <tag line="41" name="param" description="Its type" type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="41" name="param" description="Its name" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="41" name="param" description="Its value" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="41" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="41" name="return" description="" type="\HtmlObject\Input">
+            <type by_reference="false">\HtmlObject\Input</type>
+          </tag>
+        </docblock>
+        <argument line="51">
+          <name>$type</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="51">
+          <name>$name</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="51">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="51">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="HtmlObject" line="64" package="Default">
+        <name>__callStatic</name>
+        <full_name>__callStatic</full_name>
+        <docblock line="56">
+          <description>Dynamically create an input type</description>
+          <long-description></long-description>
+          <tag line="56" name="param" description="The input type" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="56" name="param" description="" type="array" variable="$parameters">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="56" name="return" description="" type="\HtmlObject\Input">
+            <type by_reference="false">\HtmlObject\Input</type>
+          </tag>
+        </docblock>
+        <argument line="64">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$parameters</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Input.php</error>
+    </parse_markers>
+  </file>
+  <file path="Link.php" hash="70208f1b7b50fd32889ad0d300d9d0d3" package="Default">
+    <class final="false" abstract="false" namespace="HtmlObject" line="9" package="Default">
+      <extends>\HtmlObject\Traits\Tag</extends>
+      <name>Link</name>
+      <full_name>\HtmlObject\Link</full_name>
+      <docblock line="6">
+        <description>A basic link</description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject" line="25" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="16">
+          <description>Create a new Link</description>
+          <long-description></long-description>
+          <tag line="16" name="param" description="The link href" type="string" variable="$link">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="16" name="param" description="The link's text" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="16" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="16" name="return" description="" type="\HtmlObject\Link">
+            <type by_reference="false">\HtmlObject\Link</type>
+          </tag>
+        </docblock>
+        <argument line="25">
+          <name>$link</name>
+          <default>'#'</default>
+          <type/>
+        </argument>
+        <argument line="25">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="25">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="HtmlObject" line="42" package="Default">
+        <name>create</name>
+        <full_name>create</full_name>
+        <docblock line="33">
+          <description>Static alias for constructor</description>
+          <long-description></long-description>
+          <tag line="33" name="param" description="The link href" type="string" variable="$link">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="33" name="param" description="The link's text" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="33" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="33" name="return" description="" type="\HtmlObject\Link">
+            <type by_reference="false">\HtmlObject\Link</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$link</name>
+          <default>'#'</default>
+          <type/>
+        </argument>
+        <argument line="42">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="42">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject" line="54" package="Default">
+        <name>blank</name>
+        <full_name>blank</full_name>
+        <docblock line="51">
+          <description>Make the link blank</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Link.php</error>
+    </parse_markers>
+  </file>
+  <file path="Lists.php" hash="7ba816444564705907ea0a0ec5de797c" package="Default">
+    <class final="false" abstract="false" namespace="HtmlObject" line="7" package="Default">
+      <extends>\HtmlObject\Element</extends>
+      <name>Lists</name>
+      <full_name>\HtmlObject\Lists</full_name>
+      <docblock line="4">
+        <description>A list element (ul, ol, etc.)</description>
+        <long-description></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="14" namespace="HtmlObject" package="Default">
+        <name>$element</name>
+        <default>'ul'</default>
+        <docblock line="9">
+          <description>Default element</description>
+          <long-description></long-description>
+          <tag line="9" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="21" namespace="HtmlObject" package="Default">
+        <name>$defaultChild</name>
+        <default>'li'</default>
+        <docblock line="16">
+          <description>Default element for nested children</description>
+          <long-description></long-description>
+          <tag line="16" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject" line="32" package="Default">
+        <name>setValue</name>
+        <full_name>setValue</full_name>
+        <docblock line="27">
+          <description>As lists don't have a value, they're its children</description>
+          <long-description></long-description>
+          <tag line="27" name="param" description="" type="array" variable="$value">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="32">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Lists.php</error>
+    </parse_markers>
+  </file>
+  <file path="Text.php" hash="c99cdfef222f9354659c4c05711a0dd2" package="Default">
+    <class final="false" abstract="false" namespace="HtmlObject" line="9" package="Default">
+      <extends>\HtmlObject\Traits\Tag</extends>
+      <name>Text</name>
+      <full_name>\HtmlObject\Text</full_name>
+      <docblock line="6">
+        <description>A TextNode</description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject" line="16" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="11">
+          <description>Create a TextNode</description>
+          <long-description></long-description>
+          <tag line="11" name="param" description="" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="16">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="HtmlObject" line="28" package="Default">
+        <name>create</name>
+        <full_name>create</full_name>
+        <docblock line="21">
+          <description>Static alias for constructor</description>
+          <long-description></long-description>
+          <tag line="21" name="param" description="The text value" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="21" name="return" description="" type="\HtmlObject\Text">
+            <type by_reference="false">\HtmlObject\Text</type>
+          </tag>
+        </docblock>
+        <argument line="28">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject" line="38" package="Default">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="33">
+          <description>Render a TextNode</description>
+          <long-description></long-description>
+          <tag line="33" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Text.php</error>
+    </parse_markers>
+  </file>
+  <file path="Traits/Helpers.php" hash="1c77021e1957d8e23123f6507bcf0036" package="Default">
+    <class final="false" abstract="false" namespace="HtmlObject\Traits" line="7" package="Default">
+      <extends/>
+      <name>Helpers</name>
+      <full_name>\HtmlObject\Traits\Helpers</full_name>
+      <docblock line="4">
+        <description>Static helpers used troughout the classes</description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="HtmlObject\Traits" line="18" package="Default">
+        <name>arrayGet</name>
+        <full_name>arrayGet</full_name>
+        <docblock line="9">
+          <description>Get a value from an array</description>
+          <long-description></long-description>
+          <tag line="9" name="param" description="" type="array" variable="$array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="9" name="param" description="" type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="9" name="param" description="" type="string" variable="$fallback">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="9" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="18">
+          <name>$array</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="18">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="18">
+          <name>$fallback</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="HtmlObject\Traits" line="29" package="Default">
+        <name>parseAttributes</name>
+        <full_name>parseAttributes</full_name>
+        <docblock line="23">
+          <description>Build a list of HTML attributes from an array</description>
+          <long-description></long-description>
+          <tag line="23" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="23" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="29">
+          <name>$attributes</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="protected" namespace="HtmlObject\Traits" line="51" package="Default">
+        <name>entities</name>
+        <full_name>entities</full_name>
+        <docblock line="43">
+          <description>Convert HTML characters to HTML entities</description>
+          <long-description>&lt;p&gt;The encoding in $encoding will be used&lt;/p&gt;</long-description>
+          <tag line="43" name="param" description="" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="43" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="51">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Traits/Helpers.php</error>
+    </parse_markers>
+  </file>
+  <file path="Traits/Tag.php" hash="aecc553ce71d843af567e38193b29e96" package="Default">
+    <class final="false" abstract="true" namespace="HtmlObject\Traits" line="10" package="Default">
+      <extends>\HtmlObject\Traits\TreeObject</extends>
+      <name>Tag</name>
+      <full_name>\HtmlObject\Traits\Tag</full_name>
+      <docblock line="7">
+        <description>An abstraction of an HTML element</description>
+        <long-description></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="17" namespace="HtmlObject\Traits" package="Default">
+        <name>$element</name>
+        <default></default>
+        <docblock line="12">
+          <description>The element name</description>
+          <long-description></long-description>
+          <tag line="12" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="24" namespace="HtmlObject\Traits" package="Default">
+        <name>$value</name>
+        <default></default>
+        <docblock line="19">
+          <description>The object's value</description>
+          <long-description></long-description>
+          <tag line="19" name="var" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="31" namespace="HtmlObject\Traits" package="Default">
+        <name>$attributes</name>
+        <default>array()</default>
+        <docblock line="26">
+          <description>The object's attribute</description>
+          <long-description></long-description>
+          <tag line="26" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="38" namespace="HtmlObject\Traits" package="Default">
+        <name>$isSelfClosing</name>
+        <default>false</default>
+        <docblock line="33">
+          <description>Whether the element is self closing</description>
+          <long-description></long-description>
+          <tag line="33" name="var" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="47" namespace="HtmlObject\Traits" package="Default">
+        <name>$defaultChild</name>
+        <default></default>
+        <docblock line="42">
+          <description>Default element for nested children</description>
+          <long-description></long-description>
+          <tag line="42" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="HtmlObject\Traits" line="60" package="Default">
+        <name>setTag</name>
+        <full_name>setTag</full_name>
+        <docblock line="53">
+          <description>Set up a new tag</description>
+          <long-description></long-description>
+          <tag line="53" name="param" description="Its element" type="string" variable="$element">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="53" name="param" description="Its value" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="53" name="param" description="Its attributes" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="60">
+          <name>$element</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="60">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="60">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="74" package="Default">
+        <name>wrapWith</name>
+        <full_name>wrapWith</full_name>
+        <docblock line="67">
+          <description>Wrap the Element in another element</description>
+          <long-description></long-description>
+          <tag line="67" name="param" description="The element's tag" type="string" variable="$element">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="67" name="return" description="" type="\HtmlObject\Element">
+            <type by_reference="false">\HtmlObject\Element</type>
+          </tag>
+        </docblock>
+        <argument line="74">
+          <name>$element</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="84" package="Default">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="79">
+          <description>Render on string conversion</description>
+          <long-description></long-description>
+          <tag line="79" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="98" package="Default">
+        <name>open</name>
+        <full_name>open</full_name>
+        <docblock line="93">
+          <description>Opens the Tag</description>
+          <long-description></long-description>
+          <tag line="93" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="115" package="Default">
+        <name>getContent</name>
+        <full_name>getContent</full_name>
+        <docblock line="110">
+          <description>Returns the Tag's content</description>
+          <long-description></long-description>
+          <tag line="110" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="125" package="Default">
+        <name>close</name>
+        <full_name>close</full_name>
+        <docblock line="120">
+          <description>Close the Tag</description>
+          <long-description></long-description>
+          <tag line="120" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="135" package="Default">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="130">
+          <description>Default rendering method</description>
+          <long-description></long-description>
+          <tag line="130" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="152" package="Default">
+        <name>__call</name>
+        <full_name>__call</full_name>
+        <docblock line="146">
+          <description>Dynamically set attributes</description>
+          <long-description></long-description>
+          <tag line="146" name="param" description="An attribute" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="146" name="param" description="Its value(s)" type="array" variable="$parameters">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="152">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="152">
+          <name>$parameters</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="170" package="Default">
+        <name>__set</name>
+        <full_name>__set</full_name>
+        <docblock line="164">
+          <description>Dynamically set an attribute</description>
+          <long-description></long-description>
+          <tag line="164" name="param" description="The attribute" type="string" variable="$attribute">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="164" name="param" description="Its value" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="170">
+          <name>$attribute</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="170">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="184" package="Default">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="177">
+          <description>Get an attribute</description>
+          <long-description></long-description>
+          <tag line="177" name="param" description="The desired attribute" type="string" variable="$attribute">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="177" name="return" description="Its value" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="184">
+          <name>$attribute</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="198" package="Default">
+        <name>setElement</name>
+        <full_name>setElement</full_name>
+        <docblock line="193">
+          <description>Changes the Tag's element</description>
+          <long-description></long-description>
+          <tag line="193" name="param" description="" type="string" variable="$element">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="198">
+          <name>$element</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="210" package="Default">
+        <name>setValue</name>
+        <full_name>setValue</full_name>
+        <docblock line="205">
+          <description>Change the object's value</description>
+          <long-description></long-description>
+          <tag line="205" name="param" description="" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="210">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="222" package="Default">
+        <name>wrapValue</name>
+        <full_name>wrapValue</full_name>
+        <docblock line="217">
+          <description>Wrap the value in a tag</description>
+          <long-description></long-description>
+          <tag line="217" name="param" description="The tag" type="string" variable="$tag">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="222">
+          <name>$tag</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="234" package="Default">
+        <name>getValue</name>
+        <full_name>getValue</full_name>
+        <docblock line="229">
+          <description>Get the value</description>
+          <long-description></long-description>
+          <tag line="229" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="HtmlObject\Traits" line="248" package="Default">
+        <name>renderChildren</name>
+        <full_name>renderChildren</full_name>
+        <docblock line="243">
+          <description>Get all the children as a string</description>
+          <long-description></long-description>
+          <tag line="243" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="269" package="Default">
+        <name>nest</name>
+        <full_name>nest</full_name>
+        <docblock line="260">
+          <description>Nests an object withing the current object</description>
+          <long-description></long-description>
+          <tag line="260" name="param" description="An element name or an Tag" type="\HtmlObject\Traits\Tag|string" variable="$element">
+            <type by_reference="false">\HtmlObject\Traits\Tag</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="260" name="param" description="The Tag's alias or the element's content" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="260" name="param" description="" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="260" name="return" description="" type="\HtmlObject\Traits\Tag">
+            <type by_reference="false">\HtmlObject\Traits\Tag</type>
+          </tag>
+        </docblock>
+        <argument line="269">
+          <name>$element</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="269">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="269">
+          <name>$attributes</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="293" package="Default">
+        <name>nestChildren</name>
+        <full_name>nestChildren</full_name>
+        <docblock line="288">
+          <description>Nest an array of objects/values</description>
+          <long-description></long-description>
+          <tag line="288" name="param" description="" type="array" variable="$children">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="293">
+          <name>$children</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="HtmlObject\Traits" line="319" package="Default">
+        <name>injectProperties</name>
+        <full_name>injectProperties</full_name>
+        <docblock line="314">
+          <description>Return an array of protected properties to bind as attributes</description>
+          <long-description></long-description>
+          <tag line="314" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="330" package="Default">
+        <name>setAttribute</name>
+        <full_name>setAttribute</full_name>
+        <docblock line="324">
+          <description>Set an attribute</description>
+          <long-description></long-description>
+          <tag line="324" name="param" description="An attribute" type="string" variable="$attribute">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="324" name="param" description="Its value" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="330">
+          <name>$attribute</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="330">
+          <name>$value</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="344" package="Default">
+        <name>setAttributes</name>
+        <full_name>setAttributes</full_name>
+        <docblock line="337">
+          <description>Set a bunch of parameters at once</description>
+          <long-description></long-description>
+          <tag line="337" name="param" description="The attributes to add to the existing ones" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="337" name="return" description="" type="\HtmlObject\Traits\Tag">
+            <type by_reference="false">\HtmlObject\Traits\Tag</type>
+          </tag>
+        </docblock>
+        <argument line="344">
+          <name>$attributes</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="356" package="Default">
+        <name>getAttributes</name>
+        <full_name>getAttributes</full_name>
+        <docblock line="351">
+          <description>Get all attributes</description>
+          <long-description></long-description>
+          <tag line="351" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="368" package="Default">
+        <name>replaceAttributes</name>
+        <full_name>replaceAttributes</full_name>
+        <docblock line="361">
+          <description>Replace all attributes with the provided array</description>
+          <long-description></long-description>
+          <tag line="361" name="param" description="The attributes to replace with" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="361" name="return" description="" type="\HtmlObject\Traits\Tag">
+            <type by_reference="false">\HtmlObject\Traits\Tag</type>
+          </tag>
+        </docblock>
+        <argument line="368">
+          <name>$attributes</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="380" package="Default">
+        <name>addClass</name>
+        <full_name>addClass</full_name>
+        <docblock line="375">
+          <description>Add one or more classes to the current field</description>
+          <long-description></long-description>
+          <tag line="375" name="param" description="The class to add" type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="380">
+          <name>$class</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Traits/Tag.php</error>
+    </parse_markers>
+  </file>
+  <file path="Traits/TreeObject.php" hash="1b57bc46bf3eb3e8082be3127b1290be" package="Default">
+    <class final="false" abstract="true" namespace="HtmlObject\Traits" line="7" package="Default">
+      <extends/>
+      <name>TreeObject</name>
+      <full_name>\HtmlObject\Traits\TreeObject</full_name>
+      <docblock line="4">
+        <description>An abstract class to create and manage trees of objects</description>
+        <long-description></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="14" namespace="HtmlObject\Traits" package="Default">
+        <name>$parent</name>
+        <default></default>
+        <docblock line="9">
+          <description>Parent of the object</description>
+          <long-description></long-description>
+          <tag line="9" name="var" description="" type="\HtmlObject\Traits\TreeObject">
+            <type by_reference="false">\HtmlObject\Traits\TreeObject</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="21" namespace="HtmlObject\Traits" package="Default">
+        <name>$children</name>
+        <default>array()</default>
+        <docblock line="16">
+          <description>Children of the object</description>
+          <long-description></long-description>
+          <tag line="16" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="34" package="Default">
+        <name>getParent</name>
+        <full_name>getParent</full_name>
+        <docblock line="27">
+          <description>Get the Element's parent</description>
+          <long-description></long-description>
+          <tag line="27" name="param" description="The number of levels to go back up" type="integer" variable="$levels">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="27" name="return" description="" type="\HtmlObject\Traits\Element">
+            <type by_reference="false">\HtmlObject\Traits\Element</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$levels</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="53" package="Default">
+        <name>setParent</name>
+        <full_name>setParent</full_name>
+        <docblock line="46">
+          <description>Set the parent of the element</description>
+          <long-description></long-description>
+          <tag line="46" name="param" description="" type="\HtmlObject\Traits\TreeObject" variable="$parent">
+            <type by_reference="false">\HtmlObject\Traits\TreeObject</type>
+          </tag>
+          <tag line="46" name="return" description="" type="\HtmlObject\Traits\TreeObject">
+            <type by_reference="false">\HtmlObject\Traits\TreeObject</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$parent</name>
+          <default></default>
+          <type>\HtmlObject\Traits\TreeObject</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="65" package="Default">
+        <name>hasParent</name>
+        <full_name>hasParent</full_name>
+        <docblock line="60">
+          <description>Check if an object has a parent</description>
+          <long-description></long-description>
+          <tag line="60" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="83" package="Default">
+        <name>getChild</name>
+        <full_name>getChild</full_name>
+        <docblock line="76">
+          <description>Get a specific child of the element</description>
+          <long-description></long-description>
+          <tag line="76" name="param" description="The Element's name" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="76" name="return" description="" type="\HtmlObject\Traits\Element">
+            <type by_reference="false">\HtmlObject\Traits\Element</type>
+          </tag>
+        </docblock>
+        <argument line="83">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="105" package="Default">
+        <name>getChildren</name>
+        <full_name>getChildren</full_name>
+        <docblock line="100">
+          <description>Get all children</description>
+          <long-description></long-description>
+          <tag line="100" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="115" package="Default">
+        <name>hasChildren</name>
+        <full_name>hasChildren</full_name>
+        <docblock line="110">
+          <description>Check if the object has children</description>
+          <long-description></long-description>
+          <tag line="110" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="130" package="Default">
+        <name>setChild</name>
+        <full_name>setChild</full_name>
+        <docblock line="122">
+          <description>Add an object to the current object</description>
+          <long-description></long-description>
+          <tag line="122" name="param" description="The child" type="string|\HtmlObject\Traits\TreeObject" variable="$child">
+            <type by_reference="false">string</type>
+            <type by_reference="false">\HtmlObject\Traits\TreeObject</type>
+          </tag>
+          <tag line="122" name="param" description="Its name" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="122" name="return" description="" type="\HtmlObject\Traits\TreeObject">
+            <type by_reference="false">\HtmlObject\Traits\TreeObject</type>
+          </tag>
+        </docblock>
+        <argument line="130">
+          <name>$child</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="130">
+          <name>$name</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="HtmlObject\Traits" line="151" package="Default">
+        <name>setChildren</name>
+        <full_name>setChildren</full_name>
+        <docblock line="144">
+          <description>Set an array of children</description>
+          <long-description></long-description>
+          <tag line="144" name="param" description="" type="array" variable="$children">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="144" name="return" description="" type="\HtmlObject\Traits\TreeObject">
+            <type by_reference="false">\HtmlObject\Traits\TreeObject</type>
+          </tag>
+        </docblock>
+        <argument line="151">
+          <name>$children</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Traits/TreeObject.php</error>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <namespace name="HtmlObject" full_name="HtmlObject">
+    <namespace name="Traits" full_name="HtmlObject\Traits"/>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
