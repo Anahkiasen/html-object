@@ -101,3 +101,14 @@ This will output the following :
   <img src="users/john-doe.jpg" alt="John Doe">
 </figure>
 ```
+
+If your class use properties that are at meant to be added to the final array of attributes, you can inject them using the `injectProperties` method. Say you have a `Link` class that has an `url` property, you can overwrite the method like this, and the `$this->url` will get added in the `href` attribute :
+
+```php
+protected function injectProperties()
+{
+  return array(
+    'href' => $this->url,
+  );
+}
+```

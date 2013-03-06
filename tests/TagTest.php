@@ -3,9 +3,18 @@ use HtmlObject\Element;
 
 class Icon extends HtmlObject\Traits\Tag
 {
+  protected $bar = 'bar';
+
   public function __construct($icon)
   {
     $this->setTag('i', null, array('class' => 'icon-'.$icon));
+  }
+
+  public function injectProperties()
+  {
+    return array(
+      'foo' => $this->bar,
+    );
   }
 }
 
@@ -20,7 +29,7 @@ class TagTest extends HtmlObjectTests
   {
     $icon = new Icon('bookmark');
 
-    $this->assertEquals('<i class="icon-bookmark"></i>', $icon->render());
+    $this->assertEquals('<i class="icon-bookmark" foo="bar"></i>', $icon->render());
   }
 
   public function testCanCreateHtmlObject()
