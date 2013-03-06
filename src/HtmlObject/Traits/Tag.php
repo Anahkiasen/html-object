@@ -72,6 +72,18 @@ abstract class Tag extends TreeObject
   }
 
   /**
+   * Wrap the Element in another element
+   *
+   * @param string $element The element's tag
+   *
+   * @return Element
+   */
+  public function wrap($element)
+  {
+    return Element::create($element)->nest($this);
+  }
+
+  /**
    * Render on string conversion
    *
    * @return string
