@@ -10,13 +10,6 @@ use HtmlObject\Traits\Helpers;
 class Input extends Tag
 {
   /**
-   * Default element
-   *
-   * @var string
-   */
-  protected $defaultElement = 'input';
-
-  /**
    * Whether the element is self closing
    *
    * @var boolean
@@ -42,7 +35,7 @@ class Input extends Tag
     $attributes['type'] = $type;
     $attributes['name'] = $name;
 
-    $this->setTag(null, $value, $attributes);
+    $this->setTag('input', $value, $attributes);
   }
 
   /**

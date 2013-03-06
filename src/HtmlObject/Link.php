@@ -8,12 +8,6 @@ use HtmlObject\Traits\Tag;
  */
 class Link extends Tag
 {
-  /**
-   * Default element
-   *
-   * @var string
-   */
-  protected $defaultElement = 'a';
 
   ////////////////////////////////////////////////////////////////////
   /////////////////////////// CORE METHODS ///////////////////////////
@@ -33,7 +27,7 @@ class Link extends Tag
     if (!$value) $value = $link;
     $attributes['href'] = $link;
 
-    $this->setTag(null, $value, $attributes);
+    $this->setTag('a', $value, $attributes);
   }
 
   /**

@@ -11,7 +11,7 @@ class Lists extends Element
    *
    * @var string
    */
-  protected $defaultElement = 'ul';
+  protected $element = 'ul';
 
   /**
    * Default element for nested children

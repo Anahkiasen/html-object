@@ -156,7 +156,7 @@ class TagTest extends HtmlObjectTests
 
   public function testCanWrapItself()
   {
-    $object = $this->object->wrap('div');
+    $object = $this->object->wrapWith('div');
 
     $this->assertEquals('<div><p>foo</p></div>', $object->render());
   }

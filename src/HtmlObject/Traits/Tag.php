@@ -40,13 +40,6 @@ abstract class Tag extends TreeObject
   // Defaults ------------------------------------------------------ /
 
   /**
-   * Default element
-   *
-   * @var string
-   */
-  protected $defaultElement = 'p';
-
-  /**
    * Default element for nested children
    *
    * @var string
@@ -66,9 +59,9 @@ abstract class Tag extends TreeObject
    */
   protected function setTag($element, $value = null, $attributes = array())
   {
-    $this->setElement($element);
     $this->setValue($value);
-    $this->attributes = $attributes;
+    $this->setElement($element);
+    $this->replaceAttributes($attributes);
   }
 
   /**
@@ -78,7 +71,7 @@ abstract class Tag extends TreeObject
    *
    * @return Element
    */
-  public function wrap($element)
+  public function wrapWith($element)
   {
     return Element::create($element)->nest($this);
   }
@@ -194,17 +187,17 @@ abstract class Tag extends TreeObject
   }
 
   ////////////////////////////////////////////////////////////////////
-  ////////////////////////////// ELEMENT /////////////////////////////
+  //////////////////////////////// VALUE /////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
   /**
-   * Change the object's element
+   * Changes the Tag's element
    *
    * @param string $element
    */
   public function setElement($element)
   {
-    $this->element = $element ?: $this->defaultElement;
+    $this->element = $element;
 
     return $this;
   }
@@ -252,7 +245,7 @@ abstract class Tag extends TreeObject
    *
    * @return string
    */
-  public function renderChildren()
+  protected function renderChildren()
   {
     $children = $this->children;
     foreach ($children as $key => $child) {
