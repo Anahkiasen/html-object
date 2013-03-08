@@ -107,7 +107,7 @@ abstract class Tag extends TreeObject
     // If self closing, put value as attribute
     foreach ($this->injectProperties() as $attribute => $property) {
       if (!$this->isSelfClosing and $attribute == 'value') continue;
-      if (!$property) continue;
+      if (is_null($property) and !is_empty($property)) continue;
       $this->attributes[$attribute] = $property;
     }
 
