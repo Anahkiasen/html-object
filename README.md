@@ -73,6 +73,19 @@ protected function injectProperties()
 }
 ```
 
+Or if the property bears the property's name you can simply add it to the array of automatically injected properties :
+
+```
+class MyClass
+{
+  protected $injectedProperties = array('href', 'title');
+
+  protected $href = '#foo';
+
+  protected $title = 'title':
+}
+```
+
 ## Extending the classes
 
 If one of your classes use specific markup or is an abstraction of a piece of HTML, you can extend the core classes to make it easier to interact with the HTML.
@@ -86,7 +99,7 @@ class UserAvatar extends Tag
     $avatar = Image::create($user->image);
     $title  = Element::h2($user->name);
 
-    return Element::figure()->nestChildren([
+    return Element::figure([
       'title' => $title,
       'image' => $avatar
     ]);
@@ -110,4 +123,24 @@ This will output the following :
   <h2><strong>John Doe</strong></h2>
   <img src="users/john-doe.jpg" alt="John Doe">
 </figure>
+```
+
+### Altering a precreated tree
+
+HtmlObject allows to use the `open` and `close` to open tags but when your tag has children you sometimes want to open the tree at a particular point to inject data at runtime, you can do it like this :
+
+```php
+$mediaObject = Element::div([
+  'title' => Element::h2('John Doe'),
+  'body'  => Element::div(),
+]);
+
+echo $mediaObject->openOn('body').'My name is John Doe'.$mediaObject->close();
+```
+
+```html
+<div>
+  <h2>John Doe</h2>
+  <div>My name is John Doe</div>
+</div>
 ```
