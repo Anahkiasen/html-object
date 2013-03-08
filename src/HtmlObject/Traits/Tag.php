@@ -325,6 +325,11 @@ abstract class Tag extends TreeObject
    */
   public function nest($element, $value = null, $attributes = array())
   {
+    // Alias for nestChildren
+    if (is_array($element)) {
+      return $this->nestChildren($element);
+    }
+
     // Tag nesting
     if ($element instanceof Tag) {
       return $this->setChild($element, $value);
