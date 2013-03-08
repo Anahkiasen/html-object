@@ -37,6 +37,13 @@ abstract class Tag extends TreeObject
    */
   protected $isSelfClosing = false;
 
+  /**
+   * A list of class properties to be added to attributes
+   *
+   * @var array
+   */
+  protected $injectedProperties = array('value');
+
   // Defaults ------------------------------------------------------ /
 
   /**
@@ -318,7 +325,15 @@ abstract class Tag extends TreeObject
    */
   protected function injectProperties()
   {
-    return array('value' => $this->value);
+    $properties = array();
+
+    foreach ($this->injectedProperties as $property) {
+      if (!isset($this->$property)) continue;
+
+      $properties[$property] = $this->$property;
+    }
+
+    return $properties;
   }
 
   /**

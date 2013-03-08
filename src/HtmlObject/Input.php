@@ -10,6 +10,13 @@ use HtmlObject\Traits\Helpers;
 class Input extends Tag
 {
   /**
+   * The tag element
+   *
+   * @var string
+   */
+  protected $element = 'input';
+
+  /**
    * Whether the element is self closing
    *
    * @var boolean
