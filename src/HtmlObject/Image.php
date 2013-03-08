@@ -9,6 +9,13 @@ use HtmlObject\Traits\Tag;
 class Image extends Tag
 {
   /**
+   * The Image's tag
+   *
+   * @var string
+   */
+  protected $element = 'img';
+
+  /**
    * Whether the element is self closing
    *
    * @var boolean
@@ -33,7 +40,7 @@ class Image extends Tag
     $attributes['src'] = $src;
     $attributes['alt'] = $alt;
 
-    $this->setTag('img', null, $attributes);
+    $this->attributes = $attributes;
   }
 
   /**

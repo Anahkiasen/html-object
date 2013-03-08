@@ -38,6 +38,13 @@ abstract class Tag extends TreeObject
   protected $isSelfClosing = false;
 
   /**
+   * Whether the current tag is opened or not
+   *
+   * @var boolean
+   */
+  protected $isOpened = false;
+
+  /**
    * A list of class properties to be added to attributes
    *
    * @var array
@@ -104,6 +111,8 @@ abstract class Tag extends TreeObject
    */
   public function open()
   {
+    $this->isOpened = true;
+
     // If self closing, put value as attribute
     foreach ($this->injectProperties() as $attribute => $property) {
       if (!$this->isSelfClosing and $attribute == 'value') continue;
@@ -112,6 +121,39 @@ abstract class Tag extends TreeObject
     }
 
     return '<'.$this->element.Helpers::parseAttributes($this->attributes).'>';
+  }
+
+  /**
+   * Open the tag tree on a particular child
+   *
+   * @param string $onChild The child's key
+   *
+   * @return string
+   */
+  public function openOn($onChild)
+  {
+    $element  = $this->open();
+    $element .= $this->value;
+
+    foreach($this->children as $childName => $child) {
+      if ($childName != $onChild) $element .= $child;
+      else {
+        $element .= $child->open();
+        break;
+      }
+    }
+
+    return $element;
+  }
+
+  /**
+   * Check if the tag is opened
+   *
+   * @return boolean
+   */
+  public function isOpened()
+  {
+    return $this->isOpened;
   }
 
   /**
@@ -131,7 +173,14 @@ abstract class Tag extends TreeObject
    */
   public function close()
   {
-    return '</'.$this->element.'>';
+    $this->isOpened = false;
+    $element = null;
+
+    foreach ($this->children as $child) {
+      if ($child->isOpened) $element .= $child->close();
+    }
+
+    return $element .= '</'.$this->element.'>';
   }
 
   /**
@@ -216,7 +265,8 @@ abstract class Tag extends TreeObject
    */
   public function setValue($value)
   {
-    $this->value = $value;
+    if (is_array($value)) $this->nestChildren($value);
+    else $this->value = $value;
 
     return $this;
   }

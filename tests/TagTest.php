@@ -160,4 +160,15 @@ class TagTest extends HtmlObjectTests
 
     $this->assertEquals('<div><p>foo</p></div>', $object->render());
   }
+
+  public function testCanManuallyOpenComplexStructures()
+  {
+    $object = Element::div(array(
+      'title' => Element::div('foo')->class('title'),
+      'body'  => Element::div()->class('body'),
+    ));
+    $object = $object->openOn('body').'CONTENT'.$object->close();
+
+    $this->assertEquals('<div><div class="title">foo</div><div class="body">CONTENT</div></div>', $object);
+  }
 }

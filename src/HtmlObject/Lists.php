@@ -19,20 +19,4 @@ class Lists extends Element
    * @var string
    */
   protected $defaultChild = 'li';
-
-  ////////////////////////////////////////////////////////////////////
-  ////////////////////////// PUBLIC METHODS //////////////////////////
-  ////////////////////////////////////////////////////////////////////
-
-  /**
-   * As lists don't have a value, they're its children
-   *
-   * @param array $value
-   */
-  public function setValue($value)
-  {
-    $this->nestChildren($value);
-
-    return $this;
-  }
 }
