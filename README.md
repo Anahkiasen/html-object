@@ -1,7 +1,7 @@
 HTMLObject
 ===========
 
-HTMLObject is a set of classes to create and manipulate HTML objects abstractions. HTMLObject can be used both way :
+HTMLObject is a set of classes to create and manipulate HTML objects abstractions.
 
 ## Static calls to the classes
 
@@ -22,43 +22,42 @@ $list->getChild(0)->addClass('active')->setValue('by '.$link);
 ```
 
 ```php
-// <a href="#foo" class="btn btn-primary" target="_blank">link</a>
 echo Link::create('#foo', 'link')->class('btn btn-success')->blank();
+// <a href="#foo" class="btn btn-primary" target="_blank">link</a>
 ```
 
-## Adding custom types
+## Extending the core classes
 
-It's fairly easy to implement new types in HtmlObject, just extend the core `Tag` class. Here's an exemple for the common icon pattern tag (`<i class="icon-myicon"></i>) :
+The core classes are meant to be extended and used to create complex patterns. All classes implement tree-crawling properties such as the following :
 
 ```php
-<?php
-class Icon extends HtmlObject\Traits\Tag
-{
-  protected $element = 'i';
+$element = Element::figure();
 
-  public function __constructor($icon)
-  {
-    $this->class('icon-'.$icon);
-  }
-}
+$element->nest('content') // <figure>content</figure>
 
-echo new Icon('bookmark') // Will output <i class="icon-bookmark"></i>
+$element->nest('tag', 'content') // <figure><p>content</p></figure>
+
+$image = Image::create('img.jpg')->alt('foo'); // <img src="img.jpg" alt="foo" />
+$element->setChild($image, 'thumb');
+
+$element->getChild('thumb') // HtmlObject\Image
+$element->nest(array(
+  'caption' => Element::figcaption()->nest(array(
+    'text' => 'foobar',
+  )),
+));
+
+$element->getChild('caption.text')->getValue() // foobar
+// OR
+$element->captionText->getValue() // foobar
+$element->captionText->getParent(0) // figure->caption
+$element->captionText->getParent(1) // figure
+
+$element->wrap('div') // <div><figure>...</figure></div>
+$element->wrapValue('div') // <figure><div>...</div></figure>
 ```
 
-From there you can even easily create magic methods :
-
-```php
-<?php
-class Icon extends Tag
-{
-  public static function __callStatic($method, $parameters)
-  {
-    return new static($method);
-  }
-}
-
-echo Icon::bookmark(); // Same output as above
-```
+You can see examples implementations in the [examples](examples) folder.
 
 ### Properties injection
 
@@ -76,53 +75,13 @@ protected function injectProperties()
 Or if the property bears the property's name you can simply add it to the array of automatically injected properties :
 
 ```
-class MyClass
-{
-  protected $injectedProperties = array('href', 'title');
+protected $injectedProperties = array('href', 'title');
 
-  protected $href = '#foo';
+// Will be added as href="#foo"
+protected $href = '#foo';
 
-  protected $title = 'title':
-}
-```
-
-## Extending the classes
-
-If one of your classes use specific markup or is an abstraction of a piece of HTML, you can extend the core classes to make it easier to interact with the HTML.
-
-```php
-<?php
-class UserAvatar extends Tag
-{
-  public static function make(User $user)
-  {
-    $avatar = Image::create($user->image);
-    $title  = Element::h2($user->name);
-
-    return Element::figure([
-      'title' => $title,
-      'image' => $avatar
-    ]);
-  }
-}
-
-$avatar = UserAvatar::make($user)
-
-// Manipulation can then be done through HtmlObject's methods
-$avatar->addClass('span4');
-$avatar->getChild('image')->alt($user->name);
-$avatar->getChild('title')->wrapValue('strong');
-
-echo $avatar;
-```
-
-This will output the following :
-
-```html
-<figure class="span4">
-  <h2><strong>John Doe</strong></h2>
-  <img src="users/john-doe.jpg" alt="John Doe">
-</figure>
+// Will be added as title="title"
+protected $title = 'title';
 ```
 
 ### Altering a precreated tree
