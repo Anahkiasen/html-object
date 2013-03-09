@@ -43,7 +43,7 @@ $element->setChild($image, 'thumb');
 $element->getChild('thumb') // HtmlObject\Image
 $element->nest(array(
   'caption' => Element::figcaption()->nest(array(
-    'text' => 'foobar',
+    'text' => Element::p('foobar'),
   )),
 ));
 
