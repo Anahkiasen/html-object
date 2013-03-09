@@ -35,7 +35,7 @@ $element = Element::figure();
 
 $element->nest('content') // <figure>content</figure>
 
-$element->nest('tag', 'content') // <figure><p>content</p></figure>
+$element->nest('p', 'content') // <figure><p>content</p></figure>
 
 $image = Image::create('img.jpg')->alt('foo'); // <img src="img.jpg" alt="foo" />
 $element->setChild($image, 'thumb');
