@@ -231,15 +231,25 @@ abstract class Tag extends TreeObject
   }
 
   /**
-   * Get an attribute
+   * Get an attribute or a child
    *
-   * @param  string $attribute The desired attribute
+   * @param  string $item The desired child/attribute
    *
-   * @return string            Its value
+   * @return mixed
    */
-  public function __get($attribute)
+  public function __get($item)
   {
-    return Helpers::arrayGet($this->attributes, $attribute);
+    if (array_key_exists($item, $this->attributes)) {
+      return $this->attributes[$item];
+    }
+
+    // Get a child by snake case
+    $child = preg_replace_callback('/([A-Z])/', function($match) {
+      return '.'.strtolower($match[1]);
+    }, $item);
+    $child = $this->getChild($child);
+
+    return $child;
   }
 
   ////////////////////////////////////////////////////////////////////

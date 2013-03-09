@@ -70,6 +70,15 @@ class TagTest extends HtmlObjectTests
     $this->assertHTML($matcher, $this->object);
   }
 
+  public function testCanDynamicallyGetChild()
+  {
+    $two  = Element::p('foo');
+    $one  = Element::div()->setChild($two, 'two');
+    $zero = Element::div()->setChild($one, 'one');
+
+    $this->assertEquals('foo', $zero->oneTwo->getValue());
+  }
+
   public function testCanReplaceAttributes()
   {
     $this->object->setAttribute('data-foo', 'bar');
