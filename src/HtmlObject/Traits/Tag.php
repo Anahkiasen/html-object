@@ -134,16 +134,21 @@ abstract class Tag extends TreeObject
    *
    * @return string
    */
-  public function openOn($onChild)
+  public function openOn($onChildren)
   {
+    $onChildren = explode('.', $onChildren);
     $element  = $this->open();
     $element .= $this->value;
+    $subject  = $this;
 
-    foreach($this->children as $childName => $child) {
-      if ($childName != $onChild) $element .= $child;
-      else {
-        $element .= $child->open();
-        break;
+    foreach ($onChildren as $onChild) {
+     foreach ($subject->getChildren() as $childName => $child) {
+        if ($childName != $onChild) $element .= $child;
+        else {
+          $subject  = $child;
+          $element .= $child->open();
+          break;
+        }
       }
     }
 

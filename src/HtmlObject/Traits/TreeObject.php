@@ -14,6 +14,13 @@ abstract class TreeObject
   protected $parent;
 
   /**
+   * The name of the child for the parent
+   *
+   * @var string
+   */
+  protected $parentIndex;
+
+  /**
    * Children of the object
    *
    * @var array
@@ -129,14 +136,15 @@ abstract class TreeObject
    */
   public function setChild($child, $name = null)
   {
+    if (!$name) $name = sizeof($this->children);
+
     // Bind parent to child
     if ($child instanceof TreeObject) {
       $child->setParent($this);
     }
 
     // Add object to children
-    if ($name) $this->children[$name] = $child;
-    else $this->children[] = $child;
+    $this->children[$name] = $child;
 
     return $this;
   }

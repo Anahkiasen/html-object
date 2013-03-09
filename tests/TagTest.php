@@ -180,4 +180,18 @@ class TagTest extends HtmlObjectTests
 
     $this->assertEquals('<div><div class="title">foo</div><div class="body">CONTENT</div></div>', $object);
   }
+
+  public function testCanManipulateComplexStructures()
+  {
+    $object = Element::div(array(
+      'title' => Element::div('foo')->class('title'),
+      'body'  => Element::div()->class('body'),
+    ));
+
+    $wrapper = HtmlObject\Link::create('#', '');
+    $object = $object->wrapWith($wrapper, 'complex');
+    $render = $object->openOn('complex.body').'foo'.$object->close();
+
+    $this->assertEquals('<a href="#"><div><div class="title">foo</div><div class="body">foo</div></div></a>', $render);
+  }
 }
