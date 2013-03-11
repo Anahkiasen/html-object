@@ -71,7 +71,7 @@ abstract class TreeObject
    */
   public function hasParent()
   {
-    return $this->parent;
+    return (bool) $this->parent;
   }
 
   ////////////////////////////////////////////////////////////////////

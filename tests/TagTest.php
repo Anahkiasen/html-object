@@ -194,4 +194,11 @@ class TagTest extends HtmlObjectTests
 
     $this->assertEquals('<a href="#"><div><div class="title">foo</div><div class="body">foo</div></div></a>', $render);
   }
+
+  public function testCanCheckIfTagIsOpened()
+  {
+    $this->object->open();
+
+    $this->assertTrue($this->object->isOpened());
+  }
 }
