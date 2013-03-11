@@ -26,7 +26,7 @@ class Icon extends Tag
    *
    * @param string $icon The icon
    */
-  public function __constructor($icon)
+  public function __construct($icon)
   {
     $this->class('icon-'.$icon);
   }

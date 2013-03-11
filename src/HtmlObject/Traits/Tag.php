@@ -19,7 +19,7 @@ abstract class Tag extends TreeObject
   /**
    * The object's value
    *
-   * @var mixed
+   * @var string|null|Tag
    */
   protected $value;
 
