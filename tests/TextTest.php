@@ -7,6 +7,7 @@ class TextTest extends HtmlObjectTests
   {
     $text = new Text('foo');
 
+    $this->assertEquals('foo', Text::create('foo')->render());
     $this->assertEquals('foo', $text->render());
   }
 }

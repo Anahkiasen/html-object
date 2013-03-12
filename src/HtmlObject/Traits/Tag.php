@@ -312,9 +312,6 @@ abstract class Tag extends TreeObject
     return $this->value;
   }
 
-  ////////////////////////////////////////////////////////////////////
-  ////////////////////////////// CHILDREN ////////////////////////////
-  ////////////////////////////////////////////////////////////////////
 
   /**
    * Get all the children as a string
@@ -331,61 +328,6 @@ abstract class Tag extends TreeObject
     }
 
     return implode($children);
-  }
-
-  /**
-   * Nests an object withing the current object
-   *
-   * @param Tag|string $element    An element name or an Tag
-   * @param string         $value      The Tag's alias or the element's content
-   * @param array          $attributes
-   *
-   * @return Tag
-   */
-  public function nest($element, $value = null, $attributes = array())
-  {
-    // Alias for nestChildren
-    if (is_array($element)) {
-      return $this->nestChildren($element);
-    }
-
-    // Tag nesting
-    if ($element instanceof Tag) {
-      return $this->setChild($element, $value);
-    }
-
-    // Shortcuts and strings
-    if (strpos($element, '<') === false) {
-      $element = new Element($element, $value, $attributes);
-    } else {
-      $element = new Text($element);
-    }
-
-    $this->setChild($element);
-
-    return $this;
-  }
-
-  /**
-   * Nest an array of objects/values
-   *
-   * @param array $children
-   */
-  public function nestChildren($children)
-  {
-    if (!is_array($children)) return $this;
-
-    foreach ($children as $element => $value) {
-      if (is_numeric($element)) {
-        if(is_object($value)) $this->setChild($value);
-        elseif($this->defaultChild) $this->nest($this->defaultChild, $value);
-      } else {
-        if(is_object($value)) $this->setChild($value, $element);
-        else $this->nest($element, $value);
-      }
-    }
-
-    return $this;
   }
 
   ////////////////////////////////////////////////////////////////////

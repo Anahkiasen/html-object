@@ -1,6 +1,9 @@
 <?php
 namespace HtmlObject\Traits;
 
+use HtmlObject\Element;
+use HtmlObject\Text;
+
 /**
  * An abstract class to create and manage trees of objects
  */
@@ -127,6 +130,61 @@ abstract class TreeObject
   // Set ----------------------------------------------------------- /
 
   /**
+   * Nests an object withing the current object
+   *
+   * @param Tag|string $element    An element name or an Tag
+   * @param string         $value      The Tag's alias or the element's content
+   * @param array          $attributes
+   *
+   * @return Tag
+   */
+  public function nest($element, $value = null, $attributes = array())
+  {
+    // Alias for nestChildren
+    if (is_array($element)) {
+      return $this->nestChildren($element);
+    }
+
+    // Tag nesting
+    if ($element instanceof Tag) {
+      return $this->setChild($element, $value);
+    }
+
+    // Shortcuts and strings
+    if (strpos($element, '<') === false) {
+      $element = new Element($element, $value, $attributes);
+    } else {
+      $element = new Text($element);
+    }
+
+    $this->setChild($element);
+
+    return $this;
+  }
+
+  /**
+   * Nest an array of objects/values
+   *
+   * @param array $children
+   */
+  public function nestChildren($children)
+  {
+    if (!is_array($children)) return $this;
+
+    foreach ($children as $element => $value) {
+      if (is_numeric($element)) {
+        if($value instanceof TreeObject) $this->setChild($value);
+        elseif($this->defaultChild) $this->nest($this->defaultChild, $value);
+      } else {
+        if($value instanceof TreeObject) $this->setChild($value, $element);
+        else $this->nest($element, $value);
+      }
+    }
+
+    return $this;
+  }
+
+  /**
    * Add an object to the current object
    *
    * @param string|TreeObject  $child The child
@@ -145,23 +203,6 @@ abstract class TreeObject
 
     // Add object to children
     $this->children[$name] = $child;
-
-    return $this;
-  }
-
-  /**
-   * Set an array of children
-   *
-   * @param array $children
-   *
-   * @return TreeObject
-   */
-  public function setChildren($children)
-  {
-    foreach ($children as $name => $child) {
-      if (is_numeric($name)) $name = null;
-      $this->setChild($child, $name);
-    }
 
     return $this;
   }
