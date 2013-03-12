@@ -51,15 +51,6 @@ abstract class Tag extends TreeObject
    */
   protected $injectedProperties = array('value');
 
-  // Defaults ------------------------------------------------------ /
-
-  /**
-   * Default element for nested children
-   *
-   * @var string
-   */
-  protected $defaultChild;
-
   ////////////////////////////////////////////////////////////////////
   //////////////////////////// CORE METHODS //////////////////////////
   ////////////////////////////////////////////////////////////////////

@@ -31,10 +31,10 @@ class Element extends Tag
   /**
    * Static alias for constructor
    *
-   * @param string $element
-   * @param string $value
-   * @param array  $attributes
-   * @return Element
+   * @param string          $element
+   * @param string|null|Tag $value
+   * @param array           $attributes
+   * @return                Element
    */
   public static function create($element = null, $value = null, $attributes = array())
   {
