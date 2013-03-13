@@ -32,6 +32,16 @@ class TreeObjectTest extends HtmlObjectTests
     $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
   }
 
+  public function testCanNestObjectsInChildren()
+  {
+    $object = Element::strong('foo');
+    $link   = Element::a('foo');
+    $this->object->nest($object, 'body');
+    $this->object->nest($link, 'body.link');
+
+    $this->assertEquals('<p>foo<strong>foo<a>foo</a></strong></p>', $this->object->render());
+  }
+
   public function testCanGetNestedElements()
   {
     $object = Element::strong('foo');

@@ -205,13 +205,19 @@ abstract class TreeObject
   {
     if (!$name) $name = sizeof($this->children);
 
+    // Get subject of the setChild
+    $subject = explode('.', $name);
+    $name = array_pop($subject);
+    $subject = implode('.', $subject);
+    $subject = $subject ? $this->getChild($subject) : $this;
+
     // Bind parent to child
     if ($child instanceof TreeObject) {
-      $child->setParent($this);
+      $child->setParent($subject);
     }
 
     // Add object to children
-    $this->children[$name] = $child;
+    $subject->children[$name] = $child;
 
     return $this;
   }
