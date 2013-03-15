@@ -32,9 +32,9 @@ class Helpers
 
     foreach ((array) $attributes as $key => $value) {
       if (is_numeric($key)) $key = $value;
-      if (!is_null($value)) {
-        $html[] = $key. '="' .static::entities($value). '"';
-      }
+      if (!$value and !in_array($key, array('value'))) continue;
+
+      $html[] = $key. '="' .static::entities($value). '"';
     }
 
     return (count($html) > 0) ? ' '.implode(' ', $html) : '';
