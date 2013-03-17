@@ -397,7 +397,7 @@ abstract class Tag extends TreeObject
   /**
    * Add one or more classes to the current field
    *
-   * @param string $class The class to add
+   * @param string $class The class(es) to add
    */
   public function addClass($class)
   {
@@ -412,6 +412,29 @@ abstract class Tag extends TreeObject
     $classes = explode(' ', $this->attributes['class']);
     if (!in_array($class, $classes)) {
       $this->attributes['class'] = trim($this->attributes['class']. ' ' .$class);
+    }
+
+    return $this;
+  }
+
+  /**
+   * Remove one or more classes to the current field
+   *
+   * @param string $class The class(es) to remove
+   */
+  public function removeClass($class)
+  {
+    if (is_array($class)) $class = implode(' ', $class);
+
+    // Cancel if there is no class to begin with
+    if (!isset($this->attributes['class'])) {
+      return $this;
+    }
+
+    $classes = explode(' ', $this->attributes['class']);
+    if (in_array($class, $classes)) {
+      $this->attributes['class'] = str_replace($class, '', $this->attributes['class']);
+      $this->attributes['class'] = trim($this->attributes['class']);
     }
 
     return $this;
