@@ -21,7 +21,7 @@ abstract class TreeObject
    *
    * @var string
    */
-  protected $parentIndex;
+  public $parentIndex;
 
   /**
    * Children of the object
@@ -136,6 +136,22 @@ abstract class TreeObject
     return !is_null($this->children) and !empty($this->children);
   }
 
+  /**
+   * Check if a given element is after another sibling
+   *
+   * @param integer|string $sibling The sibling
+   *
+   * @return boolean
+   */
+  public function isAfter($sibling)
+  {
+    $children = array_keys($this->getParent()->getChildren());
+    $child    = array_search($this->parentIndex, $children);
+    $sibling  = array_search($sibling, $children);
+
+    return $child > $sibling;
+  }
+
   // Set ----------------------------------------------------------- /
 
   /**
@@ -217,6 +233,7 @@ abstract class TreeObject
     }
 
     // Add object to children
+    $child->parentIndex = $name;
     $subject->children[$name] = $child;
 
     return $this;

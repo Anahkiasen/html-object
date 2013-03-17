@@ -174,10 +174,16 @@ abstract class Tag extends TreeObject
   public function close()
   {
     $this->isOpened = false;
-    $element = null;
+    $openedOn       = null;
+    $element        = null;
 
-    foreach ($this->children as $child) {
-      if ($child->isOpened) $element .= $child->close();
+    foreach ($this->children as $childName => $child) {
+      if ($child->isOpened) {
+        $openedOn = $childName;
+        $element .= $child->close();
+      } elseif ($openedOn and $child->isAfter($openedOn)) {
+        $element .= $child;
+      }
     }
 
     return $element .= '</'.$this->element.'>';

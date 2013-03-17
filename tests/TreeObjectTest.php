@@ -158,4 +158,17 @@ class TreeObjectTest extends HtmlObjectTests
     $this->object->nest(Element::div());
     $this->assertTrue($this->object->hasChildren());
   }
+
+  public function testCanCheckIfChildrenIsAfterSibling()
+  {
+    $this->object->nestChildren(array(
+      'first' => Element::div(),
+      'last' => Element::div(),
+    ));
+    $first = $this->object->first;
+    $last  = $this->object->last;
+
+    $this->assertTrue($last->isAfter('first'));
+    $this->assertFalse($first->isAfter('last'));
+  }
 }
