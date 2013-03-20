@@ -8,6 +8,14 @@ use HtmlObject\Traits\Tag;
  */
 class Image extends Tag
 {
+
+  /**
+   * An UrlGenerator instance to use
+   *
+   * @var UrlGenerator
+   */
+  public static $urlGenerator;
+
   /**
    * The Image's tag
    *
@@ -37,6 +45,9 @@ class Image extends Tag
    */
   public function __construct($src = '#', $alt = null, $attributes = array())
   {
+    if (static::$urlGenerator) $src = static::$urlGenerator->asset($src);
+    if (!$alt) $alt = basename($src);
+
     $attributes['src'] = $src;
     $attributes['alt'] = $alt;
 

@@ -10,6 +10,13 @@ class Link extends Tag
 {
 
   /**
+   * An UrlGenerator instance to use
+   *
+   * @var UrlGenerator
+   */
+  public static $urlGenerator;
+
+  /**
    * The default element
    *
    * @var string
@@ -31,7 +38,9 @@ class Link extends Tag
    */
   public function __construct($link = '#', $value = null, $attributes = array())
   {
+    if (static::$urlGenerator) $link = static::$urlGenerator->to($link);
     if (is_null($value)) $value = $link;
+
     $attributes['href'] = $link;
 
     $this->setTag('a', $value, $attributes);
