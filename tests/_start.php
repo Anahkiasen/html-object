@@ -1,4 +1,8 @@
 <?php
+use HtmlObject\Element;
+use HtmlObject\Image;
+use HtmlObject\Link;
+
 class HtmlObjectTests extends PHPUnit_Framework_TestCase
 {
   ////////////////////////////////////////////////////////////////////

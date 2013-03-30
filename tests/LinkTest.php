@@ -1,4 +1,5 @@
 <?php
+use HtmlObject\Element;
 use HtmlObject\Link;
 
 class LinkTest extends HtmlObjectTests

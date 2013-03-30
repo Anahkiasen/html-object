@@ -117,6 +117,18 @@ abstract class TreeObject
   }
 
   /**
+   * Check if an Element has a Child
+   *
+   * @param string $name The child's name
+   *
+   * @return boolean
+   */
+  public function hasChild($name)
+  {
+    return (bool) $this->getChild($name);
+  }
+
+  /**
    * Get all children
    *
    * @return array
@@ -158,8 +170,8 @@ abstract class TreeObject
    * Nests an object withing the current object
    *
    * @param Tag|string $element    An element name or an Tag
-   * @param string         $value      The Tag's alias or the element's content
-   * @param array          $attributes
+   * @param string     $value      The Tag's alias or the element's content
+   * @param array      $attributes
    *
    * @return Tag
    */
@@ -170,21 +182,17 @@ abstract class TreeObject
       return $this->nestChildren($element);
     }
 
-    // Tag nesting
-    if ($element instanceof Tag) {
-      return $this->setChild($element, $value);
+    // Transform the element
+    if (!($element instanceof TreeObject)) {
+      $element = $this->createTagFromString($element, $value, $attributes);
     }
 
-    // Shortcuts and strings
-    if (strpos($element, '<') === false) {
-      $element = new Element($element, $value, $attributes);
-    } else {
-      $element = new Text($element);
+    // If we seek to nest into a child, get the child and nest
+    if($this->hasChild($value)) {
+      $element = $this->getChild($value)->nest($element);
     }
 
-    $this->setChild($element);
-
-    return $this;
+    return $this->setChild($element, $value);
   }
 
   /**
@@ -223,7 +231,7 @@ abstract class TreeObject
 
     // Get subject of the setChild
     $subject = explode('.', $name);
-    $name = array_pop($subject);
+    $name    = array_pop($subject);
     $subject = implode('.', $subject);
     $subject = $subject ? $this->getChild($subject) : $this;
 
@@ -237,5 +245,28 @@ abstract class TreeObject
     $subject->children[$name] = $child;
 
     return $this;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////////// HELPERS /////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Creates an Element or a TextNode from an element/value combo
+   *
+   * @param string $element    The element/string
+   * @param string $value      The element's content
+   * @param array  $attributes
+   *
+   * @return TreeObject
+   */
+  protected function createTagFromString($element, $value = null, $attributes = array())
+  {
+    // If it's an element/value, create the element
+    if (strpos($element, '<') === false and !$this->hasChild($value)) {
+      return new Element($element, $value, $attributes);
+    }
+
+    return new Text($element);
   }
 }
