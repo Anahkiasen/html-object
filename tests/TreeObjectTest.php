@@ -44,12 +44,13 @@ class TreeObjectTest extends HtmlObjectTests
 
   public function testCanNestStringsInChildren()
   {
-    $title = Element::h1('bar');
+    $strong = Element::strong('title');
+    $title  = Element::h1('bar')->nest($strong, 'strong');
     $object = Element::div()->nest($title, 'title');
     $this->object->nest($object, 'body');
-    $this->object->nest('foo', 'body.title');
+    $this->object->nest('by <a>someone</a>', 'body.title');
 
-    $this->assertEquals('<p>foo<div><h1>barfoo</h1></div></p>', $this->object->render());
+    $this->assertEquals('<p>foo<div><h1>bar<strong>title</strong>by <a>someone</a></h1></div></p>', $this->object->render());
   }
 
   public function testCanGetNestedElements()
