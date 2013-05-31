@@ -2,13 +2,32 @@
 use HtmlObject\Element;
 use HtmlObject\Image;
 use HtmlObject\Link;
+use HtmlObject\Traits\Tag;
 
 class HtmlObjectTests extends PHPUnit_Framework_TestCase
 {
+
+  /**
+   * Reset some attributes on each test
+   */
+  public function startUp()
+  {
+    Tag::$config['doctype'] = 'html';
+  }
+
   ////////////////////////////////////////////////////////////////////
   ///////////////////////////// MATCHERS /////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
+  /**
+   * Create a basic matcher for a tag
+   *
+   * @param  string $tag
+   * @param  string $content
+   * @param  array  $attributes
+   *
+   * @return array
+   */
   protected function getMatcher($tag = 'p', $content = 'foo', $attributes = array())
   {
     $tag = array('tag' => $tag);
@@ -18,6 +37,16 @@ class HtmlObjectTests extends PHPUnit_Framework_TestCase
     return $tag;
   }
 
+  /**
+   * Create a matcher for an input field
+   *
+   * @param  string $type
+   * @param  string $name
+   * @param  string $value
+   * @param  array  $attributes
+   *
+   * @return array
+   */
   protected function getInputMatcher($type, $name, $value = null, $attributes = array())
   {
     $input = $this->getMatcher('input', null, array(
@@ -48,4 +77,5 @@ class HtmlObjectTests extends PHPUnit_Framework_TestCase
         .$html."\n\t"
         .json_encode($matcher));
   }
+
 }

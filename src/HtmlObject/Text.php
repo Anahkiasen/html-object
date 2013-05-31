@@ -8,6 +8,7 @@ use HtmlObject\Traits\Tag;
  */
 class Text extends Tag
 {
+
   /**
    * Create a TextNode
    *
@@ -39,4 +40,5 @@ class Text extends Tag
   {
     return $this->value;
   }
+
 }

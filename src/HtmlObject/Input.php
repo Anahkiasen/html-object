@@ -1,14 +1,15 @@
 <?php
 namespace HtmlObject;
 
-use HtmlObject\Traits\Tag;
 use HtmlObject\Traits\Helpers;
+use HtmlObject\Traits\Tag;
 
 /**
  * An input
  */
 class Input extends Tag
 {
+
   /**
    * The tag element
    *
@@ -76,4 +77,5 @@ class Input extends Tag
 
     return new static($method, $name, $value, $attributes);
   }
+
 }

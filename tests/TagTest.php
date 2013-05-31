@@ -1,5 +1,7 @@
 <?php
 use HtmlObject\Element;
+use HtmlObject\Input;
+use HtmlObject\Traits\Tag;
 
 class Icon extends HtmlObject\Traits\Tag
 {
@@ -40,6 +42,14 @@ class TagTest extends HtmlObjectTests
   public function testCanCreateDefaultElement()
   {
     $this->assertHTML($this->getMatcher(), Element::create()->setValue('foo'));
+  }
+
+  public function testCanUseXhtmlStandards()
+  {
+    Tag::$config['doctype'] = 'xhtml';
+    $field = Input::hidden('foo', 'bar');
+
+    $this->assertContains(' />', $field->render());
   }
 
   public function testCanSetAnAttribute()

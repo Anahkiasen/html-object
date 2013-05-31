@@ -6,6 +6,7 @@ namespace HtmlObject;
  */
 class Lists extends Element
 {
+
   /**
    * Default element
    *
@@ -19,4 +20,5 @@ class Lists extends Element
    * @var string
    */
   protected $defaultChild = 'li';
+
 }

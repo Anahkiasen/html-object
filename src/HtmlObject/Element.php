@@ -1,8 +1,8 @@
 <?php
 namespace HtmlObject;
 
-use HtmlObject\Traits\Tag;
 use HtmlObject\Traits\Helpers;
+use HtmlObject\Traits\Tag;
 
 /**
  * A classic HTML element
@@ -56,4 +56,5 @@ class Element extends Tag
 
     return new static($method, $value, $attributes);
   }
+
 }

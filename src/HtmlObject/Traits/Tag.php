@@ -9,6 +9,7 @@ use HtmlObject\Text;
  */
 abstract class Tag extends TreeObject
 {
+
   /**
    * The element name
    *
@@ -50,6 +51,17 @@ abstract class Tag extends TreeObject
    * @var array
    */
   protected $injectedProperties = array('value');
+
+  // Configuration options ----------------------------------------- /
+
+  /**
+   * The base configuration inherited by classes
+   *
+   * @var array
+   */
+  public static $config = array(
+    'doctype' => 'html',
+  );
 
   ////////////////////////////////////////////////////////////////////
   //////////////////////////// CORE METHODS //////////////////////////
@@ -115,7 +127,7 @@ abstract class Tag extends TreeObject
       $this->attributes[$attribute] = $property;
     }
 
-    return '<'.$this->element.Helpers::parseAttributes($this->attributes).'>';
+    return '<'.$this->element.Helpers::parseAttributes($this->attributes).$this->getTagCloser();
   }
 
   /**
@@ -199,6 +211,20 @@ abstract class Tag extends TreeObject
     if ($this->isSelfClosing) return $this->open();
 
     return $this->open().$this->getContent().$this->close();
+  }
+
+  /**
+   * Get the preferred way to close a tag
+   *
+   * @return string
+   */
+  protected function getTagCloser()
+  {
+    if ($this->isSelfClosing and static::$config['doctype'] == 'xhtml') {
+      return ' />';
+    }
+
+    return '>';
   }
 
   ////////////////////////////////////////////////////////////////////

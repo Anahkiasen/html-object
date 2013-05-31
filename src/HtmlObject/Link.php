@@ -73,4 +73,5 @@ class Link extends Tag
 
     return $this;
   }
+
 }

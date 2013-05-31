@@ -9,6 +9,7 @@ use HtmlObject\Text;
  */
 abstract class TreeObject
 {
+
   /**
    * Parent of the object
    *
@@ -269,4 +270,5 @@ abstract class TreeObject
 
     return new Text($element);
   }
+
 }

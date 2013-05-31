@@ -67,4 +67,5 @@ class Image extends Tag
   {
     return new static($src, $alt, $attributes);
   }
+
 }

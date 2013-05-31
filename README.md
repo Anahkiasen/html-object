@@ -103,3 +103,11 @@ echo $mediaObject->openOn('body').'My name is John Doe'.$mediaObject->close();
   <div>My name is John Doe</div>
 </div>
 ```
+
+### Configuration
+
+You can change whether to follow xHMTL or HTML5 specification by doing the following :
+
+```php
+Tag::$config['doctype'] = '{xhtml|html}';
+```
