@@ -106,7 +106,7 @@ abstract class Tag extends TreeObject
    */
   public function open()
   {
-    $this->isOpened = true;
+    $this->isOpened = !$this->isSelfClosing;
 
     // If self closing, put value as attribute
     foreach ($this->injectProperties() as $attribute => $property) {
@@ -115,7 +115,7 @@ abstract class Tag extends TreeObject
       $this->attributes[$attribute] = $property;
     }
 
-    return '<'.$this->element.Helpers::parseAttributes($this->attributes).'>';
+    return '<'.$this->element.Helpers::parseAttributes($this->attributes) . ($this->isSelfClosing ? ' /' : ''). '>';
   }
 
   /**
