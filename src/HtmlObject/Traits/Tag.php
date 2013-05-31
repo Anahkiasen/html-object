@@ -9,6 +9,15 @@ use HtmlObject\Text;
  */
 abstract class Tag extends TreeObject
 {
+
+  /**
+   * Whether to end self closing tags with a /
+   * e.g. <br /> vs. <br>
+   * @var boolean
+   */
+  public static $useSelfClosingSlash = false;
+
+
   /**
    * The element name
    *
@@ -115,7 +124,7 @@ abstract class Tag extends TreeObject
       $this->attributes[$attribute] = $property;
     }
 
-    return '<'.$this->element.Helpers::parseAttributes($this->attributes) . ($this->isSelfClosing ? ' /' : ''). '>';
+    return '<'.$this->element.Helpers::parseAttributes($this->attributes) . ($this->isSelfClosing && self::$useSelfClosingSlash ? ' /' : ''). '>';
   }
 
   /**
