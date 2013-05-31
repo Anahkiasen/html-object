@@ -1,11 +1,15 @@
 {
-  "name": "anahkiasen/html-object",
-  "description": "A set of classes to create and manipulate HTML objects abstractions",
+  "name": "wipkip/html-object",
+  "description": "A fork of Anahkiasen's set of classes to create and manipulate HTML objects abstractions",
   "license": "MIT",
   "authors": [
     {
       "name": "Anahkiasen",
       "email": "ehtnam6@gmail.com"
+    },
+    {
+      "name": "Ruben Seyferth",
+      "email": "ruben.seyferth@gmail.com"      
     }
   ],
   "autoload": {
