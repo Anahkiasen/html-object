@@ -247,6 +247,18 @@ abstract class TreeObject
     return $this;
   }
 
+  /**
+   * Alias of setChild
+   * @param string|TreeObject  $child The child
+   * @param string             $name  Its name
+   *
+   * @return TreeObject
+   */
+  public function addChild($child, $name = null)
+  {
+    return $this->setChild($child, $name);
+  }
+
   ////////////////////////////////////////////////////////////////////
   ////////////////////////////// HELPERS /////////////////////////////
   ////////////////////////////////////////////////////////////////////

@@ -319,6 +319,12 @@ abstract class Tag extends TreeObject
   }
 
 
+  public function getTag()
+  {
+    return $this->element;
+  }
+
+
   /**
    * Get all the children as a string
    *
