@@ -123,8 +123,13 @@ abstract class Tag extends TreeObject
     // If self closing, put value as attribute
     foreach ($this->injectProperties() as $attribute => $property) {
       if (!$this->isSelfClosing and $attribute == 'value') continue;
-      if (is_null($property) and !is_empty($property)) continue;
+      if (is_null($property) and !is_empty($property))     continue;
       $this->attributes[$attribute] = $property;
+    }
+
+    // Invisible tags
+    if (!$this->element) {
+      return null;
     }
 
     return '<'.$this->element.Helpers::parseAttributes($this->attributes).$this->getTagCloser();
@@ -196,6 +201,11 @@ abstract class Tag extends TreeObject
       } elseif ($openedOn and $child->isAfter($openedOn)) {
         $element .= $child;
       }
+    }
+
+    // Invisible tags
+    if (!$this->element) {
+      return null;
     }
 
     return $element .= '</'.$this->element.'>';

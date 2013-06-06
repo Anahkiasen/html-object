@@ -221,4 +221,11 @@ class TagTest extends HtmlObjectTests
 
     $this->assertTrue($this->object->isOpened());
   }
+
+  public function testCanCreateShadowDom()
+  {
+    $tag = Element::div('foo')->foo('bar')->element('');
+
+    $this->assertEquals('foo', $tag->render());
+  }
 }
