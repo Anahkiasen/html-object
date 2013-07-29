@@ -8,7 +8,6 @@ use HtmlObject\Traits\Tag;
  */
 class Image extends Tag
 {
-
   /**
    * An UrlGenerator instance to use
    *
@@ -67,5 +66,4 @@ class Image extends Tag
   {
     return new static($src, $alt, $attributes);
   }
-
 }

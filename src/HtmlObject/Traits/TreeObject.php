@@ -9,7 +9,6 @@ use HtmlObject\Text;
  */
 abstract class TreeObject
 {
-
   /**
    * Parent of the object
    *
@@ -189,7 +188,7 @@ abstract class TreeObject
     }
 
     // If we seek to nest into a child, get the child and nest
-    if($this->hasChild($value)) {
+    if ($this->hasChild($value)) {
       $element = $this->getChild($value)->nest($element);
     }
 
@@ -270,5 +269,4 @@ abstract class TreeObject
 
     return new Text($element);
   }
-
 }

@@ -6,7 +6,6 @@ namespace HtmlObject\Traits;
  */
 class Helpers
 {
-
   /**
    * Get a value from an array
    *
@@ -53,5 +52,4 @@ class Helpers
   {
     return htmlentities($value, ENT_QUOTES, 'UTF-8', false);
   }
-
 }

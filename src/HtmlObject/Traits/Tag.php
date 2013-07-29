@@ -2,14 +2,12 @@
 namespace HtmlObject\Traits;
 
 use HtmlObject\Element;
-use HtmlObject\Text;
 
 /**
  * An abstraction of an HTML element
  */
 abstract class Tag extends TreeObject
 {
-
   /**
    * The element name
    *
@@ -219,7 +217,6 @@ abstract class Tag extends TreeObject
   public function render()
   {
     if ($this->isSelfClosing) return $this->open();
-
     return $this->open().$this->getContent().$this->close();
   }
 
@@ -319,7 +316,6 @@ abstract class Tag extends TreeObject
   {
     if (is_array($value)) $this->nestChildren($value);
     else $this->value = $value;
-
     return $this;
   }
 
@@ -481,5 +477,4 @@ abstract class Tag extends TreeObject
 
     return $this;
   }
-
 }

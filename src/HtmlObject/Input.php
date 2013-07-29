@@ -9,7 +9,6 @@ use HtmlObject\Traits\Tag;
  */
 class Input extends Tag
 {
-
   /**
    * The tag element
    *
@@ -77,5 +76,4 @@ class Input extends Tag
 
     return new static($method, $name, $value, $attributes);
   }
-
 }

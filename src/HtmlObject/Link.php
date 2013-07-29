@@ -8,7 +8,6 @@ use HtmlObject\Traits\Tag;
  */
 class Link extends Tag
 {
-
   /**
    * An UrlGenerator instance to use
    *
@@ -73,5 +72,4 @@ class Link extends Tag
 
     return $this;
   }
-
 }

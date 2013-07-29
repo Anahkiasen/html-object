@@ -35,11 +35,11 @@ class MediaObject extends Tag
   {
     $this->addClass('media');
 
-    $image   = Image::create($image);
-    $figure  = Element::figure($image)->class('media-object');
+    $image  = Image::create($image);
+    $figure = Element::figure($image)->class('media-object');
 
-    $body    = Element::div()->class('media-body');
-    $title   = Element::h2($title)->class('media-heading');
+    $body   = Element::div()->class('media-body');
+    $title  = Element::h2($title)->class('media-heading');
 
     $this->nest(array(
       'figure' => $figure,
