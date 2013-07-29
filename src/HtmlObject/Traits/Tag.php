@@ -341,7 +341,6 @@ abstract class Tag extends TreeObject
     return $this->value;
   }
 
-
   /**
    * Get all the children as a string
    *
@@ -465,14 +464,12 @@ abstract class Tag extends TreeObject
     if (is_array($class)) $class = implode(' ', $class);
 
     // Cancel if there is no class to begin with
-    if (!isset($this->attributes['class'])) {
-      return $this;
-    }
-
-    $classes = explode(' ', $this->attributes['class']);
-    if (in_array($class, $classes)) {
-      $this->attributes['class'] = str_replace($class, '', $this->attributes['class']);
-      $this->attributes['class'] = trim($this->attributes['class']);
+    if (isset($this->attributes['class'])) {
+      $classes = explode(' ', $this->attributes['class']);
+      if (in_array($class, $classes)) {
+        $this->attributes['class'] = str_replace($class, '', $this->attributes['class']);
+        $this->attributes['class'] = trim($this->attributes['class']);
+      }
     }
 
     return $this;

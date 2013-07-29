@@ -202,7 +202,9 @@ abstract class TreeObject
    */
   public function nestChildren($children)
   {
-    if (!is_array($children)) return $this;
+    if (!is_array($children)) {
+      return $this;
+    }
 
     foreach ($children as $element => $value) {
       if (is_numeric($element)) {
@@ -227,7 +229,9 @@ abstract class TreeObject
    */
   public function setChild($child, $name = null)
   {
-    if (!$name) $name = sizeof($this->children);
+    if (!$name) {
+      $name = sizeof($this->children);
+    }
 
     // Get subject of the setChild
     $subject = explode('.', $name);

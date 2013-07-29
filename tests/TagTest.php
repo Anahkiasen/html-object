@@ -228,4 +228,11 @@ class TagTest extends HtmlObjectTests
 
     $this->assertEquals('foo', $tag->render());
   }
+
+  public function testCanReturnItselfIfInvalidChildren()
+  {
+    $tag = Element::div('foo');
+
+    $this->assertEquals($tag, $tag->nestChildren('foo'));
+  }
 }
