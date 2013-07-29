@@ -1,5 +1,8 @@
-HTMLObject
-===========
+# HTMLObject
+
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/Anahkiasen/html-object/badges/quality-score.png?s=4ab2b46e5ca722aa9de44c7a60731acceaa93339)](https://scrutinizer-ci.com/g/Anahkiasen/html-object/)
+[![Code Coverage](https://scrutinizer-ci.com/g/Anahkiasen/html-object/badges/coverage.png?s=c237c8160568a7d4645a131292ee5231ae8605c7)](https://scrutinizer-ci.com/g/Anahkiasen/html-object/)
+[![Build Status](https://travis-ci.org/Anahkiasen/html-object.png)](https://travis-ci.org/Anahkiasen/html-object)
 
 HTMLObject is a set of classes to create and manipulate HTML objects abstractions.
 
