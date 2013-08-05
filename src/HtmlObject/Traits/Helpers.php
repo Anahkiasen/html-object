@@ -32,7 +32,7 @@ class Helpers
 
     foreach ((array) $attributes as $key => $value) {
       if (is_numeric($key)) $key = $value;
-      if (!$value and !in_array($key, array('value'))) continue;
+      if (!$value and !in_array($key, array('value','min','max'))) continue;
 
       $html[] = $key. '="' .static::entities($value). '"';
     }
