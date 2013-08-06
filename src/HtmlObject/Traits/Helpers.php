@@ -7,6 +7,18 @@ namespace HtmlObject\Traits;
 class Helpers
 {
   /**
+   * Converts a string to hyphenated-casing
+   *
+   * @param  string $string
+   *
+   * @return string
+   */
+  public static function hyphenated($string)
+  {
+    return ctype_lower($string) ? $string : strtolower(preg_replace('/(.)([A-Z])/', '$1-$2', $string));
+  }
+
+  /**
    * Get a value from an array
    *
    * @param array  $array

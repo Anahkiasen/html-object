@@ -80,6 +80,18 @@ class TagTest extends HtmlObjectTests
     $this->assertHTML($matcher, $this->object);
   }
 
+  public function testCanDynamicallySetAttributeWithCamelCase()
+  {
+    $this->object->dataFoo('bar');
+    $this->object->foo = 'bar';
+
+    $matcher = $this->getMatcher();
+    $matcher['attributes']['data-foo'] = 'bar';
+    $matcher['attributes']['foo'] = 'bar';
+
+    $this->assertHTML($matcher, $this->object);
+  }
+
   public function testCanDynamicallyGetChild()
   {
     $two  = Element::p('foo');

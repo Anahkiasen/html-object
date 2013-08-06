@@ -247,6 +247,7 @@ abstract class Tag extends TreeObject
   public function __call($method, $parameters)
   {
     // Replace underscores
+    $method = Helpers::hyphenated($method);
     $method = str_replace('_', '-', $method);
 
     // Get value and set it
