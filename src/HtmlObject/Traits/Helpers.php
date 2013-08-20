@@ -55,7 +55,7 @@ class Helpers
       }
 
       // Check for JSON attributes
-      if (substr($value, 0, 1) == '{') {
+      if (in_array(substr($value, 0, 1), array('{', '['))) {
         $html[] = $key."='".$value."'";
         continue;
       }

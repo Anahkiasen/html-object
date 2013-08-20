@@ -70,6 +70,14 @@ class TagTest extends HtmlObjectTests
 
     $this->assertHTML($matcher, $this->object);
     $this->assertEquals("<p data-tags='" .$json. "'>foo</p>", $this->object->render());
+
+    $json = '["foo", "bar", "baz"]';
+    $this->object->dataTags($json);
+    $matcher = $this->getMatcher();
+    $matcher['attributes']['data-tags'] = $json;
+
+    $this->assertHTML($matcher, $this->object);
+    $this->assertEquals("<p data-tags='" .$json. "'>foo</p>", $this->object->render());
   }
 
   public function testCanGetAttributes()
