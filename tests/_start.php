@@ -1,4 +1,6 @@
 <?php
+require __DIR__.'/../vendor/autoload.php';
+
 use HtmlObject\Element;
 use HtmlObject\Image;
 use HtmlObject\Link;

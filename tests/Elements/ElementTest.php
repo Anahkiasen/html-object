@@ -1,6 +1,4 @@
 <?php
-include '_start.php';
-
 use HtmlObject\Element;
 
 class ElementTest extends HtmlObjectTests
