@@ -43,8 +43,22 @@ class Helpers
     $html = array();
 
     foreach ((array) $attributes as $key => $value) {
-      if (is_numeric($key)) $key = $value;
-      if (!$value and !in_array($key, array('value','min','max'))) continue;
+
+      // Valueless attributes
+      if (is_numeric($key)) {
+        $key = $value;
+      }
+
+      // Ignore some attributes
+      if (!$value and !in_array($key, array('value', 'min', 'max'))) {
+        continue;
+      }
+
+      // Check for JSON attributes
+      if (substr($value, 0, 1) == '{') {
+        $html[] = $key."='".$value."'";
+        continue;
+      }
 
       $html[] = $key. '="' .static::entities($value). '"';
     }
@@ -62,6 +76,6 @@ class Helpers
    */
   protected static function entities($value)
   {
-    return htmlentities($value, ENT_QUOTES, 'UTF-8', false);
+    return $value;
   }
 }
