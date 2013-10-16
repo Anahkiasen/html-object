@@ -102,14 +102,20 @@ abstract class TreeObject
   public function getChild($name)
   {
     // Direct fetching
-    $name = explode('.', $name);
-    if (sizeof($name) == 1) {
-      return Helpers::arrayGet($this->getChildren(), $name[0]);
+    $child = Helpers::arrayGet($this->getChildren(), $name);
+    if ($child) {
+      return $child;
+    }
+
+    // Dot notation
+    $children = explode('.', $name);
+    if (sizeof($children) == 1) {
+      return Helpers::arrayGet($this->getChildren(), $children[0]);
     }
 
     // Recursive fetching
     $subject = $this;
-    foreach ($name as $child) {
+    foreach ($children as $child) {
       $subject = $subject->getChild($child);
     }
 
@@ -224,20 +230,25 @@ abstract class TreeObject
    *
    * @param string|TreeObject  $child The child
    * @param string             $name  Its name
+   * @param boolean            $flat
    *
    * @return TreeObject
    */
-  public function setChild($child, $name = null)
+  public function setChild($child, $name = null, $flat = false)
   {
     if (!$name) {
       $name = sizeof($this->children);
     }
 
     // Get subject of the setChild
-    $subject = explode('.', $name);
-    $name    = array_pop($subject);
-    $subject = implode('.', $subject);
-    $subject = $subject ? $this->getChild($subject) : $this;
+    if (!$flat) {
+      $subject = explode('.', $name);
+      $name    = array_pop($subject);
+      $subject = implode('.', $subject);
+      $subject = $subject ? $this->getChild($subject) : $this;
+    } else {
+      $subject = $this;
+    }
 
     // Bind parent to child
     if ($child instanceof TreeObject) {

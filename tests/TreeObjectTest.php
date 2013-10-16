@@ -61,6 +61,14 @@ class TreeObjectTest extends HtmlObjectTests
     $this->assertEquals($object, $this->object->getChild('foo'));
   }
 
+  public function testCanGetChildWithDotsInName()
+  {
+    $object = Element::p('foo');
+    $this->object->setChild($object, '11:30 a.m.', true);
+
+    $this->assertEquals($object, $this->object->getChild('11:30 a.m.'));
+  }
+
   public function testCanNestMultipleValues()
   {
     $object = Element::strong('foo');
