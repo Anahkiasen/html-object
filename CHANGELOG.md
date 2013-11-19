@@ -1,5 +1,9 @@
 # HTMLObject
 
+## 1.1.1
+
+- Fixed a bug in classes removing
+
 ## 1.1.0
 
 - Allow camelCased setting of attributes
