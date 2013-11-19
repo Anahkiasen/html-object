@@ -475,10 +475,10 @@ abstract class Tag extends TreeObject
   public function removeClass($classes)
   {
     if (!is_array($classes)) {
-      $classes = array($classes);
+      $classes = explode(' ', $classes);
     }
 
-    $thisClasses = explode(' ', $this->attributes['class']);
+    $thisClasses = explode(' ', Helpers::arrayGet($this->attributes, 'class'));
     foreach ($classes as $class) {
       $exists = array_search($class, $thisClasses);
       if (!is_null($exists)) {

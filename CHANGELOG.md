@@ -1,5 +1,9 @@
 # HTMLObject
 
+## 1.1.2
+
+- Bugfixes
+
 ## 1.1.1
 
 - Fixed a bug in classes removing
