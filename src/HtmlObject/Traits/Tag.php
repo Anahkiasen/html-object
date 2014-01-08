@@ -178,7 +178,12 @@ abstract class Tag extends TreeObject
    */
   public function getContent()
   {
-    return $this->value.$this->renderChildren();
+    $value = $this->value;
+    if ($value instanceof Tag) {
+      $value = $value->render();
+    }
+
+    return $value.$this->renderChildren();
   }
 
   /**
@@ -216,7 +221,11 @@ abstract class Tag extends TreeObject
    */
   public function render()
   {
-    if ($this->isSelfClosing) return $this->open();
+    // If it's a self closing tag
+    if ($this->isSelfClosing) {
+      return $this->open();
+    }
+
     return $this->open().$this->getContent().$this->close();
   }
 
