@@ -440,6 +440,22 @@ abstract class Tag extends TreeObject
   }
 
   /**
+   * Remove an attribute
+   *
+   * @param string $attribute
+   *
+   * @return self
+   */
+  public function removeAttribute($attribute)
+  {
+    if (array_key_exists($attribute, $this->attributes)) {
+      unset($this->attributes[$attribute]);
+    }
+
+    return $this;
+  }
+
+  /**
    * Replace all attributes with the provided array
    *
    * @param array $attributes The attributes to replace with
