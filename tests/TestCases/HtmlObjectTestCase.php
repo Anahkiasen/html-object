@@ -30,8 +30,14 @@ class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
   protected function getMatcher($tag = 'p', $content = 'foo', $attributes = array())
   {
     $tag = array('tag' => $tag);
-    if ($content) $tag['content'] = $content;
-    if (!empty($attributes)) $tag['attributes'] = $attributes;
+
+    if ($content) {
+      $tag['content'] = $content;
+    }
+
+    if (!empty($attributes)) {
+      $tag['attributes'] = $attributes;
+    }
 
     return $tag;
   }
