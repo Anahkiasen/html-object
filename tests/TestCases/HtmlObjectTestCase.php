@@ -1,18 +1,15 @@
 <?php
-require __DIR__.'/../vendor/autoload.php';
-
 use HtmlObject\Element;
 use HtmlObject\Image;
 use HtmlObject\Link;
 use HtmlObject\Traits\Tag;
 
-class HtmlObjectTests extends PHPUnit_Framework_TestCase
+class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
 {
-
   /**
    * Reset some attributes on each test
    */
-  public function startUp()
+  public function setUp()
   {
     Tag::$config['doctype'] = 'html';
   }
@@ -79,5 +76,4 @@ class HtmlObjectTests extends PHPUnit_Framework_TestCase
         .$html."\n\t"
         .json_encode($matcher));
   }
-
 }
