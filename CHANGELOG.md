@@ -1,5 +1,10 @@
 # HTMLObject
 
+## 1.2.0
+
+- Children are now rendered via their `render` method instead of toString
+- Added Tag::removeAttribute
+
 ## 1.1.2
 
 - Bugfixes
