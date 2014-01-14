@@ -1,5 +1,10 @@
 # HTMLObject
 
+## 1.3.0
+
+- Added `Table` element
+- Fixed a bug in the rendering of children
+
 ## 1.2.0
 
 - Children are now rendered via their `render` method instead of toString
