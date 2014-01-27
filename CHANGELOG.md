@@ -1,5 +1,9 @@
 # HTMLObject
 
+## 1.4.0
+
+- Added `TreeObject::prepend` and `TreeObject::append` to set childs before/after other children
+
 ## 1.3.0
 
 - Added `Table` element
