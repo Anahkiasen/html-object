@@ -60,22 +60,9 @@ class Helpers
         continue;
       }
 
-      $html[] = $key. '="' .static::entities($value). '"';
+      $html[] = $key. '="' .$value. '"';
     }
 
     return (count($html) > 0) ? ' '.implode(' ', $html) : '';
-  }
-
-  /**
-   * Convert HTML characters to HTML entities
-   *
-   * The encoding in $encoding will be used
-   *
-   * @param  string $value
-   * @return string
-   */
-  protected static function entities($value)
-  {
-    return $value;
   }
 }
