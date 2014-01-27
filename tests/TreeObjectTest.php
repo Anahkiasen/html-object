@@ -124,6 +124,14 @@ class TreeObjectTest extends HtmlObjectTestCase
     $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
   }
 
+  public function testWontNestIfTagDoesntExist()
+  {
+    $object = Element::strong('foo');
+    $this->object->nest(array('strong' => 'foo', 'foobar' => 'bar'));
+
+    $this->assertEquals('<p>foo<strong>foo</strong>bar</p>', $this->object->render());
+  }
+
   public function testCanNestMultipleValuesUsingNest()
   {
     $object = Element::strong('foo');

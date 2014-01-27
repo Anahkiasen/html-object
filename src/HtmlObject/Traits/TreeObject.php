@@ -349,10 +349,15 @@ abstract class TreeObject
   protected function createTagFromString($element, $value = null, $attributes = array())
   {
     // If it's an element/value, create the element
-    if (strpos($element, '<') === false and !$this->hasChild($value)) {
+    if (strpos($element, '<') === false and !$this->hasChild($value) and Helpers::isKnownTag($element)) {
       return new Element($element, $value, $attributes);
     }
 
-    return new Text($element);
+    // Else create a text element
+    if ($this->hasChild($value) or !$value) {
+      return new Text($element);
+    }
+
+    return new Text($value);
   }
 }
