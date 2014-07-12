@@ -309,6 +309,8 @@ abstract class Tag extends TreeObject
    * Changes the Tag's element
    *
    * @param string $element
+   * 
+   * @return $this
    */
   public function setElement($element)
   {
@@ -321,6 +323,8 @@ abstract class Tag extends TreeObject
    * Change the object's value
    *
    * @param string $value
+   * 
+   * @return $this
    */
   public function setValue($value)
   {
@@ -333,6 +337,8 @@ abstract class Tag extends TreeObject
    * Wrap the value in a tag
    *
    * @param string $tag The tag
+   * 
+   * @return $this
    */
   public function wrapValue($tag)
   {
@@ -395,6 +401,8 @@ abstract class Tag extends TreeObject
    *
    * @param string $attribute An attribute
    * @param string $value     Its value
+   * 
+   * @return $this
    */
   public function setAttribute($attribute, $value = null)
   {
@@ -408,7 +416,7 @@ abstract class Tag extends TreeObject
    *
    * @param array $attributes The attributes to add to the existing ones
    *
-   * @return Tag
+   * @return $this
    */
   public function setAttributes($attributes)
   {
@@ -444,7 +452,7 @@ abstract class Tag extends TreeObject
    *
    * @param string $attribute
    *
-   * @return self
+   * @return $this
    */
   public function removeAttribute($attribute)
   {
@@ -460,7 +468,7 @@ abstract class Tag extends TreeObject
    *
    * @param array $attributes The attributes to replace with
    *
-   * @return Tag
+   * @return $this
    */
   public function replaceAttributes($attributes)
   {
@@ -473,6 +481,8 @@ abstract class Tag extends TreeObject
    * Add one or more classes to the current field
    *
    * @param string $class The class(es) to add
+   * 
+   * @return $this
    */
   public function addClass($class)
   {
@@ -496,6 +506,8 @@ abstract class Tag extends TreeObject
    * Remove one or more classes to the current field
    *
    * @param string $classes The class(es) to remove
+   * 
+   * @return $this
    */
   public function removeClass($classes)
   {

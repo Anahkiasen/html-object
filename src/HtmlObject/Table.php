@@ -51,7 +51,7 @@ class Table extends Element
    * @param string          $element
    * @param string|null|Tag $value
    * @param array           $attributes
-   * @return                Table
+   * @return                static
    */
   public static function create($headers = array(), $rows = array(), $attributes = array())
   {
@@ -67,7 +67,7 @@ class Table extends Element
    *
    * @param array $headers
    *
-   * @return self
+   * @return $this
    */
   public function headers(array $headers = array())
   {
@@ -97,7 +97,7 @@ class Table extends Element
    *
    * @param array $rows
    *
-   * @return self
+   * @return $this
    */
   public function rows(array $rows = array())
   {
