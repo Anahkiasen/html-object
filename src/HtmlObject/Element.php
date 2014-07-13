@@ -20,7 +20,7 @@ class Element extends Tag
    * @param string $value
    * @param array  $attributes
    *
-   * @return Element
+   * @return static
    */
   public function __construct($element = null, $value = null, $attributes = array())
   {
@@ -33,7 +33,7 @@ class Element extends Tag
    * @param string          $element
    * @param string|null|Tag $value
    * @param array           $attributes
-   * @return                Element
+   * @return                static
    */
   public static function create($element = null, $value = null, $attributes = array())
   {
@@ -46,7 +46,7 @@ class Element extends Tag
    * @param string $method     The element
    * @param array  $parameters Value and attributes
    *
-   * @return Element
+   * @return static
    */
   public static function __callStatic($method, $parameters)
   {

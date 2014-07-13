@@ -23,7 +23,7 @@ class Text extends Tag
    *
    * @param string $value The text value
    *
-   * @return Text
+   * @return static
    */
   public static function create($value = null)
   {

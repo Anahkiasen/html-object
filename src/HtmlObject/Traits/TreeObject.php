@@ -69,7 +69,7 @@ abstract class TreeObject
    *
    * @param TreeObject $parent
    *
-   * @return TreeObject
+   * @return $this
    */
   public function setParent(TreeObject $parent)
   {
@@ -187,7 +187,7 @@ abstract class TreeObject
    * @param string     $value      The Tag's alias or the element's content
    * @param array      $attributes
    *
-   * @return Tag
+   * @return $this
    */
   public function nest($element, $value = null, $attributes = array())
   {
@@ -213,6 +213,8 @@ abstract class TreeObject
    * Nest an array of objects/values
    *
    * @param array $children
+   * 
+   * @return $this
    */
   public function nestChildren($children)
   {
@@ -240,7 +242,7 @@ abstract class TreeObject
    * @param string             $name  Its name
    * @param boolean            $flat
    *
-   * @return TreeObject
+   * @return $this
    */
   public function setChild($child, $name = null, $flat = false)
   {
@@ -271,7 +273,7 @@ abstract class TreeObject
    * @param string  $name
    * @param string  $to
    *
-   * @return self
+   * @return $this
    */
   public function appendChild($child, $name = null, $to = null)
   {
@@ -285,7 +287,7 @@ abstract class TreeObject
    * @param string  $name
    * @param string  $to
    *
-   * @return self
+   * @return $this
    */
   public function prependChild($child, $name = null, $to = 0)
   {
@@ -301,7 +303,7 @@ abstract class TreeObject
    * @param string   $to
    * @param boolean  $before
    *
-   * @return self
+   * @return $this
    */
   protected function insertChildAtPosition($child, $name = null, $subject = null, $position = null, $before = false)
   {
@@ -344,7 +346,7 @@ abstract class TreeObject
    * @param string $value      The element's content
    * @param array  $attributes
    *
-   * @return TreeObject
+   * @return Tag
    */
   protected function createTagFromString($element, $value = null, $attributes = array())
   {

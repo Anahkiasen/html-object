@@ -35,7 +35,7 @@ class Input extends Tag
    * @param string $value      Its value
    * @param array  $attributes
    *
-   * @return Input
+   * @return static
    */
   public function __construct($type, $name = null, $value = null, $attributes = array())
   {
@@ -53,7 +53,7 @@ class Input extends Tag
    * @param string $value      Its value
    * @param array  $attributes
    *
-   * @return Input
+   * @return static
    */
   public static function create($type, $name = null, $value = null, $attributes = array())
   {
@@ -66,7 +66,7 @@ class Input extends Tag
    * @param string $method     The input type
    * @param array  $parameters
    *
-   * @return Input
+   * @return static
    */
   public static function __callStatic($method, $parameters)
   {
