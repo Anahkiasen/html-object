@@ -224,7 +224,7 @@ class TagTest extends HtmlObjectTestCase
   {
     $object = $this->object->wrapWith('div');
 
-    $this->assertEquals('<div><p>foo</p></div>', $object->render());
+    $this->assertEquals('<div><p>foo</p></div>', $object->getParent()->render());
   }
 
   public function testCanManuallyOpenComplexStructures()
@@ -247,8 +247,8 @@ class TagTest extends HtmlObjectTestCase
     ));
 
     $wrapper = HtmlObject\Link::create('#', '');
-    $object = $object->wrapWith($wrapper, 'complex');
-    $render = $object->openOn('complex.body').'foo'.$object->close();
+    $wrapped = $object->wrapWith($wrapper, 'complex');
+    $render = $wrapped->getParent()->openOn('complex.body').'foo'.$wrapped->getParent()->close();
 
     $this->assertEquals('<a href="#"><div><div class="title">foo</div><div class="body">foo</div></div></a>', $render);
   }
