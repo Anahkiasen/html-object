@@ -253,6 +253,16 @@ class TagTest extends HtmlObjectTestCase
     $this->assertEquals('<a href="#"><div><div class="title">foo</div><div class="body">foo</div></div></a>', $render);
   }
 
+  public function testCanReplaceChildren()
+  {
+    $object = Element::div(array(
+      'alpha' => Element::i(),
+      'beta'  => Element::b(),
+    ));
+    $object->nest(array('beta' => Element::a()));
+    $this->assertEquals('<div><i></i><a></a></div>', $object->render());
+  }
+
   public function testCanCheckIfTagIsOpened()
   {
     $this->object->open();
