@@ -88,11 +88,18 @@ abstract class Tag extends TreeObject
    */
   public function wrapWith($element, $name = null)
   {
-    if ($element instanceof Tag) {
-      return $element->nest($this, $name);
+    if (!$element instanceof Tag) {
+      $element = Element::create($element);
     }
-
-    return Element::create($element)->nest($this, $name);
+    if ($this->parent) {
+      $this->parent->nest($element, $name);
+      $children = $this->parent->children;
+      unset($children[$this->parentIndex]);
+      $this->parent->children = $children;
+      $name = $this->parentIndex;
+    }
+    $element->nest($this, $name);
+    return $this;
   }
 
   /**

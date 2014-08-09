@@ -263,6 +263,29 @@ class TagTest extends HtmlObjectTestCase
     $this->assertEquals('<div><i></i><a></a></div>', $object->render());
   }
 
+  public function testCanWrapChildren()
+  {
+    /** @var Element $object */
+    $alpha = Element::i();
+    $beta = Element::b();
+    $object = Element::div(array(
+      'alpha' => $alpha,
+      'beta'  => $beta,
+    ));
+    $gamma = Element::a();
+    $wrapped = $object->getChild('beta')->wrapWith($gamma, 'gamma');
+
+    $this->assertEquals($beta, $wrapped);
+    // check tree
+    $this->assertEquals($gamma, $object->getChild('gamma'));
+    $this->assertEquals($gamma, $object->gamma);
+    $this->assertEquals($beta, $object->getChild('gamma.beta'));
+    $this->assertEquals($beta, $object->gammaBeta);
+
+    // expecting that element wrapped had replaced itself with wrap element in tree
+    $this->assertEquals('<div><i></i><a><b></b></a></div>', $object->render());
+  }
+
   public function testCanCheckIfTagIsOpened()
   {
     $this->object->open();
