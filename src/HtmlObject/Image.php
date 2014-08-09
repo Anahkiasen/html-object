@@ -40,7 +40,7 @@ class Image extends Tag
    * @param string $alt        Image alt text
    * @param array  $attributes
    *
-   * @return Image
+   * @return static
    */
   public function __construct($src = '#', $alt = null, $attributes = array())
   {
@@ -60,7 +60,7 @@ class Image extends Tag
    * @param string $alt        Image alt text
    * @param array  $attributes
    *
-   * @return Image
+   * @return static
    */
   public static function create($src = '#', $alt = null, $attributes = array())
   {

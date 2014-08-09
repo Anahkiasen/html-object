@@ -171,8 +171,8 @@ abstract class TreeObject
   public function isAfter($sibling)
   {
     $children = array_keys($this->getParent()->getChildren());
-    $child = array_search($this->parentIndex, $children);
-    $sibling = array_search($sibling, $children);
+    $child    = array_search($this->parentIndex, $children);
+    $sibling  = array_search($sibling, $children);
 
     return $child > $sibling;
   }
@@ -183,8 +183,8 @@ abstract class TreeObject
   /**
    * Nests an object withing the current object
    *
-   * @param Tag|string $element An element name or an Tag
-   * @param string     $value The Tag's alias or the element's content
+   * @param Tag|string $element    An element name or an Tag
+   * @param string     $value      The Tag's alias or the element's content
    * @param array      $attributes
    *
    * @return $this
@@ -213,7 +213,7 @@ abstract class TreeObject
    * Nest an array of objects/values
    *
    * @param array $children
-   *
+   * 
    * @return $this
    */
   public function nestChildren($children)
@@ -238,9 +238,9 @@ abstract class TreeObject
   /**
    * Add an object to the current object
    *
-   * @param string|TreeObject $child The child
-   * @param string            $name Its name
-   * @param boolean           $flat
+   * @param string|TreeObject  $child The child
+   * @param string             $name  Its name
+   * @param boolean            $flat
    *
    * @return $this
    */
@@ -253,11 +253,10 @@ abstract class TreeObject
     // Get subject of the setChild
     if (!$flat) {
       $subject = explode('.', $name);
-      $name = array_pop($subject);
+      $name    = array_pop($subject);
       $subject = implode('.', $subject);
       $subject = $subject ? $this->getChild($subject) : $this;
-    }
-    else {
+    } else {
       $subject = $this;
     }
 
@@ -298,11 +297,11 @@ abstract class TreeObject
   /**
    * Prepend or append to self/child
    *
-   * @param Closure $onSubject
-   * @param Element $child
-   * @param string  $name
-   * @param string  $to
-   * @param boolean $before
+   * @param Closure  $onSubject
+   * @param Element  $child
+   * @param string   $name
+   * @param string   $to
+   * @param boolean  $before
    *
    * @return $this
    */
@@ -310,7 +309,7 @@ abstract class TreeObject
   {
     // Get default child name
     $subject = $subject ?: $this;
-    $name = $name ?: sizeof($this->children);
+    $name    = $name ?: sizeof($this->children);
 
     // Bind parent to child
     if ($child instanceof TreeObject) {
@@ -321,7 +320,7 @@ abstract class TreeObject
     $child->parentIndex = $name;
 
     // If the position is a child name, get its index
-    $before = $before ? 0 : 1;
+    $before   = $before ? 0 : 1;
     $position = is_null($position) ? sizeof($subject->children) : $position;
     if (is_string($position)) {
       $position = array_search($position, array_keys($subject->children));
@@ -348,8 +347,8 @@ abstract class TreeObject
   /**
    * Creates an Element or a TextNode from an element/value combo
    *
-   * @param string $element The element/string
-   * @param string $value The element's content
+   * @param string $element    The element/string
+   * @param string $value      The element's content
    * @param array  $attributes
    *
    * @return Tag

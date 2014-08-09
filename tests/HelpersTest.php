@@ -24,6 +24,12 @@ class HelpersTest extends HtmlObjectTestCase
 		$attributes = array('min' => 0, 'max' => 0, 'value' => 0, 'required' => 0);
 		$attributes = Helpers::parseAttributes($attributes);
 
+		$this->assertEquals(' min="0" max="0" value="0" required="0"', $attributes);
+
+		$attributes = array('min' => 0, 'max' => 0, 'value' => 0, 'required' => null);
+		$attributes = Helpers::parseAttributes($attributes);
+		
 		$this->assertEquals(' min="0" max="0" value="0"', $attributes);
 	}
+
 }

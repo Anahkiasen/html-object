@@ -33,7 +33,7 @@ class Link extends Tag
    * @param string $value      The link's text
    * @param array  $attributes
    *
-   * @return Link
+   * @return static
    */
   public function __construct($link = '#', $value = null, $attributes = array())
   {
@@ -52,7 +52,7 @@ class Link extends Tag
    * @param string $value      The link's text
    * @param array  $attributes
    *
-   * @return Link
+   * @return static
    */
   public static function create($link = '#', $value = null, $attributes = array())
   {
@@ -65,6 +65,8 @@ class Link extends Tag
 
   /**
    * Make the link blank
+   * 
+   * @return $this
    */
   public function blank()
   {
