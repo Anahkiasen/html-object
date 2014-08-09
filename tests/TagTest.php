@@ -284,6 +284,12 @@ class TagTest extends HtmlObjectTestCase
 
     // expecting that element wrapped had replaced itself with wrap element in tree
     $this->assertEquals('<div><i></i><a><b></b></a></div>', $object->render());
+
+    // also check implicit element creation
+    $object->gamma->wrapWith('u', 'underline');
+    $this->assertEquals($beta, $object->underlineGammaBeta);
+    $this->assertEquals($beta, $object->getChild('underline.gamma.beta'));
+    $this->assertEquals('<div><i></i><u><a><b></b></a></u></div>', $object->render());
   }
 
   public function testCanCheckIfTagIsOpened()
