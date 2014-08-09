@@ -16,18 +16,21 @@ abstract class TreeObject
    * @var TreeObject
    */
   protected $parent;
+
   /**
    * The name of the child for the parent
    *
    * @var string
    */
   public $parentIndex;
+
   /**
    * Children of the object
    *
    * @var array
    */
   protected $children = array();
+
   // Defaults
   ////////////////////////////////////////////////////////////////////
 
@@ -37,6 +40,7 @@ abstract class TreeObject
    * @var string
    */
   protected $defaultChild;
+
   ////////////////////////////////////////////////////////////////////
   /////////////////////////////// PARENT /////////////////////////////
   ////////////////////////////////////////////////////////////////////
@@ -48,7 +52,8 @@ abstract class TreeObject
    *
    * @return Element
    */
-  public function getParent($levels = null) {
+  public function getParent($levels = null)
+  {
     if (!$levels) return $this->parent;
 
     $subject = $this;
@@ -66,7 +71,8 @@ abstract class TreeObject
    *
    * @return $this
    */
-  public function setParent(TreeObject $parent) {
+  public function setParent(TreeObject $parent)
+  {
     $this->parent = $parent;
 
     return $this;
@@ -77,7 +83,8 @@ abstract class TreeObject
    *
    * @return boolean
    */
-  public function hasParent() {
+  public function hasParent()
+  {
     return (bool) $this->parent;
   }
 
@@ -95,7 +102,8 @@ abstract class TreeObject
    *
    * @return Element
    */
-  public function getChild($name) {
+  public function getChild($name)
+  {
     // Direct fetching
     $child = Helpers::arrayGet($this->getChildren(), $name);
     if ($child) {
@@ -128,7 +136,8 @@ abstract class TreeObject
    *
    * @return boolean
    */
-  public function hasChild($name) {
+  public function hasChild($name)
+  {
     return (bool) $this->getChild($name);
   }
 
@@ -137,7 +146,8 @@ abstract class TreeObject
    *
    * @return array
    */
-  public function getChildren() {
+  public function getChildren()
+  {
     return $this->children;
   }
 
@@ -146,7 +156,8 @@ abstract class TreeObject
    *
    * @return boolean
    */
-  public function hasChildren() {
+  public function hasChildren()
+  {
     return !is_null($this->children) and !empty($this->children);
   }
 
@@ -157,7 +168,8 @@ abstract class TreeObject
    *
    * @return boolean
    */
-  public function isAfter($sibling) {
+  public function isAfter($sibling)
+  {
     $children = array_keys($this->getParent()->getChildren());
     $child = array_search($this->parentIndex, $children);
     $sibling = array_search($sibling, $children);
@@ -172,12 +184,13 @@ abstract class TreeObject
    * Nests an object withing the current object
    *
    * @param Tag|string $element An element name or an Tag
-   * @param string $value The Tag's alias or the element's content
-   * @param array $attributes
+   * @param string     $value The Tag's alias or the element's content
+   * @param array      $attributes
    *
    * @return $this
    */
-  public function nest($element, $value = null, $attributes = array()) {
+  public function nest($element, $value = null, $attributes = array())
+  {
     // Alias for nestChildren
     if (is_array($element)) {
       return $this->nestChildren($element);
@@ -203,22 +216,18 @@ abstract class TreeObject
    *
    * @return $this
    */
-  public function nestChildren($children) {
+  public function nestChildren($children)
+  {
     if (!is_array($children)) {
       return $this;
     }
 
     foreach ($children as $element => $value) {
       if (is_numeric($element)) {
-        if ($value instanceof TreeObject) {
-          $this->setChild($value);
-        }
+        if($value instanceof TreeObject) $this->setChild($value);
         elseif ($this->defaultChild) $this->nest($this->defaultChild, $value);
-      }
-      else {
-        if ($value instanceof TreeObject) {
-          $this->setChild($value, $element);
-        }
+      } else {
+        if($value instanceof TreeObject) $this->setChild($value, $element);
         else $this->nest($element, $value);
       }
     }
@@ -230,12 +239,13 @@ abstract class TreeObject
    * Add an object to the current object
    *
    * @param string|TreeObject $child The child
-   * @param string $name Its name
-   * @param boolean $flat
+   * @param string            $name Its name
+   * @param boolean           $flat
    *
    * @return $this
    */
-  public function setChild($child, $name = null, $flat = false) {
+  public function setChild($child, $name = null, $flat = false)
+  {
     if (!$name) {
       $name = sizeof($this->children);
     }
@@ -261,12 +271,13 @@ abstract class TreeObject
    * Append to an element
    *
    * @param Element $child
-   * @param string $name
-   * @param string $to
+   * @param string  $name
+   * @param string  $to
    *
    * @return $this
    */
-  public function appendChild($child, $name = null, $to = null) {
+  public function appendChild($child, $name = null, $to = null)
+  {
     return $this->insertChildAtPosition($child, $name, null, $to);
   }
 
@@ -274,12 +285,13 @@ abstract class TreeObject
    * Prepend to an element
    *
    * @param Element $child
-   * @param string $name
-   * @param string $to
+   * @param string  $name
+   * @param string  $to
    *
    * @return $this
    */
-  public function prependChild($child, $name = null, $to = 0) {
+  public function prependChild($child, $name = null, $to = 0)
+  {
     return $this->insertChildAtPosition($child, $name, null, $to, true);
   }
 
@@ -288,13 +300,14 @@ abstract class TreeObject
    *
    * @param Closure $onSubject
    * @param Element $child
-   * @param string $name
-   * @param string $to
+   * @param string  $name
+   * @param string  $to
    * @param boolean $before
    *
    * @return $this
    */
-  protected function insertChildAtPosition($child, $name = null, $subject = null, $position = null, $before = false) {
+  protected function insertChildAtPosition($child, $name = null, $subject = null, $position = null, $before = false)
+  {
     // Get default child name
     $subject = $subject ?: $this;
     $name = $name ?: sizeof($this->children);
@@ -337,11 +350,12 @@ abstract class TreeObject
    *
    * @param string $element The element/string
    * @param string $value The element's content
-   * @param array $attributes
+   * @param array  $attributes
    *
    * @return Tag
    */
-  protected function createTagFromString($element, $value = null, $attributes = array()) {
+  protected function createTagFromString($element, $value = null, $attributes = array())
+  {
     // If it's an element/value, create the element
     if (strpos($element, '<') === false and !$this->hasChild($value) and Helpers::isKnownTag($element)) {
       return new Element($element, $value, $attributes);
