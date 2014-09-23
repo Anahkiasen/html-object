@@ -9,71 +9,71 @@ use HtmlObject\Traits\Tag;
  */
 class Input extends Tag
 {
-  /**
-   * The tag element
-   *
-   * @var string
-   */
-  protected $element = 'input';
+	/**
+	 * The tag element
+	 *
+	 * @var string
+	 */
+	protected $element = 'input';
 
-  /**
-   * Whether the element is self closing
-   *
-   * @var boolean
-   */
-  protected $isSelfClosing = true;
+	/**
+	 * Whether the element is self closing
+	 *
+	 * @var boolean
+	 */
+	protected $isSelfClosing = true;
 
-  ////////////////////////////////////////////////////////////////////
-  //////////////////////////// CORE METHODS //////////////////////////
-  ////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////
+	//////////////////////////// CORE METHODS //////////////////////////
+	////////////////////////////////////////////////////////////////////
 
-  /**
-   * Create a new Input
-   *
-   * @param string $type       Its type
-   * @param string $name       Its name
-   * @param string $value      Its value
-   * @param array  $attributes
-   *
-   * @return static
-   */
-  public function __construct($type, $name = null, $value = null, $attributes = array())
-  {
-    $attributes['type'] = $type;
-    $attributes['name'] = $name;
+	/**
+	 * Create a new Input
+	 *
+	 * @param string $type  Its type
+	 * @param string $name  Its name
+	 * @param string $value Its value
+	 * @param array  $attributes
+	 *
+	 * @return self
+	 */
+	public function __construct($type, $name = null, $value = null, $attributes = array())
+	{
+		$attributes['type'] = $type;
+		$attributes['name'] = $name;
 
-    $this->setTag('input', $value, $attributes);
-  }
+		$this->setTag('input', $value, $attributes);
+	}
 
-  /**
-   * Create a new Input
-   *
-   * @param string $type       Its type
-   * @param string $name       Its name
-   * @param string $value      Its value
-   * @param array  $attributes
-   *
-   * @return static
-   */
-  public static function create($type, $name = null, $value = null, $attributes = array())
-  {
-    return new static($type, $name, $value, $attributes);
-  }
+	/**
+	 * Create a new Input
+	 *
+	 * @param string $type  Its type
+	 * @param string $name  Its name
+	 * @param string $value Its value
+	 * @param array  $attributes
+	 *
+	 * @return self
+	 */
+	public static function create($type, $name = null, $value = null, $attributes = array())
+	{
+		return new static($type, $name, $value, $attributes);
+	}
 
-  /**
-   * Dynamically create an input type
-   *
-   * @param string $method     The input type
-   * @param array  $parameters
-   *
-   * @return static
-   */
-  public static function __callStatic($method, $parameters)
-  {
-    $name       = Helpers::arrayGet($parameters, 0);
-    $value      = Helpers::arrayGet($parameters, 1);
-    $attributes = Helpers::arrayGet($parameters, 2);
+	/**
+	 * Dynamically create an input type
+	 *
+	 * @param string $method The input type
+	 * @param array  $parameters
+	 *
+	 * @return self
+	 */
+	public static function __callStatic($method, $parameters)
+	{
+		$name       = Helpers::arrayGet($parameters, 0);
+		$value      = Helpers::arrayGet($parameters, 1);
+		$attributes = Helpers::arrayGet($parameters, 2);
 
-    return new static($method, $name, $value, $attributes);
-  }
+		return new static($method, $name, $value, $attributes);
+	}
 }
