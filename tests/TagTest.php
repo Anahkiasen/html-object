@@ -224,7 +224,7 @@ class TagTest extends HtmlObjectTestCase
   {
     $object = $this->object->wrapWith('div');
 
-    $this->assertEquals('<div><p>foo</p></div>', $object->render());
+    $this->assertEquals('<div><p>foo</p></div>', $object->getParent()->render());
   }
 
   public function testCanManuallyOpenComplexStructures()
@@ -247,10 +247,49 @@ class TagTest extends HtmlObjectTestCase
     ));
 
     $wrapper = HtmlObject\Link::create('#', '');
-    $object = $object->wrapWith($wrapper, 'complex');
-    $render = $object->openOn('complex.body').'foo'.$object->close();
+    $wrapped = $object->wrapWith($wrapper, 'complex');
+    $render = $wrapped->getParent()->openOn('complex.body').'foo'.$wrapped->getParent()->close();
 
     $this->assertEquals('<a href="#"><div><div class="title">foo</div><div class="body">foo</div></div></a>', $render);
+  }
+
+  public function testCanReplaceChildren()
+  {
+    $object = Element::div(array(
+      'alpha' => Element::i(),
+      'beta'  => Element::b(),
+    ));
+    $object->nest(array('beta' => Element::a()));
+    $this->assertEquals('<div><i></i><a></a></div>', $object->render());
+  }
+
+  public function testCanWrapChildren()
+  {
+    /** @var Element $object */
+    $alpha = Element::i();
+    $beta = Element::b();
+    $object = Element::div(array(
+      'alpha' => $alpha,
+      'beta'  => $beta,
+    ));
+    $gamma = Element::a();
+    $wrapped = $object->getChild('beta')->wrapWith($gamma, 'gamma');
+
+    $this->assertEquals($beta, $wrapped);
+    // check tree
+    $this->assertEquals($gamma, $object->getChild('gamma'));
+    $this->assertEquals($gamma, $object->gamma);
+    $this->assertEquals($beta, $object->getChild('gamma.beta'));
+    $this->assertEquals($beta, $object->gammaBeta);
+
+    // expecting that element wrapped had replaced itself with wrap element in tree
+    $this->assertEquals('<div><i></i><a><b></b></a></div>', $object->render());
+
+    // also check implicit element creation
+    $object->gamma->wrapWith('u', 'underline');
+    $this->assertEquals($beta, $object->underlineGammaBeta);
+    $this->assertEquals($beta, $object->getChild('underline.gamma.beta'));
+    $this->assertEquals('<div><i></i><u><a><b></b></a></u></div>', $object->render());
   }
 
   public function testCanCheckIfTagIsOpened()

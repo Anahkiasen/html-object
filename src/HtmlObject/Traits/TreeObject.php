@@ -225,7 +225,7 @@ abstract class TreeObject
     foreach ($children as $element => $value) {
       if (is_numeric($element)) {
         if($value instanceof TreeObject) $this->setChild($value);
-        elseif($this->defaultChild) $this->nest($this->defaultChild, $value);
+        elseif ($this->defaultChild) $this->nest($this->defaultChild, $value);
       } else {
         if($value instanceof TreeObject) $this->setChild($value, $element);
         else $this->nest($element, $value);
@@ -324,6 +324,11 @@ abstract class TreeObject
     $position = is_null($position) ? sizeof($subject->children) : $position;
     if (is_string($position)) {
       $position = array_search($position, array_keys($subject->children));
+    }
+
+    if (is_string($name) && isset($subject->children[$name])) {
+      $subject->children[$name] = $child;
+      return $this;
     }
 
     // Slice and recompose children

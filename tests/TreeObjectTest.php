@@ -4,6 +4,11 @@ use HtmlObject\Input;
 
 class TreeObjectTest extends HtmlObjectTestCase
 {
+  /**
+   * @var Element
+   */
+  private $object;
+
   public function setUp()
   {
     parent::setUp();
