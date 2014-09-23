@@ -9,8 +9,8 @@
 		}
 	],
 	"autoload": {
-		"psr-0": {
-			"HtmlObject": "src"
+		"psr-4": {
+			"HtmlObject\\": "src"
 		},
 		"classmap": ["tests"]
 	},
