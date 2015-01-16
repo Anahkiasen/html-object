@@ -6,30 +6,30 @@ use HtmlObject\TestCases\HtmlObjectTestCase;
 
 class ListsTest extends HtmlObjectTestCase
 {
-	public function testCanCreateList()
-	{
-		$list = new Lists('ul');
+    public function testCanCreateList()
+    {
+        $list = new Lists('ul');
 
-		$this->assertHTML($this->getMatcher('ul', null), $list);
-	}
+        $this->assertHTML($this->getMatcher('ul', null), $list);
+    }
 
-	public function testCanCreateListWithChildren()
-	{
-		$list = Lists::ul(array(
-			'foo',
-			'bar',
-		));
+    public function testCanCreateListWithChildren()
+    {
+        $list = Lists::ul(array(
+            'foo',
+            'bar',
+        ));
 
-		$this->assertEquals('<ul><li>foo</li><li>bar</li></ul>', $list->render());
-	}
+        $this->assertEquals('<ul><li>foo</li><li>bar</li></ul>', $list->render());
+    }
 
-	public function testCanSetCustomElementsOnChildren()
-	{
-		$list = Lists::ul(array(
-			'a' => 'foo',
-			'bar',
-		));
+    public function testCanSetCustomElementsOnChildren()
+    {
+        $list = Lists::ul(array(
+            'a' => 'foo',
+            'bar',
+        ));
 
-		$this->assertEquals('<ul><a>foo</a><li>bar</li></ul>', $list->render());
-	}
+        $this->assertEquals('<ul><a>foo</a><li>bar</li></ul>', $list->render());
+    }
 }

@@ -8,66 +8,66 @@ use HtmlObject\Traits\Tag;
  */
 class Image extends Tag
 {
-	/**
-	 * An UrlGenerator instance to use
-	 *
-	 * @var UrlGenerator
-	 */
-	public static $urlGenerator;
+    /**
+     * An UrlGenerator instance to use
+     *
+     * @var UrlGenerator
+     */
+    public static $urlGenerator;
 
-	/**
-	 * The Image's tag
-	 *
-	 * @var string
-	 */
-	protected $element = 'img';
+    /**
+     * The Image's tag
+     *
+     * @var string
+     */
+    protected $element = 'img';
 
-	/**
-	 * Whether the element is self closing
-	 *
-	 * @var boolean
-	 */
-	protected $isSelfClosing = true;
+    /**
+     * Whether the element is self closing
+     *
+     * @var boolean
+     */
+    protected $isSelfClosing = true;
 
-	////////////////////////////////////////////////////////////////////
-	//////////////////////////// CORE METHODS //////////////////////////
-	////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////
+    //////////////////////////// CORE METHODS //////////////////////////
+    ////////////////////////////////////////////////////////////////////
 
-	/**
-	 * Create a new image tag
-	 *
-	 * @param string $src Image source
-	 * @param string $alt Image alt text
-	 * @param array  $attributes
-	 *
-	 * @return self
-	 */
-	public function __construct($src = '#', $alt = null, $attributes = array())
-	{
-		if (static::$urlGenerator) {
-			$src = static::$urlGenerator->asset($src);
-		}
-		if (!$alt) {
-			$alt = basename($src);
-		}
+    /**
+     * Create a new image tag
+     *
+     * @param string $src        Image source
+     * @param string $alt        Image alt text
+     * @param array  $attributes
+     *
+     * @return self
+     */
+    public function __construct($src = '#', $alt = null, $attributes = array())
+    {
+        if (static::$urlGenerator) {
+            $src = static::$urlGenerator->asset($src);
+        }
+        if (!$alt) {
+            $alt = basename($src);
+        }
 
-		$attributes['src'] = $src;
-		$attributes['alt'] = $alt;
+        $attributes['src'] = $src;
+        $attributes['alt'] = $alt;
 
-		$this->attributes = $attributes;
-	}
+        $this->attributes = $attributes;
+    }
 
-	/**
-	 * Static alias for constructor
-	 *
-	 * @param string $src Image source
-	 * @param string $alt Image alt text
-	 * @param array  $attributes
-	 *
-	 * @return self
-	 */
-	public static function create($src = '#', $alt = null, $attributes = array())
-	{
-		return new static($src, $alt, $attributes);
-	}
+    /**
+     * Static alias for constructor
+     *
+     * @param string $src        Image source
+     * @param string $alt        Image alt text
+     * @param array  $attributes
+     *
+     * @return self
+     */
+    public static function create($src = '#', $alt = null, $attributes = array())
+    {
+        return new static($src, $alt, $attributes);
+    }
 }

@@ -6,32 +6,32 @@ use HtmlObject\Traits\Helpers;
 
 class HelpersTest extends HtmlObjectTestCase
 {
-	public function testCanParseAttributes()
-	{
-		$attributes = array('foo' => 'bar', 'baz' => 'qux');
-		$attributes = Helpers::parseAttributes($attributes);
+    public function testCanParseAttributes()
+    {
+        $attributes = array('foo' => 'bar', 'baz' => 'qux');
+        $attributes = Helpers::parseAttributes($attributes);
 
-		$this->assertEquals(' foo="bar" baz="qux"', $attributes);
-	}
+        $this->assertEquals(' foo="bar" baz="qux"', $attributes);
+    }
 
-	public function testCanParseValuelessAttributes()
-	{
-		$attributes = array('required', 'autofocus');
-		$attributes = Helpers::parseAttributes($attributes);
+    public function testCanParseValuelessAttributes()
+    {
+        $attributes = array('required', 'autofocus');
+        $attributes = Helpers::parseAttributes($attributes);
 
-		$this->assertEquals(' required="required" autofocus="autofocus"', $attributes);
-	}
+        $this->assertEquals(' required="required" autofocus="autofocus"', $attributes);
+    }
 
-	public function testCanIgnoreNullAttributesWhenNecessary()
-	{
-		$attributes = array('min' => 0, 'max' => 0, 'value' => 0, 'required' => 0);
-		$attributes = Helpers::parseAttributes($attributes);
+    public function testCanIgnoreNullAttributesWhenNecessary()
+    {
+        $attributes = array('min' => 0, 'max' => 0, 'value' => 0, 'required' => 0);
+        $attributes = Helpers::parseAttributes($attributes);
 
-		$this->assertEquals(' min="0" max="0" value="0" required="0"', $attributes);
+        $this->assertEquals(' min="0" max="0" value="0" required="0"', $attributes);
 
-		$attributes = array('min' => 0, 'max' => 0, 'value' => 0, 'required' => null);
-		$attributes = Helpers::parseAttributes($attributes);
+        $attributes = array('min' => 0, 'max' => 0, 'value' => 0, 'required' => null);
+        $attributes = Helpers::parseAttributes($attributes);
 
-		$this->assertEquals(' min="0" max="0" value="0"', $attributes);
-	}
+        $this->assertEquals(' min="0" max="0" value="0"', $attributes);
+    }
 }
