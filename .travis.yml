@@ -10,15 +10,10 @@ php:
   - 5.6
   - hhvm
 
-env:
-  matrix:
-    - PREFER_LOWEST="--prefer-lowest"
-    - PREFER_LOWEST=""
-
 # Dependencies
 install:
   - composer self-update
-  - travis_retry composer update --no-interaction --prefer-source --dev $PREFER_LOWEST
+  - travis_retry composer update --no-interaction --prefer-source --dev
 
 script: phpunit
 

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.4.1
+
+### Fixed
+- Fixed ability to replace children
+- Fixed null attributes being left removed
+
 ## 1.4.0
 
 ### Added
