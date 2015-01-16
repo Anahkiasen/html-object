@@ -179,7 +179,7 @@ class Helpers
             }
 
             // Ignore some attributes
-            if (is_null($value) and !in_array($key, array('value', 'min', 'max'))) {
+            if (is_null($value) && !in_array($key, array('value', 'min', 'max'))) {
                 continue;
             }
 

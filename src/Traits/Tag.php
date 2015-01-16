@@ -128,10 +128,10 @@ abstract class Tag extends TreeObject
 
         // If self closing, put value as attribute
         foreach ($this->injectProperties() as $attribute => $property) {
-            if (!$this->isSelfClosing and $attribute == 'value') {
+            if (!$this->isSelfClosing && $attribute == 'value') {
                 continue;
             }
-            if (is_null($property) and !is_empty($property)) {
+            if (is_null($property) && !is_empty($property)) {
                 continue;
             }
             $this->attributes[$attribute] = $property;
@@ -211,10 +211,10 @@ abstract class Tag extends TreeObject
         $element        = null;
 
         foreach ($this->children as $childName => $child) {
-            if ($child->isOpened and !$child->isSelfClosing) {
+            if ($child->isOpened && !$child->isSelfClosing) {
                 $openedOn = $childName;
                 $element .= $child->close();
-            } elseif ($openedOn and $child->isAfter($openedOn)) {
+            } elseif ($openedOn && $child->isAfter($openedOn)) {
                 $element .= $child;
             }
         }
@@ -249,7 +249,7 @@ abstract class Tag extends TreeObject
      */
     protected function getTagCloser()
     {
-        if ($this->isSelfClosing and static::$config['doctype'] == 'xhtml') {
+        if ($this->isSelfClosing && static::$config['doctype'] == 'xhtml') {
             return ' />';
         }
 

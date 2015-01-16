@@ -114,7 +114,7 @@ abstract class TreeObject
 
         // Dot notation
         $children = explode('.', $name);
-        if (sizeof($children) == 1) {
+        if (count($children) == 1) {
             return Helpers::arrayGet($this->getChildren(), $children[0]);
         }
 
@@ -160,7 +160,7 @@ abstract class TreeObject
      */
     public function hasChildren()
     {
-        return !is_null($this->children) and !empty($this->children);
+        return !is_null($this->children) && !empty($this->children);
     }
 
     /**
@@ -255,7 +255,7 @@ abstract class TreeObject
     public function setChild($child, $name = null, $flat = false)
     {
         if (!$name) {
-            $name = sizeof($this->children);
+            $name = count($this->children);
         }
 
         // Get subject of the setChild
@@ -317,7 +317,7 @@ abstract class TreeObject
     {
         // Get default child name
         $subject = $subject ?: $this;
-        $name    = $name ?: sizeof($this->children);
+        $name    = $name ?: count($this->children);
 
         // Bind parent to child
         if ($child instanceof TreeObject) {
@@ -329,7 +329,7 @@ abstract class TreeObject
 
         // If the position is a child name, get its index
         $before   = $before ? 0 : 1;
-        $position = is_null($position) ? sizeof($subject->children) : $position;
+        $position = is_null($position) ? count($subject->children) : $position;
         if (is_string($position)) {
             $position = array_search($position, array_keys($subject->children));
         }
@@ -344,7 +344,7 @@ abstract class TreeObject
         $subject->children =
             array_slice($subject->children, 0, $position + $before, true) +
             array($name => $child) +
-            array_slice($subject->children, $position, sizeof($subject->children), true);
+            array_slice($subject->children, $position, count($subject->children), true);
 
         return $this;
     }
@@ -365,12 +365,12 @@ abstract class TreeObject
     protected function createTagFromString($element, $value = null, $attributes = array())
     {
         // If it's an element/value, create the element
-        if (strpos($element, '<') === false and !$this->hasChild($value) and Helpers::isKnownTag($element)) {
+        if (strpos($element, '<') === false && !$this->hasChild($value) && Helpers::isKnownTag($element)) {
             return new Element($element, $value, $attributes);
         }
 
         // Else create a text element
-        if ($this->hasChild($value) or !$value) {
+        if ($this->hasChild($value) || !$value) {
             return new Text($element);
         }
 
