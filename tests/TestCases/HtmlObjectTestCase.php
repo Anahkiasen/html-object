@@ -1,5 +1,8 @@
 <?php
+namespace HtmlObject\TestCases;
+
 use HtmlObject\Traits\Tag;
+use PHPUnit_Framework_TestCase;
 
 class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
 {

@@ -1,5 +1,8 @@
 <?php
+namespace HtmlObject\Elements;
+
 use HtmlObject\Table;
+use HtmlObject\TestCases\HtmlObjectTestCase;
 
 class TableTest extends HtmlObjectTestCase
 {

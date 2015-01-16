@@ -1,5 +1,8 @@
 <?php
+namespace HtmlObject\Elements;
+
 use HtmlObject\Input;
+use HtmlObject\TestCases\HtmlObjectTestCase;
 
 class InputTest extends HtmlObjectTestCase
 {

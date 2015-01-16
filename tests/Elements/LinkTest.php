@@ -1,5 +1,8 @@
 <?php
+namespace HtmlObject\Elements;
+
 use HtmlObject\Link;
+use HtmlObject\TestCases\HtmlObjectTestCase;
 
 class LinkTest extends HtmlObjectTestCase
 {

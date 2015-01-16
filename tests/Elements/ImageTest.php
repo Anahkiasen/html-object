@@ -1,5 +1,8 @@
 <?php
+namespace HtmlObject\Elements;
+
 use HtmlObject\Image;
+use HtmlObject\TestCases\HtmlObjectTestCase;
 
 class ImageTest extends HtmlObjectTestCase
 {

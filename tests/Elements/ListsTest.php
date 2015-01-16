@@ -1,5 +1,8 @@
 <?php
+namespace HtmlObject\Elements;
+
 use HtmlObject\Lists;
+use HtmlObject\TestCases\HtmlObjectTestCase;
 
 class ListsTest extends HtmlObjectTestCase
 {

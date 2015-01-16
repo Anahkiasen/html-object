@@ -1,4 +1,7 @@
 <?php
+namespace HtmlObject\Elements;
+
+use HtmlObject\TestCases\HtmlObjectTestCase;
 use HtmlObject\Text;
 
 class TextTest extends HtmlObjectTestCase

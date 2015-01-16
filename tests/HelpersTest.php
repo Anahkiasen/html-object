@@ -1,4 +1,7 @@
 <?php
+namespace HtmlObject;
+
+use HtmlObject\TestCases\HtmlObjectTestCase;
 use HtmlObject\Traits\Helpers;
 
 class HelpersTest extends HtmlObjectTestCase

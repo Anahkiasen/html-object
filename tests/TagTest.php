@@ -1,9 +1,10 @@
 <?php
-use HtmlObject\Element;
-use HtmlObject\Input;
+namespace HtmlObject;
+
+use HtmlObject\TestCases\HtmlObjectTestCase;
 use HtmlObject\Traits\Tag;
 
-class Icon extends HtmlObject\Traits\Tag
+class Icon extends Tag
 {
 	protected $bar = 'bar';
 
@@ -245,7 +246,7 @@ class TagTest extends HtmlObjectTestCase
 			'body'  => Element::div()->class('body'),
 		));
 
-		$wrapper = HtmlObject\Link::create('#', '');
+		$wrapper = Link::create('#', '');
 		$wrapped = $object->wrapWith($wrapper, 'complex');
 		$render  = $wrapped->getParent()->openOn('complex.body').'foo'.$wrapped->getParent()->close();
 

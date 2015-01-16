@@ -1,6 +1,9 @@
 <?php
+namespace HtmlObject;
+
 use HtmlObject\Element;
 use HtmlObject\Input;
+use HtmlObject\TestCases\HtmlObjectTestCase;
 
 class TreeObjectTest extends HtmlObjectTestCase
 {
