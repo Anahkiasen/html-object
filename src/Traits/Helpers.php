@@ -149,9 +149,9 @@ class Helpers
     /**
      * Get a value from an array
      *
-     * @param array  $array
-     * @param string $key
-     * @param string $fallback
+     * @param array       $array
+     * @param string      $key
+     * @param string|null $fallback
      *
      * @return mixed
      */

@@ -68,9 +68,9 @@ abstract class Tag extends TreeObject
     /**
      * Set up a new tag
      *
-     * @param string $element    Its element
-     * @param string $value      Its value
-     * @param array  $attributes Its attributes
+     * @param string      $element    Its element
+     * @param string|null $value      Its value
+     * @param array       $attributes Its attributes
      */
     protected function setTag($element, $value = null, $attributes = array())
     {
@@ -106,7 +106,7 @@ abstract class Tag extends TreeObject
     /**
      * Render on string conversion
      *
-     * @return string
+     * @return string|null
      */
     public function __toString()
     {
@@ -120,7 +120,7 @@ abstract class Tag extends TreeObject
     /**
      * Opens the Tag
      *
-     * @return string
+     * @return string|null
      */
     public function open()
     {
@@ -202,7 +202,7 @@ abstract class Tag extends TreeObject
     /**
      * Close the Tag
      *
-     * @return string
+     * @return string|null
      */
     public function close()
     {
@@ -230,7 +230,7 @@ abstract class Tag extends TreeObject
     /**
      * Default rendering method
      *
-     * @return string
+     * @return string|null
      */
     public function render()
     {
@@ -265,6 +265,8 @@ abstract class Tag extends TreeObject
      *
      * @param string $method     An attribute
      * @param array  $parameters Its value(s)
+     *
+     * @return $this
      */
     public function __call($method, $parameters)
     {
@@ -367,7 +369,7 @@ abstract class Tag extends TreeObject
     /**
      * Get the value
      *
-     * @return string
+     * @return string|null
      */
     public function getValue()
     {
@@ -418,8 +420,8 @@ abstract class Tag extends TreeObject
     /**
      * Set an attribute
      *
-     * @param string $attribute An attribute
-     * @param string $value     Its value
+     * @param string      $attribute An attribute
+     * @param string|null $value     Its value
      *
      * @return $this
      */

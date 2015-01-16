@@ -30,12 +30,10 @@ class Input extends Tag
     /**
      * Create a new Input
      *
-     * @param string $type       Its type
-     * @param string $name       Its name
-     * @param string $value      Its value
-     * @param array  $attributes
-     *
-     * @return self
+     * @param string      $type  Its type
+     * @param string|null $name  Its name
+     * @param string|null $value Its value
+     * @param array       $attributes
      */
     public function __construct($type, $name = null, $value = null, $attributes = array())
     {
@@ -48,12 +46,12 @@ class Input extends Tag
     /**
      * Create a new Input
      *
-     * @param string $type       Its type
-     * @param string $name       Its name
-     * @param string $value      Its value
-     * @param array  $attributes
+     * @param string      $type  Its type
+     * @param string|null $name  Its name
+     * @param string|null $value Its value
+     * @param array       $attributes
      *
-     * @return self
+     * @return $this
      */
     public static function create($type, $name = null, $value = null, $attributes = array())
     {
@@ -63,10 +61,10 @@ class Input extends Tag
     /**
      * Dynamically create an input type
      *
-     * @param string $method     The input type
+     * @param string $method The input type
      * @param array  $parameters
      *
-     * @return self
+     * @return $this
      */
     public static function __callStatic($method, $parameters)
     {

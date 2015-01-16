@@ -29,11 +29,9 @@ class Link extends Tag
     /**
      * Create a new Link
      *
-     * @param string $link       The link href
-     * @param string $value      The link's text
-     * @param array  $attributes
-     *
-     * @return self
+     * @param string      $link  The link href
+     * @param string|null $value The link's text
+     * @param array       $attributes
      */
     public function __construct($link = '#', $value = null, $attributes = array())
     {
@@ -52,11 +50,11 @@ class Link extends Tag
     /**
      * Static alias for constructor
      *
-     * @param string $link       The link href
-     * @param string $value      The link's text
-     * @param array  $attributes
+     * @param string      $link  The link href
+     * @param string|null $value The link's text
+     * @param array       $attributes
      *
-     * @return self
+     * @return $this
      */
     public static function create($link = '#', $value = null, $attributes = array())
     {

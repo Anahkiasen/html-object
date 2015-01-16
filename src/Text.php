@@ -11,7 +11,7 @@ class Text extends Tag
     /**
      * Create a TextNode
      *
-     * @param string $value
+     * @param string|null $value
      */
     public function __construct($value = null)
     {
@@ -21,9 +21,9 @@ class Text extends Tag
     /**
      * Static alias for constructor
      *
-     * @param string $value The text value
+     * @param string|null $value The text value
      *
-     * @return self
+     * @return $this
      */
     public static function create($value = null)
     {
@@ -33,7 +33,7 @@ class Text extends Tag
     /**
      * Render a TextNode
      *
-     * @return string
+     * @return string|null
      */
     public function render()
     {

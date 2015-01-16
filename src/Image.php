@@ -36,11 +36,9 @@ class Image extends Tag
     /**
      * Create a new image tag
      *
-     * @param string $src        Image source
-     * @param string $alt        Image alt text
-     * @param array  $attributes
-     *
-     * @return self
+     * @param string      $src Image source
+     * @param string|null $alt Image alt text
+     * @param array       $attributes
      */
     public function __construct($src = '#', $alt = null, $attributes = array())
     {
@@ -60,11 +58,11 @@ class Image extends Tag
     /**
      * Static alias for constructor
      *
-     * @param string $src        Image source
-     * @param string $alt        Image alt text
-     * @param array  $attributes
+     * @param string      $src Image source
+     * @param string|null $alt Image alt text
+     * @param array       $attributes
      *
-     * @return self
+     * @return $this
      */
     public static function create($src = '#', $alt = null, $attributes = array())
     {

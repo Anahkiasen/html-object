@@ -1,7 +1,6 @@
 <?php
 namespace HtmlObject\Traits;
 
-use Closure;
 use HtmlObject\Element;
 use HtmlObject\Text;
 
@@ -48,7 +47,7 @@ abstract class TreeObject
     /**
      * Get the Element's parent
      *
-     * @param integer $levels The number of levels to go back up
+     * @param integer|null $levels The number of levels to go back up
      *
      * @return Element
      */
@@ -185,9 +184,9 @@ abstract class TreeObject
     /**
      * Nests an object withing the current object
      *
-     * @param Tag|string $element    An element name or an Tag
-     * @param string     $value      The Tag's alias or the element's content
-     * @param array      $attributes
+     * @param Tag|array|string $element An element name or an Tag
+     * @param string|null      $value   The Tag's alias or the element's content
+     * @param array            $attributes
      *
      * @return $this
      */
@@ -247,7 +246,7 @@ abstract class TreeObject
      * Add an object to the current object
      *
      * @param string|TreeObject $child The child
-     * @param string            $name  Its name
+     * @param string|null       $name  Its name
      * @param boolean           $flat
      *
      * @return $this
@@ -277,9 +276,9 @@ abstract class TreeObject
     /**
      * Append to an element
      *
-     * @param Element $child
-     * @param string  $name
-     * @param string  $to
+     * @param Element     $child
+     * @param string|null $name
+     * @param string      $to
      *
      * @return $this
      */
@@ -291,9 +290,9 @@ abstract class TreeObject
     /**
      * Prepend to an element
      *
-     * @param Element $child
-     * @param string  $name
-     * @param string  $to
+     * @param Element        $child
+     * @param string         $name
+     * @param integer|string $to
      *
      * @return $this
      */
@@ -305,10 +304,10 @@ abstract class TreeObject
     /**
      * Prepend or append to self/child
      *
-     * @param Closure $onSubject
      * @param Element $child
      * @param string  $name
-     * @param string  $to
+     * @param null    $subject
+     * @param null    $position
      * @param boolean $before
      *
      * @return $this
@@ -356,8 +355,8 @@ abstract class TreeObject
     /**
      * Creates an Element or a TextNode from an element/value combo
      *
-     * @param string $element    The element/string
-     * @param string $value      The element's content
+     * @param string $element The element/string
+     * @param string $value   The element's content
      * @param array  $attributes
      *
      * @return Tag

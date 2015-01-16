@@ -16,11 +16,9 @@ class Element extends Tag
     /**
      * Creates a basic Element
      *
-     * @param string $element
-     * @param string $value
-     * @param array  $attributes
-     *
-     * @return self
+     * @param string|null $element
+     * @param string|null $value
+     * @param array       $attributes
      */
     public function __construct($element = null, $value = null, $attributes = array())
     {
@@ -34,7 +32,7 @@ class Element extends Tag
      * @param string|null|Tag $value
      * @param array           $attributes
      *
-     * @return self
+     * @return $this
      */
     public static function create($element = null, $value = null, $attributes = array())
     {
@@ -44,10 +42,10 @@ class Element extends Tag
     /**
      * Dynamically create an element
      *
-     * @param string $method     The element
-     * @param array  $parameters Value and attributes
+     * @param string   $method     The element
+     * @param string[] $parameters Value and attributes
      *
-     * @return self
+     * @return $this
      */
     public static function __callStatic($method, $parameters)
     {
