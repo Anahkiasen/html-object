@@ -179,7 +179,13 @@ class Helpers
             }
 
             // Ignore some attributes
-            if (is_null($value) && !in_array($key, array('value', 'min', 'max'))) {
+            if ((is_null($value) || $value === false) && !in_array($key, array('value', 'min', 'max'))) {
+                continue;
+            }
+
+            // If set to boolean true, make the attribtue a property
+            if ($value === true) {
+                $html[] = $key;
                 continue;
             }
 
