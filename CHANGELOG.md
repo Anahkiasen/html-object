@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.4.2
+
+### Fixed
+- Fixed boolean attributes not being parsed properly (was outputting `checked="false"` per example)
+
 ## 1.4.1
 
 ### Fixed
