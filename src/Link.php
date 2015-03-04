@@ -4,21 +4,21 @@ namespace HtmlObject;
 use HtmlObject\Traits\Tag;
 
 /**
- * A basic link
+ * A basic link.
  */
 class Link extends Tag
 {
     /**
-     * An UrlGenerator instance to use
+     * An UrlGenerator instance to use.
      *
-     * @var UrlGenerator
+     * @type UrlGenerator
      */
     public static $urlGenerator;
 
     /**
-     * The default element
+     * The default element.
      *
-     * @var string
+     * @type string
      */
     protected $element = 'a';
 
@@ -27,10 +27,10 @@ class Link extends Tag
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Create a new Link
+     * Create a new Link.
      *
-     * @param string      $link  The link href
-     * @param string|null $value The link's text
+     * @param string      $link       The link href
+     * @param string|null $value      The link's text
      * @param array       $attributes
      */
     public function __construct($link = '#', $value = null, $attributes = array())
@@ -48,10 +48,10 @@ class Link extends Tag
     }
 
     /**
-     * Static alias for constructor
+     * Static alias for constructor.
      *
-     * @param string      $link  The link href
-     * @param string|null $value The link's text
+     * @param string      $link       The link href
+     * @param string|null $value      The link's text
      * @param array       $attributes
      *
      * @return $this
@@ -66,7 +66,7 @@ class Link extends Tag
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Make the link blank
+     * Make the link blank.
      *
      * @return $this
      */

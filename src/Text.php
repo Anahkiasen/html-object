@@ -4,12 +4,12 @@ namespace HtmlObject;
 use HtmlObject\Traits\Tag;
 
 /**
- * A TextNode
+ * A TextNode.
  */
 class Text extends Tag
 {
     /**
-     * Create a TextNode
+     * Create a TextNode.
      *
      * @param string|null $value
      */
@@ -19,7 +19,7 @@ class Text extends Tag
     }
 
     /**
-     * Static alias for constructor
+     * Static alias for constructor.
      *
      * @param string|null $value The text value
      *
@@ -31,7 +31,7 @@ class Text extends Tag
     }
 
     /**
-     * Render a TextNode
+     * Render a TextNode.
      *
      * @return string|null
      */

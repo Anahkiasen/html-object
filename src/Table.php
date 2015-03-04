@@ -2,28 +2,28 @@
 namespace HtmlObject;
 
 /**
- * A table
+ * A table.
  */
 class Table extends Element
 {
     /**
-     * Default element
+     * Default element.
      *
-     * @var string
+     * @type string
      */
     protected $element = 'table';
 
     /**
-     * Whether the element is self closing
+     * Whether the element is self closing.
      *
-     * @var boolean
+     * @type boolean
      */
     protected $isSelfClosing = false;
 
     /**
-     * Default element for nested children
+     * Default element for nested children.
      *
-     * @var string
+     * @type string
      */
     protected $defaultChild = 'tr';
 
@@ -32,7 +32,7 @@ class Table extends Element
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Creates a basic Table
+     * Creates a basic Table.
      *
      * @param array $headers
      * @param array $rows
@@ -46,7 +46,7 @@ class Table extends Element
     }
 
     /**
-     * Static alias for constructor
+     * Static alias for constructor.
      *
      * @param array $headers
      * @param array $rows
@@ -64,7 +64,7 @@ class Table extends Element
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Set the table's headers
+     * Set the table's headers.
      *
      * @param array $headers
      *
@@ -94,7 +94,7 @@ class Table extends Element
     }
 
     /**
-     * Set the table's rows
+     * Set the table's rows.
      *
      * @param array $rows
      *

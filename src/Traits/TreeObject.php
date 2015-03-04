@@ -5,28 +5,28 @@ use HtmlObject\Element;
 use HtmlObject\Text;
 
 /**
- * An abstract class to create and manage trees of objects
+ * An abstract class to create and manage trees of objects.
  */
 abstract class TreeObject
 {
     /**
-     * Parent of the object
+     * Parent of the object.
      *
-     * @var TreeObject
+     * @type TreeObject
      */
     protected $parent;
 
     /**
-     * The name of the child for the parent
+     * The name of the child for the parent.
      *
-     * @var string
+     * @type string
      */
     public $parentIndex;
 
     /**
-     * Children of the object
+     * Children of the object.
      *
-     * @var array
+     * @type array
      */
     protected $children = array();
 
@@ -34,9 +34,9 @@ abstract class TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Default element for nested children
+     * Default element for nested children.
      *
-     * @var string
+     * @type string
      */
     protected $defaultChild;
 
@@ -45,7 +45,7 @@ abstract class TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Get the Element's parent
+     * Get the Element's parent.
      *
      * @param integer|null $levels The number of levels to go back up
      *
@@ -66,7 +66,7 @@ abstract class TreeObject
     }
 
     /**
-     * Set the parent of the element
+     * Set the parent of the element.
      *
      * @param TreeObject $parent
      *
@@ -80,7 +80,7 @@ abstract class TreeObject
     }
 
     /**
-     * Check if an object has a parent
+     * Check if an object has a parent.
      *
      * @return boolean
      */
@@ -97,7 +97,7 @@ abstract class TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Get a specific child of the element
+     * Get a specific child of the element.
      *
      * @param string $name The Element's name
      *
@@ -131,7 +131,7 @@ abstract class TreeObject
     }
 
     /**
-     * Check if an Element has a Child
+     * Check if an Element has a Child.
      *
      * @param string $name The child's name
      *
@@ -143,7 +143,7 @@ abstract class TreeObject
     }
 
     /**
-     * Get all children
+     * Get all children.
      *
      * @return array
      */
@@ -153,7 +153,7 @@ abstract class TreeObject
     }
 
     /**
-     * Check if the object has children
+     * Check if the object has children.
      *
      * @return boolean
      */
@@ -163,7 +163,7 @@ abstract class TreeObject
     }
 
     /**
-     * Check if a given element is after another sibling
+     * Check if a given element is after another sibling.
      *
      * @param integer|string $sibling The sibling
      *
@@ -182,10 +182,10 @@ abstract class TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Nests an object withing the current object
+     * Nests an object withing the current object.
      *
-     * @param Tag|array|string $element An element name or an Tag
-     * @param string|null      $value   The Tag's alias or the element's content
+     * @param Tag|array|string $element    An element name or an Tag
+     * @param string|null      $value      The Tag's alias or the element's content
      * @param array            $attributes
      *
      * @return $this
@@ -211,7 +211,7 @@ abstract class TreeObject
     }
 
     /**
-     * Nest an array of objects/values
+     * Nest an array of objects/values.
      *
      * @param array $children
      *
@@ -243,7 +243,7 @@ abstract class TreeObject
     }
 
     /**
-     * Add an object to the current object
+     * Add an object to the current object.
      *
      * @param string|TreeObject $child The child
      * @param string|null       $name  Its name
@@ -274,7 +274,7 @@ abstract class TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Append to an element
+     * Append to an element.
      *
      * @param Element     $child
      * @param string|null $name
@@ -288,7 +288,7 @@ abstract class TreeObject
     }
 
     /**
-     * Prepend to an element
+     * Prepend to an element.
      *
      * @param Element        $child
      * @param string         $name
@@ -302,7 +302,7 @@ abstract class TreeObject
     }
 
     /**
-     * Prepend or append to self/child
+     * Prepend or append to self/child.
      *
      * @param Element $child
      * @param string  $name
@@ -353,10 +353,10 @@ abstract class TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Creates an Element or a TextNode from an element/value combo
+     * Creates an Element or a TextNode from an element/value combo.
      *
-     * @param string $element The element/string
-     * @param string $value   The element's content
+     * @param string $element    The element/string
+     * @param string $value      The element's content
      * @param array  $attributes
      *
      * @return Tag

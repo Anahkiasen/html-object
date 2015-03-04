@@ -5,7 +5,7 @@ use HtmlObject\Traits\Helpers;
 use HtmlObject\Traits\Tag;
 
 /**
- * A classic HTML element
+ * A classic HTML element.
  */
 class Element extends Tag
 {
@@ -14,7 +14,7 @@ class Element extends Tag
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Creates a basic Element
+     * Creates a basic Element.
      *
      * @param string|null $element
      * @param string|null $value
@@ -26,7 +26,7 @@ class Element extends Tag
     }
 
     /**
-     * Static alias for constructor
+     * Static alias for constructor.
      *
      * @param string          $element
      * @param string|null|Tag $value
@@ -40,7 +40,7 @@ class Element extends Tag
     }
 
     /**
-     * Dynamically create an element
+     * Dynamically create an element.
      *
      * @param string   $method     The element
      * @param string[] $parameters Value and attributes

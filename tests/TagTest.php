@@ -265,7 +265,7 @@ class TagTest extends HtmlObjectTestCase
 
     public function testCanWrapChildren()
     {
-        /** @var Element $object */
+        /* @var Element $object */
         $alpha   = Element::i();
         $beta    = Element::b();
         $object  = Element::div(array(

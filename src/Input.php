@@ -5,21 +5,21 @@ use HtmlObject\Traits\Helpers;
 use HtmlObject\Traits\Tag;
 
 /**
- * An input
+ * An input.
  */
 class Input extends Tag
 {
     /**
-     * The tag element
+     * The tag element.
      *
-     * @var string
+     * @type string
      */
     protected $element = 'input';
 
     /**
-     * Whether the element is self closing
+     * Whether the element is self closing.
      *
-     * @var boolean
+     * @type boolean
      */
     protected $isSelfClosing = true;
 
@@ -28,11 +28,11 @@ class Input extends Tag
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Create a new Input
+     * Create a new Input.
      *
-     * @param string      $type  Its type
-     * @param string|null $name  Its name
-     * @param string|null $value Its value
+     * @param string      $type       Its type
+     * @param string|null $name       Its name
+     * @param string|null $value      Its value
      * @param array       $attributes
      */
     public function __construct($type, $name = null, $value = null, $attributes = array())
@@ -44,11 +44,11 @@ class Input extends Tag
     }
 
     /**
-     * Create a new Input
+     * Create a new Input.
      *
-     * @param string      $type  Its type
-     * @param string|null $name  Its name
-     * @param string|null $value Its value
+     * @param string      $type       Its type
+     * @param string|null $name       Its name
+     * @param string|null $value      Its value
      * @param array       $attributes
      *
      * @return $this
@@ -59,9 +59,9 @@ class Input extends Tag
     }
 
     /**
-     * Dynamically create an input type
+     * Dynamically create an input type.
      *
-     * @param string $method The input type
+     * @param string $method     The input type
      * @param array  $parameters
      *
      * @return $this

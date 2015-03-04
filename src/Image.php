@@ -4,28 +4,28 @@ namespace HtmlObject;
 use HtmlObject\Traits\Tag;
 
 /**
- * An image
+ * An image.
  */
 class Image extends Tag
 {
     /**
-     * An UrlGenerator instance to use
+     * An UrlGenerator instance to use.
      *
-     * @var UrlGenerator
+     * @type UrlGenerator
      */
     public static $urlGenerator;
 
     /**
-     * The Image's tag
+     * The Image's tag.
      *
-     * @var string
+     * @type string
      */
     protected $element = 'img';
 
     /**
-     * Whether the element is self closing
+     * Whether the element is self closing.
      *
-     * @var boolean
+     * @type boolean
      */
     protected $isSelfClosing = true;
 
@@ -34,10 +34,10 @@ class Image extends Tag
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Create a new image tag
+     * Create a new image tag.
      *
-     * @param string      $src Image source
-     * @param string|null $alt Image alt text
+     * @param string      $src        Image source
+     * @param string|null $alt        Image alt text
      * @param array       $attributes
      */
     public function __construct($src = '#', $alt = null, $attributes = array())
@@ -56,10 +56,10 @@ class Image extends Tag
     }
 
     /**
-     * Static alias for constructor
+     * Static alias for constructor.
      *
-     * @param string      $src Image source
-     * @param string|null $alt Image alt text
+     * @param string      $src        Image source
+     * @param string|null $alt        Image alt text
      * @param array       $attributes
      *
      * @return $this

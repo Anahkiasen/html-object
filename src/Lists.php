@@ -2,21 +2,21 @@
 namespace HtmlObject;
 
 /**
- * A list element (ul, ol, etc.)
+ * A list element (ul, ol, etc.).
  */
 class Lists extends Element
 {
     /**
-     * Default element
+     * Default element.
      *
-     * @var string
+     * @type string
      */
     protected $element = 'ul';
 
     /**
-     * Default element for nested children
+     * Default element for nested children.
      *
-     * @var string
+     * @type string
      */
     protected $defaultChild = 'li';
 }

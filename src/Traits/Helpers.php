@@ -2,12 +2,12 @@
 namespace HtmlObject\Traits;
 
 /**
- * Static helpers used troughout the classes
+ * Static helpers used troughout the classes.
  */
 class Helpers
 {
     /**
-     * Check if a string is an existing HTML tag
+     * Check if a string is an existing HTML tag.
      *
      * @param string $tag
      *
@@ -135,7 +135,7 @@ class Helpers
     }
 
     /**
-     * Converts a string to hyphenated-casing
+     * Converts a string to hyphenated-casing.
      *
      * @param string $string
      *
@@ -147,7 +147,7 @@ class Helpers
     }
 
     /**
-     * Get a value from an array
+     * Get a value from an array.
      *
      * @param array       $array
      * @param string      $key
@@ -161,7 +161,7 @@ class Helpers
     }
 
     /**
-     * Build a list of HTML attributes from an array
+     * Build a list of HTML attributes from an array.
      *
      * @param array $attributes
      *

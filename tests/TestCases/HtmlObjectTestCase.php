@@ -7,7 +7,7 @@ use PHPUnit_Framework_TestCase;
 class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
 {
     /**
-     * Reset some attributes on each test
+     * Reset some attributes on each test.
      */
     public function setUp()
     {
@@ -19,7 +19,7 @@ class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Create a basic matcher for a tag
+     * Create a basic matcher for a tag.
      *
      * @param string $tag
      * @param string $content
@@ -43,7 +43,7 @@ class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Create a matcher for an input field
+     * Create a matcher for an input field.
      *
      * @param string $type
      * @param string $name
@@ -68,7 +68,7 @@ class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Enhanced version of assertTag
+     * Enhanced version of assertTag.
      *
      * @param array  $matcher The tag matcher
      * @param string $html    The HTML

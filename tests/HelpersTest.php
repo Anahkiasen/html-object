@@ -35,8 +35,8 @@ class HelpersTest extends HtmlObjectTestCase
         $this->assertEquals(' min="0" max="0" value="0"', $attributes);
     }
 
-    public function testCanTogglePropWithBooleanValues() {
-
+    public function testCanTogglePropWithBooleanValues()
+    {
         $attributes = array('checked' => false);
         $attributes = Helpers::parseAttributes($attributes);
         $this->assertEquals('', $attributes);

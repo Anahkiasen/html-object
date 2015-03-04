@@ -4,58 +4,58 @@ namespace HtmlObject\Traits;
 use HtmlObject\Element;
 
 /**
- * An abstraction of an HTML element
+ * An abstraction of an HTML element.
  */
 abstract class Tag extends TreeObject
 {
     /**
-     * The element name
+     * The element name.
      *
-     * @var string
+     * @type string
      */
     protected $element;
 
     /**
-     * The object's value
+     * The object's value.
      *
-     * @var string|null|Tag
+     * @type string|null|Tag
      */
     protected $value;
 
     /**
-     * The object's attribute
+     * The object's attribute.
      *
-     * @var array
+     * @type array
      */
     protected $attributes = array();
 
     /**
-     * Whether the element is self closing
+     * Whether the element is self closing.
      *
-     * @var boolean
+     * @type boolean
      */
     protected $isSelfClosing = false;
 
     /**
-     * Whether the current tag is opened or not
+     * Whether the current tag is opened or not.
      *
-     * @var boolean
+     * @type boolean
      */
     protected $isOpened = false;
 
     /**
-     * A list of class properties to be added to attributes
+     * A list of class properties to be added to attributes.
      *
-     * @var array
+     * @type array
      */
     protected $injectedProperties = array('value');
 
     // Configuration options ----------------------------------------- /
 
     /**
-     * The base configuration inherited by classes
+     * The base configuration inherited by classes.
      *
-     * @var array
+     * @type array
      */
     public static $config = array(
         'doctype' => 'html',
@@ -66,7 +66,7 @@ abstract class Tag extends TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Set up a new tag
+     * Set up a new tag.
      *
      * @param string      $element    Its element
      * @param string|null $value      Its value
@@ -80,7 +80,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Wrap the Element in another element
+     * Wrap the Element in another element.
      *
      * @param string|Element $element The element's tag
      *
@@ -104,7 +104,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Render on string conversion
+     * Render on string conversion.
      *
      * @return string|null
      */
@@ -118,7 +118,7 @@ abstract class Tag extends TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Opens the Tag
+     * Opens the Tag.
      *
      * @return string|null
      */
@@ -146,7 +146,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Open the tag tree on a particular child
+     * Open the tag tree on a particular child.
      *
      * @param string $onChild The child's key
      *
@@ -175,7 +175,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Check if the tag is opened
+     * Check if the tag is opened.
      *
      * @return boolean
      */
@@ -185,7 +185,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Returns the Tag's content
+     * Returns the Tag's content.
      *
      * @return string
      */
@@ -200,7 +200,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Close the Tag
+     * Close the Tag.
      *
      * @return string|null
      */
@@ -228,7 +228,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Default rendering method
+     * Default rendering method.
      *
      * @return string|null
      */
@@ -243,7 +243,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Get the preferred way to close a tag
+     * Get the preferred way to close a tag.
      *
      * @return string
      */
@@ -261,7 +261,7 @@ abstract class Tag extends TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Dynamically set attributes
+     * Dynamically set attributes.
      *
      * @param string $method     An attribute
      * @param array  $parameters Its value(s)
@@ -282,7 +282,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Dynamically set an attribute
+     * Dynamically set an attribute.
      *
      * @param string $attribute The attribute
      * @param string $value     Its value
@@ -295,7 +295,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Get an attribute or a child
+     * Get an attribute or a child.
      *
      * @param string $item The desired child/attribute
      *
@@ -321,7 +321,7 @@ abstract class Tag extends TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Changes the Tag's element
+     * Changes the Tag's element.
      *
      * @param string $element
      *
@@ -335,7 +335,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Change the object's value
+     * Change the object's value.
      *
      * @param string $value
      *
@@ -353,7 +353,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Wrap the value in a tag
+     * Wrap the value in a tag.
      *
      * @param string $tag The tag
      *
@@ -367,7 +367,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Get the value
+     * Get the value.
      *
      * @return string|null
      */
@@ -377,7 +377,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Get all the children as a string
+     * Get all the children as a string.
      *
      * @return string
      */
@@ -398,7 +398,7 @@ abstract class Tag extends TreeObject
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Return an array of protected properties to bind as attributes
+     * Return an array of protected properties to bind as attributes.
      *
      * @return array
      */
@@ -418,7 +418,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Set an attribute
+     * Set an attribute.
      *
      * @param string      $attribute An attribute
      * @param string|null $value     Its value
@@ -433,7 +433,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Set a bunch of parameters at once
+     * Set a bunch of parameters at once.
      *
      * @param array $attributes The attributes to add to the existing ones
      *
@@ -447,7 +447,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Get all attributes
+     * Get all attributes.
      *
      * @return array
      */
@@ -457,7 +457,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Get an attribute
+     * Get an attribute.
      *
      * @param string $attribute
      *
@@ -469,7 +469,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Remove an attribute
+     * Remove an attribute.
      *
      * @param string $attribute
      *
@@ -485,7 +485,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Replace all attributes with the provided array
+     * Replace all attributes with the provided array.
      *
      * @param array $attributes The attributes to replace with
      *
@@ -499,7 +499,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Add one or more classes to the current field
+     * Add one or more classes to the current field.
      *
      * @param string $class The class(es) to add
      *
@@ -526,7 +526,7 @@ abstract class Tag extends TreeObject
     }
 
     /**
-     * Remove one or more classes to the current field
+     * Remove one or more classes to the current field.
      *
      * @param string $classes The class(es) to remove
      *

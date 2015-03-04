@@ -6,7 +6,7 @@ use HtmlObject\TestCases\HtmlObjectTestCase;
 class TreeObjectTest extends HtmlObjectTestCase
 {
     /**
-     * @var Element
+     * @type Element
      */
     private $object;
 
