@@ -75,7 +75,7 @@ class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
      */
     protected function assertHTML($matcher, $html)
     {
-        return $this->assertTag(
+        return @$this->assertTag(
             $matcher,
             $html,
             "Failed asserting that the HTML matches the provided format :\n\t"
