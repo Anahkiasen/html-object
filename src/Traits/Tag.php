@@ -2,6 +2,7 @@
 namespace HtmlObject\Traits;
 
 use HtmlObject\Element;
+use Mihaeu\HtmlFormatter;
 
 /**
  * An abstraction of an HTML element.
@@ -59,6 +60,7 @@ abstract class Tag extends TreeObject
      */
     public static $config = array(
         'doctype' => 'html',
+        'tidy'    => true
     );
 
     ////////////////////////////////////////////////////////////////////
@@ -234,12 +236,15 @@ abstract class Tag extends TreeObject
      */
     public function render()
     {
+        $htmlData = $this->open().$this->getContent().$this->close();
         // If it's a self closing tag
         if ($this->isSelfClosing) {
-            return $this->open();
+            $htmlData = $this->open();;
+        } elseif (self::$config['tidy']) {
+            $htmlData = HtmlFormatter::format($htmlData);
         }
 
-        return $this->open().$this->getContent().$this->close();
+        return $htmlData;
     }
 
     /**

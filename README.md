@@ -117,3 +117,8 @@ You can change whether to follow xHMTL or HTML5 specification by doing the follo
 ```php
 Tag::$config['doctype'] = '{xhtml|html}';
 ```
+
+You can format your html output by doing the following : 
+```php
+Tag:$config['tidy'] = true;
+```
