@@ -120,5 +120,5 @@ Tag::$config['doctype'] = '{xhtml|html}';
 
 You can format your html output by doing the following : 
 ```php
-Tag:$config['tidy'] = true;
+Tag::$config['tidy'] = true;
 ```
