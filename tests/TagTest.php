@@ -119,6 +119,14 @@ class TagTest extends HtmlObjectTestCase
         $this->assertHTML($matcher, $this->object);
     }
 
+    public function testCanDynamicallySetBooleanAttributesByDefault()
+    {
+        $this->object->required();
+
+        // cannot use assertHTML; it uses assertTag, which cannot find boolean attributes
+        $this->assertEquals('<p required>foo</p>', $this->object->render());
+    }
+
     public function testCanDynamicallyGetChild()
     {
         $two  = Element::p('foo');
