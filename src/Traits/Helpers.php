@@ -158,7 +158,7 @@ class Helpers
      */
     public static function arrayGet($array, $key, $fallback = null)
     {
-        return $array[$key] ?? $fallback;
+        return isset($array[$key]) ? $array[$key] : $fallback;
     }
 
     /**
