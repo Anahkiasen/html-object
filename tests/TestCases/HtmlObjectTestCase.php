@@ -3,9 +3,9 @@
 namespace HtmlObject\TestCases;
 
 use HtmlObject\Traits\Tag;
-use PHPUnit\Framework\DOMTestCase;
+use PHPUnit_Framework_DOMTestCase;
 
-class HtmlObjectTestCase extends DOMTestCase
+class HtmlObjectTestCase extends PHPUnit_Framework_DOMTestCase
 {
     /**
      * Reset some attributes on each test.
