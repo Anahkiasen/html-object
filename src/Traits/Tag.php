@@ -256,6 +256,32 @@ abstract class Tag extends TreeObject
         return '>';
     }
 
+    /**
+     * Return whether or not the tag is self-closing.
+     *
+     * @param boolean $isSelfClosing whether the tag is self-closing
+     *
+     * @return boolean
+     */
+    public function getIsSelfClosing($isSelfClosing)
+    {
+        return $this->isSelfClosing;
+    }
+    
+    /**
+     * Force the tag to be self-closing or not.
+     *
+     * @param boolean $isSelfClosing whether the tag is self-closing
+     *
+     * @return $this
+     */
+    public function setIsSelfClosing($isSelfClosing)
+    {
+        $this->isSelfClosing = $isSelfClosing;
+        
+        return $this;
+    }
+
     ////////////////////////////////////////////////////////////////////
     /////////////////////////// MAGIC METHODS //////////////////////////
     ////////////////////////////////////////////////////////////////////
