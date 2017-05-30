@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject;
 
 use HtmlObject\Traits\Tag;

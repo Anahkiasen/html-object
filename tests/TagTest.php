@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject;
 
 use HtmlObject\TestCases\HtmlObjectTestCase;
@@ -48,7 +49,7 @@ class TagTest extends HtmlObjectTestCase
     public function testCanUseXhtmlStandards()
     {
         Tag::$config['doctype'] = 'xhtml';
-        $field                  = Input::hidden('foo', 'bar');
+        $field = Input::hidden('foo', 'bar');
 
         $this->assertContains(' />', $field->render());
     }
@@ -56,7 +57,7 @@ class TagTest extends HtmlObjectTestCase
     public function testCanSetAnAttribute()
     {
         $this->object->setAttribute('data-foo', 'bar');
-        $matcher                           = $this->getMatcher();
+        $matcher = $this->getMatcher();
         $matcher['attributes']['data-foo'] = 'bar';
 
         $this->assertHTML($matcher, $this->object);
@@ -66,7 +67,7 @@ class TagTest extends HtmlObjectTestCase
     {
         $json = '{"foo":"bar","baz":"qux"}';
         $this->object->dataTags($json);
-        $matcher                            = $this->getMatcher();
+        $matcher = $this->getMatcher();
         $matcher['attributes']['data-tags'] = $json;
 
         $this->assertHTML($matcher, $this->object);
@@ -74,7 +75,7 @@ class TagTest extends HtmlObjectTestCase
 
         $json = '["foo", "bar", "baz"]';
         $this->object->dataTags($json);
-        $matcher                            = $this->getMatcher();
+        $matcher = $this->getMatcher();
         $matcher['attributes']['data-tags'] = $json;
 
         $this->assertHTML($matcher, $this->object);
@@ -100,9 +101,9 @@ class TagTest extends HtmlObjectTestCase
         $this->object->data_foo('bar');
         $this->object->foo = 'bar';
 
-        $matcher                           = $this->getMatcher();
+        $matcher = $this->getMatcher();
         $matcher['attributes']['data-foo'] = 'bar';
-        $matcher['attributes']['foo']      = 'bar';
+        $matcher['attributes']['foo'] = 'bar';
 
         $this->assertHTML($matcher, $this->object);
     }
@@ -112,9 +113,9 @@ class TagTest extends HtmlObjectTestCase
         $this->object->dataFoo('bar');
         $this->object->foo = 'bar';
 
-        $matcher                           = $this->getMatcher();
+        $matcher = $this->getMatcher();
         $matcher['attributes']['data-foo'] = 'bar';
-        $matcher['attributes']['foo']      = 'bar';
+        $matcher['attributes']['foo'] = 'bar';
 
         $this->assertHTML($matcher, $this->object);
     }
@@ -129,8 +130,8 @@ class TagTest extends HtmlObjectTestCase
 
     public function testCanDynamicallyGetChild()
     {
-        $two  = Element::p('foo');
-        $one  = Element::div()->setChild($two, 'two');
+        $two = Element::p('foo');
+        $one = Element::div()->setChild($two, 'two');
         $zero = Element::div()->setChild($one, 'one');
 
         $this->assertEquals('foo', $zero->oneTwo->getValue());
@@ -141,7 +142,7 @@ class TagTest extends HtmlObjectTestCase
         $this->object->setAttribute('data-foo', 'bar');
         $this->object->replaceAttributes(array('foo' => 'bar'));
 
-        $matcher                      = $this->getMatcher();
+        $matcher = $this->getMatcher();
         $matcher['attributes']['foo'] = 'bar';
 
         $this->assertHTML($matcher, $this->object);
@@ -152,9 +153,9 @@ class TagTest extends HtmlObjectTestCase
         $this->object->setAttribute('data-foo', 'bar');
         $this->object->setAttributes(array('foo' => 'bar'));
 
-        $matcher                           = $this->getMatcher();
+        $matcher = $this->getMatcher();
         $matcher['attributes']['data-foo'] = 'bar';
-        $matcher['attributes']['foo']      = 'bar';
+        $matcher['attributes']['foo'] = 'bar';
 
         $this->assertHTML($matcher, $this->object);
     }
@@ -165,7 +166,7 @@ class TagTest extends HtmlObjectTestCase
         $this->object->addClass('foo');
         $this->object->addClass('bar');
 
-        $matcher                        = $this->getMatcher();
+        $matcher = $this->getMatcher();
         $matcher['attributes']['class'] = 'foo bar';
 
         $this->assertHTML($matcher, $this->object);
@@ -238,8 +239,8 @@ class TagTest extends HtmlObjectTestCase
     public function testCanManuallyOpenComplexStructures()
     {
         $object = Element::div(array(
-            'title'  => Element::div('foo')->class('title'),
-            'body'   => Element::div()->class('body'),
+            'title' => Element::div('foo')->class('title'),
+            'body' => Element::div()->class('body'),
             'footer' => Element::div('footer'),
         ));
         $object = $object->openOn('body').'CONTENT'.$object->close();
@@ -251,12 +252,12 @@ class TagTest extends HtmlObjectTestCase
     {
         $object = Element::div(array(
             'title' => Element::div('foo')->class('title'),
-            'body'  => Element::div()->class('body'),
+            'body' => Element::div()->class('body'),
         ));
 
         $wrapper = Link::create('#', '');
         $wrapped = $object->wrapWith($wrapper, 'complex');
-        $render  = $wrapped->getParent()->openOn('complex.body').'foo'.$wrapped->getParent()->close();
+        $render = $wrapped->getParent()->openOn('complex.body').'foo'.$wrapped->getParent()->close();
 
         $this->assertEquals('<a href="#"><div><div class="title">foo</div><div class="body">foo</div></div></a>', $render);
     }
@@ -265,7 +266,7 @@ class TagTest extends HtmlObjectTestCase
     {
         $object = Element::div(array(
             'alpha' => Element::i(),
-            'beta'  => Element::b(),
+            'beta' => Element::b(),
         ));
         $object->nest(array('beta' => Element::a()));
         $this->assertEquals('<div><i></i><a></a></div>', $object->render());
@@ -274,13 +275,13 @@ class TagTest extends HtmlObjectTestCase
     public function testCanWrapChildren()
     {
         /* @var Element $object */
-        $alpha   = Element::i();
-        $beta    = Element::b();
-        $object  = Element::div(array(
+        $alpha = Element::i();
+        $beta = Element::b();
+        $object = Element::div(array(
             'alpha' => $alpha,
-            'beta'  => $beta,
+            'beta' => $beta,
         ));
-        $gamma   = Element::a();
+        $gamma = Element::a();
         $wrapped = $object->getChild('beta')->wrapWith($gamma, 'gamma');
 
         $this->assertEquals($beta, $wrapped);

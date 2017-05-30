@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject\Elements;
 
 use HtmlObject\Lists;

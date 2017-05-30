@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject;
 
 use HtmlObject\Traits\Helpers;
@@ -49,7 +50,7 @@ class Element extends Tag
      */
     public static function __callStatic($method, $parameters)
     {
-        $value      = Helpers::arrayGet($parameters, 0);
+        $value = Helpers::arrayGet($parameters, 0);
         $attributes = Helpers::arrayGet($parameters, 1);
 
         return new static($method, $value, $attributes);

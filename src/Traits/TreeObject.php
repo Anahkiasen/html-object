@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject\Traits;
 
 use HtmlObject\Element;
@@ -12,21 +13,21 @@ abstract class TreeObject
     /**
      * Parent of the object.
      *
-     * @type TreeObject
+     * @var TreeObject
      */
     protected $parent;
 
     /**
      * The name of the child for the parent.
      *
-     * @type string
+     * @var string
      */
     public $parentIndex;
 
     /**
      * Children of the object.
      *
-     * @type array
+     * @var array
      */
     protected $children = array();
 
@@ -36,7 +37,7 @@ abstract class TreeObject
     /**
      * Default element for nested children.
      *
-     * @type string
+     * @var string
      */
     protected $defaultChild;
 
@@ -47,7 +48,7 @@ abstract class TreeObject
     /**
      * Get the Element's parent.
      *
-     * @param integer|null $levels The number of levels to go back up
+     * @param int|null $levels The number of levels to go back up
      *
      * @return Element
      */
@@ -58,7 +59,7 @@ abstract class TreeObject
         }
 
         $subject = $this;
-        for ($i = 0; $i <= $levels; $i++) {
+        for ($i = 0; $i <= $levels; ++$i) {
             $subject = $subject->getParent();
         }
 
@@ -82,7 +83,7 @@ abstract class TreeObject
     /**
      * Check if an object has a parent.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasParent()
     {
@@ -113,7 +114,7 @@ abstract class TreeObject
 
         // Dot notation
         $children = explode('.', $name);
-        if (count($children) == 1) {
+        if (count($children) === 1) {
             return Helpers::arrayGet($this->getChildren(), $children[0]);
         }
 
@@ -135,7 +136,7 @@ abstract class TreeObject
      *
      * @param string $name The child's name
      *
-     * @return boolean
+     * @return bool
      */
     public function hasChild($name)
     {
@@ -155,7 +156,7 @@ abstract class TreeObject
     /**
      * Check if the object has children.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasChildren()
     {
@@ -165,15 +166,15 @@ abstract class TreeObject
     /**
      * Check if a given element is after another sibling.
      *
-     * @param integer|string $sibling The sibling
+     * @param int|string $sibling The sibling
      *
-     * @return boolean
+     * @return bool
      */
     public function isAfter($sibling)
     {
         $children = array_keys($this->getParent()->getChildren());
-        $child    = array_search($this->parentIndex, $children);
-        $sibling  = array_search($sibling, $children);
+        $child = array_search($this->parentIndex, $children, true);
+        $sibling = array_search($sibling, $children, true);
 
         return $child > $sibling;
     }
@@ -198,7 +199,7 @@ abstract class TreeObject
         }
 
         // Transform the element
-        if (!($element instanceof TreeObject)) {
+        if (!($element instanceof self)) {
             $element = $this->createTagFromString($element, $value, $attributes);
         }
 
@@ -225,13 +226,13 @@ abstract class TreeObject
 
         foreach ($children as $element => $value) {
             if (is_numeric($element)) {
-                if ($value instanceof TreeObject) {
+                if ($value instanceof self) {
                     $this->setChild($value);
                 } elseif ($this->defaultChild) {
                     $this->nest($this->defaultChild, $value);
                 }
             } else {
-                if ($value instanceof TreeObject) {
+                if ($value instanceof self) {
                     $this->setChild($value, $element);
                 } else {
                     $this->nest($element, $value);
@@ -247,7 +248,7 @@ abstract class TreeObject
      *
      * @param string|TreeObject $child The child
      * @param string|null       $name  Its name
-     * @param boolean           $flat
+     * @param bool              $flat
      *
      * @return $this
      */
@@ -260,7 +261,7 @@ abstract class TreeObject
         // Get subject of the setChild
         if (!$flat) {
             $subject = explode('.', $name);
-            $name    = array_pop($subject);
+            $name = array_pop($subject);
             $subject = implode('.', $subject);
             $subject = $subject ? $this->getChild($subject) : $this;
         } else {
@@ -290,9 +291,9 @@ abstract class TreeObject
     /**
      * Prepend to an element.
      *
-     * @param Element        $child
-     * @param string         $name
-     * @param integer|string $to
+     * @param Element    $child
+     * @param string     $name
+     * @param int|string $to
      *
      * @return $this
      */
@@ -308,7 +309,7 @@ abstract class TreeObject
      * @param string  $name
      * @param null    $subject
      * @param null    $position
-     * @param boolean $before
+     * @param bool    $before
      *
      * @return $this
      */
@@ -316,10 +317,10 @@ abstract class TreeObject
     {
         // Get default child name
         $subject = $subject ?: $this;
-        $name    = $name ?: count($this->children);
+        $name = $name ?: count($this->children);
 
         // Bind parent to child
-        if ($child instanceof TreeObject) {
+        if ($child instanceof self) {
             $child->setParent($subject);
         }
 
@@ -327,10 +328,10 @@ abstract class TreeObject
         $child->parentIndex = $name;
 
         // If the position is a child name, get its index
-        $before   = $before ? 0 : 1;
+        $before = $before ? 0 : 1;
         $position = is_null($position) ? count($subject->children) : $position;
         if (is_string($position)) {
-            $position = array_search($position, array_keys($subject->children));
+            $position = array_search($position, array_keys($subject->children), true);
         }
 
         if (is_string($name) && isset($subject->children[$name])) {
@@ -364,7 +365,7 @@ abstract class TreeObject
     protected function createTagFromString($element, $value = null, $attributes = array())
     {
         // If it's an element/value, create the element
-        if (strpos($element, '<') === false && !$this->hasChild($value) && Helpers::isKnownTag($element)) {
+        if (mb_strpos($element, '<') === false && !$this->hasChild($value) && Helpers::isKnownTag($element)) {
             return new Element($element, $value, $attributes);
         }
 

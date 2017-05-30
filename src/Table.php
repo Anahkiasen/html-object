@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject;
 
 /**
@@ -9,21 +10,21 @@ class Table extends Element
     /**
      * Default element.
      *
-     * @type string
+     * @var string
      */
     protected $element = 'table';
 
     /**
      * Whether the element is self closing.
      *
-     * @type boolean
+     * @var bool
      */
     protected $isSelfClosing = false;
 
     /**
      * Default element for nested children.
      *
-     * @type string
+     * @var string
      */
     protected $defaultChild = 'tr';
 

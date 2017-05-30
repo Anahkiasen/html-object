@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject\Traits;
 
 use HtmlObject\Element;
@@ -11,42 +12,42 @@ abstract class Tag extends TreeObject
     /**
      * The element name.
      *
-     * @type string
+     * @var string
      */
     protected $element;
 
     /**
      * The object's value.
      *
-     * @type string|null|Tag
+     * @var string|null|Tag
      */
     protected $value;
 
     /**
      * The object's attribute.
      *
-     * @type array
+     * @var array
      */
     protected $attributes = array();
 
     /**
      * Whether the element is self closing.
      *
-     * @type boolean
+     * @var bool
      */
     protected $isSelfClosing = false;
 
     /**
      * Whether the current tag is opened or not.
      *
-     * @type boolean
+     * @var bool
      */
     protected $isOpened = false;
 
     /**
      * A list of class properties to be added to attributes.
      *
-     * @type array
+     * @var array
      */
     protected $injectedProperties = array('value');
 
@@ -55,7 +56,7 @@ abstract class Tag extends TreeObject
     /**
      * The base configuration inherited by classes.
      *
-     * @type array
+     * @var array
      */
     public static $config = array(
         'doctype' => 'html',
@@ -83,12 +84,13 @@ abstract class Tag extends TreeObject
      * Wrap the Element in another element.
      *
      * @param string|Element $element The element's tag
+     * @param null|mixed     $name
      *
      * @return Element
      */
     public function wrapWith($element, $name = null)
     {
-        if (!$element instanceof Tag) {
+        if (!$element instanceof self) {
             $element = Element::create($element);
         }
         if ($this->parent) {
@@ -96,7 +98,7 @@ abstract class Tag extends TreeObject
             $children = $this->parent->children;
             unset($children[$this->parentIndex]);
             $this->parent->children = $children;
-            $name                   = $this->parentIndex;
+            $name = $this->parentIndex;
         }
         $element->nest($this, $name);
 
@@ -128,7 +130,7 @@ abstract class Tag extends TreeObject
 
         // If self closing, put value as attribute
         foreach ($this->injectProperties() as $attribute => $property) {
-            if (!$this->isSelfClosing && $attribute == 'value') {
+            if (!$this->isSelfClosing && $attribute === 'value') {
                 continue;
             }
             if (is_null($property) && !is_empty($property)) {
@@ -148,20 +150,21 @@ abstract class Tag extends TreeObject
     /**
      * Open the tag tree on a particular child.
      *
-     * @param string $onChild The child's key
+     * @param string $onChild    The child's key
+     * @param mixed  $onChildren
      *
      * @return string
      */
     public function openOn($onChildren)
     {
         $onChildren = explode('.', $onChildren);
-        $element    = $this->open();
+        $element = $this->open();
         $element .= $this->value;
         $subject = $this;
 
         foreach ($onChildren as $onChild) {
             foreach ($subject->getChildren() as $childName => $child) {
-                if ($childName != $onChild) {
+                if ($childName !== $onChild) {
                     $element .= $child;
                 } else {
                     $subject = $child;
@@ -177,7 +180,7 @@ abstract class Tag extends TreeObject
     /**
      * Check if the tag is opened.
      *
-     * @return boolean
+     * @return bool
      */
     public function isOpened()
     {
@@ -192,7 +195,7 @@ abstract class Tag extends TreeObject
     public function getContent()
     {
         $value = $this->value;
-        if ($value instanceof Tag) {
+        if ($value instanceof self) {
             $value = $value->render();
         }
 
@@ -207,8 +210,8 @@ abstract class Tag extends TreeObject
     public function close()
     {
         $this->isOpened = false;
-        $openedOn       = null;
-        $element        = null;
+        $openedOn = null;
+        $element = null;
 
         foreach ($this->children as $childName => $child) {
             if ($child->isOpened && !$child->isSelfClosing) {
@@ -249,7 +252,7 @@ abstract class Tag extends TreeObject
      */
     protected function getTagCloser()
     {
-        if ($this->isSelfClosing && static::$config['doctype'] == 'xhtml') {
+        if ($this->isSelfClosing && static::$config['doctype'] === 'xhtml') {
             return ' />';
         }
 
@@ -259,26 +262,26 @@ abstract class Tag extends TreeObject
     /**
      * Return whether or not the tag is self-closing.
      *
-     * @param boolean $isSelfClosing whether the tag is self-closing
+     * @param bool $isSelfClosing whether the tag is self-closing
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsSelfClosing($isSelfClosing)
     {
         return $this->isSelfClosing;
     }
-    
+
     /**
      * Force the tag to be self-closing or not.
      *
-     * @param boolean $isSelfClosing whether the tag is self-closing
+     * @param bool $isSelfClosing whether the tag is self-closing
      *
      * @return $this
      */
     public function setIsSelfClosing($isSelfClosing)
     {
         $this->isSelfClosing = $isSelfClosing;
-        
+
         return $this;
     }
 
@@ -301,7 +304,7 @@ abstract class Tag extends TreeObject
         $method = str_replace('_', '-', $method);
 
         // Get value and set it
-        $value         = Helpers::arrayGet($parameters, 0, true);
+        $value = Helpers::arrayGet($parameters, 0, true);
         $this->$method = $value;
 
         return $this;
@@ -335,7 +338,7 @@ abstract class Tag extends TreeObject
 
         // Get a child by snake case
         $child = preg_replace_callback('/([A-Z])/', function ($match) {
-            return '.'.strtolower($match[1]);
+            return '.'.mb_strtolower($match[1]);
         }, $item);
         $child = $this->getChild($child);
 
@@ -411,7 +414,7 @@ abstract class Tag extends TreeObject
     {
         $children = $this->children;
         foreach ($children as $key => $child) {
-            if ($child instanceof Tag) {
+            if ($child instanceof self) {
                 $children[$key] = $child->render();
             }
         }
@@ -544,7 +547,7 @@ abstract class Tag extends TreeObject
 
         // Prevent adding a class twice
         $classes = explode(' ', $this->attributes['class']);
-        if (!in_array($class, $classes)) {
+        if (!in_array($class, $classes, true)) {
             $this->attributes['class'] = trim($this->attributes['class'].' '.$class);
         }
 
@@ -566,7 +569,7 @@ abstract class Tag extends TreeObject
 
         $thisClasses = explode(' ', Helpers::arrayGet($this->attributes, 'class'));
         foreach ($classes as $class) {
-            $exists = array_search($class, $thisClasses);
+            $exists = array_search($class, $thisClasses, true);
             if (!is_null($exists)) {
                 unset($thisClasses[$exists]);
             }

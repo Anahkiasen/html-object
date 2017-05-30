@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject;
 
 use HtmlObject\Traits\Helpers;
@@ -12,14 +13,14 @@ class Input extends Tag
     /**
      * The tag element.
      *
-     * @type string
+     * @var string
      */
     protected $element = 'input';
 
     /**
      * Whether the element is self closing.
      *
-     * @type boolean
+     * @var bool
      */
     protected $isSelfClosing = true;
 
@@ -68,8 +69,8 @@ class Input extends Tag
      */
     public static function __callStatic($method, $parameters)
     {
-        $name       = Helpers::arrayGet($parameters, 0);
-        $value      = Helpers::arrayGet($parameters, 1);
+        $name = Helpers::arrayGet($parameters, 0);
+        $value = Helpers::arrayGet($parameters, 1);
         $attributes = Helpers::arrayGet($parameters, 2);
 
         return new static($method, $name, $value, $attributes);

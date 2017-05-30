@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject;
 
 use HtmlObject\TestCases\HtmlObjectTestCase;
@@ -6,7 +7,7 @@ use HtmlObject\TestCases\HtmlObjectTestCase;
 class TreeObjectTest extends HtmlObjectTestCase
 {
     /**
-     * @type Element
+     * @var Element
      */
     private $object;
 
@@ -19,7 +20,6 @@ class TreeObjectTest extends HtmlObjectTestCase
 
     public function testCanNest()
     {
-        $object = Element::strong('foo');
         $this->object->nest('strong', 'foo');
 
         $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
@@ -27,7 +27,6 @@ class TreeObjectTest extends HtmlObjectTestCase
 
     public function testCanNestStrings()
     {
-        $object = Element::strong('foo');
         $this->object->nest('<strong>foo</strong>');
 
         $this->assertEquals('<p>foo<strong>foo</strong></p>', $this->object->render());
@@ -44,7 +43,7 @@ class TreeObjectTest extends HtmlObjectTestCase
     public function testCanNestObjectsInChildren()
     {
         $object = Element::strong('foo');
-        $link   = Element::a('foo');
+        $link = Element::a('foo');
         $this->object->nest($object, 'body');
         $this->object->nest($link, 'body.link');
 
@@ -54,7 +53,7 @@ class TreeObjectTest extends HtmlObjectTestCase
     public function testCanNestStringsInChildren()
     {
         $strong = Element::strong('title');
-        $title  = Element::h1('bar')->nest($strong, 'strong');
+        $title = Element::h1('bar')->nest($strong, 'strong');
         $object = Element::div()->nest($title, 'title');
         $this->object->nest($object, 'body');
         $this->object->nest('by <a>someone</a>', 'body.title');
@@ -124,7 +123,6 @@ class TreeObjectTest extends HtmlObjectTestCase
 
     public function testCanNestMultipleValues()
     {
-        $object = Element::strong('foo');
         $this->object->nestChildren(array('strong' => 'foo', 'em' => 'bar'));
 
         $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
@@ -132,7 +130,6 @@ class TreeObjectTest extends HtmlObjectTestCase
 
     public function testWontNestIfTagDoesntExist()
     {
-        $object = Element::strong('foo');
         $this->object->nest(array('strong' => 'foo', 'foobar' => 'bar'));
 
         $this->assertEquals('<p>foo<strong>foo</strong>bar</p>', $this->object->render());
@@ -140,7 +137,6 @@ class TreeObjectTest extends HtmlObjectTestCase
 
     public function testCanNestMultipleValuesUsingNest()
     {
-        $object = Element::strong('foo');
         $this->object->nest(array('strong' => 'foo', 'em' => 'bar'));
 
         $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
@@ -162,7 +158,7 @@ class TreeObjectTest extends HtmlObjectTestCase
     public function testCanNestMultipleObjects()
     {
         $strong = Element::strong('foo');
-        $em     = Element::em('bar');
+        $em = Element::em('bar');
         $this->object->nestChildren(array($strong, $em));
 
         $this->assertEquals('<p>foo<strong>foo</strong><em>bar</em></p>', $this->object->render());
@@ -196,7 +192,7 @@ class TreeObjectTest extends HtmlObjectTestCase
     public function testCanCrawlSeveralLayersDeep()
     {
         $strong = Element::strong('foo');
-        $em     = Element::em('bar');
+        $em = Element::em('bar');
         $this->object->nest($strong, 'strong')->getChild('strong')->nest($em, 'em');
 
         $this->assertEquals('<p>foo<strong>foo<em>bar</em></strong></p>', $this->object->render());
@@ -206,7 +202,7 @@ class TreeObjectTest extends HtmlObjectTestCase
     public function testCanCrawlAnonymousLayers()
     {
         $strong = Element::strong('foo');
-        $em     = Element::em('bar');
+        $em = Element::em('bar');
         $this->object->nest($strong)->getChild(0)->nest($em);
 
         $this->assertEquals('<p>foo<strong>foo<em>bar</em></strong></p>', $this->object->render());
@@ -216,7 +212,7 @@ class TreeObjectTest extends HtmlObjectTestCase
     public function testCanGoBackUpSeveralLevels()
     {
         $strong = Element::strong('foo');
-        $em     = Element::em('bar');
+        $em = Element::em('bar');
         $this->object->nest($strong, 'strong')->getChild('strong')->nest($em, 'em');
         $child = $this->object->getChild('strong.em');
 
@@ -252,10 +248,10 @@ class TreeObjectTest extends HtmlObjectTestCase
     {
         $this->object->nestChildren(array(
             'first' => Element::div(),
-            'last'  => Element::div(),
+            'last' => Element::div(),
         ));
         $first = $this->object->first;
-        $last  = $this->object->last;
+        $last = $this->object->last;
 
         $this->assertTrue($last->isAfter('first'));
         $this->assertFalse($first->isAfter('last'));

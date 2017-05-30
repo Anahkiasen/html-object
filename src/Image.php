@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject;
 
 use HtmlObject\Traits\Tag;
@@ -11,21 +12,21 @@ class Image extends Tag
     /**
      * An UrlGenerator instance to use.
      *
-     * @type UrlGenerator
+     * @var UrlGenerator
      */
     public static $urlGenerator;
 
     /**
      * The Image's tag.
      *
-     * @type string
+     * @var string
      */
     protected $element = 'img';
 
     /**
      * Whether the element is self closing.
      *
-     * @type boolean
+     * @var bool
      */
     protected $isSelfClosing = true;
 

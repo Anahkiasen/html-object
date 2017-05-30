@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject;
 
 /**
@@ -9,14 +10,14 @@ class Lists extends Element
     /**
      * Default element.
      *
-     * @type string
+     * @var string
      */
     protected $element = 'ul';
 
     /**
      * Default element for nested children.
      *
-     * @type string
+     * @var string
      */
     protected $defaultChild = 'li';
 }

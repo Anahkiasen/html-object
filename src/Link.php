@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject;
 
 use HtmlObject\Traits\Tag;
@@ -11,14 +12,14 @@ class Link extends Tag
     /**
      * An UrlGenerator instance to use.
      *
-     * @type UrlGenerator
+     * @var UrlGenerator
      */
     public static $urlGenerator;
 
     /**
      * The default element.
      *
-     * @type string
+     * @var string
      */
     protected $element = 'a';
 

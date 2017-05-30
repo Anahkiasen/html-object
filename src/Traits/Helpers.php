@@ -1,4 +1,5 @@
 <?php
+
 namespace HtmlObject\Traits;
 
 /**
@@ -11,7 +12,7 @@ class Helpers
      *
      * @param string $tag
      *
-     * @return boolean
+     * @return bool
      */
     public static function isKnownTag($tag)
     {
@@ -131,7 +132,7 @@ class Helpers
             'var',
             'video',
             'wbr',
-        ));
+        ), true);
     }
 
     /**
@@ -143,7 +144,7 @@ class Helpers
      */
     public static function hyphenated($string)
     {
-        return ctype_lower($string) ? $string : strtolower(preg_replace('/(.)([A-Z])/', '$1-$2', $string));
+        return ctype_lower($string) ? $string : mb_strtolower(preg_replace('/(.)([A-Z])/', '$1-$2', $string));
     }
 
     /**
@@ -157,7 +158,7 @@ class Helpers
      */
     public static function arrayGet($array, $key, $fallback = null)
     {
-        return isset($array[$key]) ? $array[$key] : $fallback;
+        return $array[$key] ?? $fallback;
     }
 
     /**
@@ -172,14 +173,13 @@ class Helpers
         $html = array();
 
         foreach ((array) $attributes as $key => $value) {
-
             // Valueless attributes
             if (is_numeric($key)) {
                 $key = $value;
             }
 
             // Ignore some attributes
-            if ((is_null($value) || $value === false) && !in_array($key, array('value', 'min', 'max'))) {
+            if ((is_null($value) || $value === false) && !in_array($key, array('value', 'min', 'max'), true)) {
                 continue;
             }
 
@@ -190,7 +190,7 @@ class Helpers
             }
 
             // Check for JSON attributes
-            if (in_array(substr($value, 0, 1), array('{', '['))) {
+            if (in_array(mb_substr($value, 0, 1), array('{', '['), true)) {
                 $html[] = $key."='".$value."'";
                 continue;
             }

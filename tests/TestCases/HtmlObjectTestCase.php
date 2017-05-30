@@ -1,10 +1,11 @@
 <?php
+
 namespace HtmlObject\TestCases;
 
 use HtmlObject\Traits\Tag;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\DOMTestCase;
 
-class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
+class HtmlObjectTestCase extends DOMTestCase
 {
     /**
      * Reset some attributes on each test.
@@ -55,9 +56,9 @@ class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
     protected function getInputMatcher($type, $name, $value = null, $attributes = array())
     {
         $input = $this->getMatcher('input', null, array(
-            'name'  => $name,
+            'name' => $name,
             'value' => $value,
-            'type'  => $type,
+            'type' => $type,
         ));
 
         return $input;
@@ -75,11 +76,18 @@ class HtmlObjectTestCase extends PHPUnit_Framework_TestCase
      */
     protected function assertHTML($matcher, $html)
     {
-        return @$this->assertTag(
-            $matcher,
-            $html,
-            "Failed asserting that the HTML matches the provided format :\n\t"
-            .$html."\n\t"
-            .json_encode($matcher));
+        $html = $html instanceof Tag ? $html->__toString() : $html;
+
+        $selector = $matcher['tag'];
+        if (isset($matcher['attributes'])) {
+            foreach ($matcher['attributes'] as $key => $value) {
+                $selector .= sprintf('[%s=\'%s\']', $key, $value);
+            }
+        }
+
+        $this->assertSelectCount($selector, true, $html);
+        if (isset($matcher['content'])) {
+            $this->assertSelectEquals($selector, $matcher['content'], true, $html);
+        }
     }
 }
