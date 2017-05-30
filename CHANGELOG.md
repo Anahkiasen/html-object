@@ -2,6 +2,10 @@
 
 ## 1.4.3
 
+### Added
+
+- Added ability to override self-closing behavior per-tag
+
 ### Fixed
 
 - Fixed boolean attributes not being parsed properly (was outputting `checked="false"` per example), for real this time I swear
