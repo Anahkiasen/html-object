@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.4.4
+
+### Fixed
+
+- Fixed handling of falsey arguments in `addClass`
+
 ## 1.4.3
 
 ### Added
