@@ -15,4 +15,12 @@ class ElementTest extends HtmlObjectTestCase
 
         $this->assertHTML($matcher, $object);
     }
+
+    public function testIgnoreEmptyAddClassArgument()
+    {
+        $object = Element::p('foo')->addClass(null);
+        $output = $object->__toString();
+
+        $this->assertEquals("<p>foo</p>", $output);
+    }
 }
