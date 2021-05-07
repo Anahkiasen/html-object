@@ -572,7 +572,7 @@ abstract class Tag extends TreeObject
         $thisClasses = explode(' ', Helpers::arrayGet($this->attributes, 'class'));
         foreach ($classes as $class) {
             $exists = array_search($class, $thisClasses, true);
-            if (!is_null($exists)) {
+            if ($exists !== false) {
                 unset($thisClasses[$exists]);
             }
         }
