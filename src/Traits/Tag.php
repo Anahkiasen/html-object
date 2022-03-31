@@ -547,7 +547,7 @@ abstract class Tag extends TreeObject
 
         if ($class !== null && $class !== '') {
             // Prevent adding a class twice
-            $classes = explode(' ', $this->attributes['class']);
+            $classes = explode(' ', (string) $this->attributes['class']);
             if (!in_array($class, $classes, true)) {
                 $this->attributes['class'] = trim($this->attributes['class'] . ' ' . $class);
             }
