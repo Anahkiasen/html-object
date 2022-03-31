@@ -113,7 +113,7 @@ abstract class TreeObject
         }
 
         // Dot notation
-        $children = explode('.', $name);
+        $children = explode('.', (string) $name);
         if (count($children) === 1) {
             return Helpers::arrayGet($this->getChildren(), $children[0]);
         }
